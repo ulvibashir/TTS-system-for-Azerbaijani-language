@@ -1,14 +1,14 @@
 # Research References
 
-## Citation Format
+### Citation Format
 Using **APA 7** style for all references.
 
-### TTS Systems
+## TTS Systems
 - https://samirrustamov.com/en/products/
 - https://ieeexplore.ieee.org/document/8747154
 
 ---
-1. RULE-BASED TTS SYSTEMS (2020-2024)
+## RULE-BASED TTS SYSTEMS (2020-2024)
 
 1. A Novel End-to-End Turkish Text-to-Speech (TTS) System via Deep Learning
 
@@ -36,7 +36,7 @@ features with Azerbaijani.
 - Relevance: Comprehensive overview of TTS evolution from rule-based (formant synthesis, HMM-based) to neural approaches, essential for understanding architectural choices in TTS design.
 
 ---
-2. AZERBAIJANI LANGUAGE TTS & NLP
+## AZERBAIJANI LANGUAGE TTS & NLP
 
 4. Multilingual Text-to-Speech Synthesis for Turkic Languages Using Transliteration
 
@@ -87,7 +87,7 @@ features with Azerbaijani.
 - Relevance: Essential tool for handling Azerbaijani's agglutinative morphology, critical for text analysis in TTS preprocessing.
 
 ---
-3. TURKISH/TURKIC LANGUAGE TTS (2018-2024)
+## TURKISH/TURKIC LANGUAGE TTS (2018-2024)
 
 10. Vowel Harmony: A Comparative Study of Turkey's and Azerbaijani Turkish
 
@@ -130,7 +130,7 @@ features with Azerbaijani.
 - Relevance: Comprehensive analysis of phonological patterns shared across Turkic languages, useful for understanding Azerbaijani phonology.
 
 ---
-4. GRAPHEME-TO-PHONEME CONVERSION (2019-2024)
+## GRAPHEME-TO-PHONEME CONVERSION (2019-2024)
 
 15. A Survey of Grapheme-to-Phoneme Conversion Methods
 
@@ -181,7 +181,7 @@ features with Azerbaijani.
 - Relevance: Morpheme-based G2P approach specifically designed for agglutinative languages, highly relevant for Azerbaijani.
 
 ---
-5. PROSODY & STRESS (2018-2024)
+## PROSODY & STRESS (2018-2024)
 
 21. Voice Synthesis Improvement by Machine Learning of Natural Prosody
 
@@ -216,7 +216,7 @@ features with Azerbaijani.
 - Relevance: 2024 study on stress perception in agglutinative language (Mongolian) providing insights for stress assignment rules.
 
 ---
-6. TEXT NORMALIZATION (2019-2024)
+## TEXT NORMALIZATION (2019-2024)
 
 25. PolyNorm: Few-Shot LLM-Based Text Normalization for Text-to-Speech
 
@@ -243,7 +243,7 @@ features with Azerbaijani.
 - Relevance: Recent comprehensive thesis on text normalization specifically for TTS, covering number-to-text, abbreviations, special characters.
 
 ---
-7. LOW-RESOURCE LANGUAGE TTS (2020-2024)
+## LOW-RESOURCE LANGUAGE TTS (2020-2024)
 
 28. LRSpeech: Extremely Low-Resource Speech Synthesis and Recognition
 
@@ -278,7 +278,7 @@ features with Azerbaijani.
 - Relevance: State-of-the-art 2024 transfer learning framework for multilingual low-resource TTS using self-supervised representations.
 
 ---
-8. NEURAL TTS ARCHITECTURES (Comparison & Context)
+## NEURAL TTS ARCHITECTURES (Comparison & Context)
 
 32. VITS: Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech
 
@@ -305,7 +305,7 @@ features with Azerbaijani.
 - Relevance: State-of-the-art neural vocoder (MOS=4.36) achieving real-time performance, important for understanding modern vocoder architecture.
 
 ---
-9. SPEECH QUALITY EVALUATION
+## SPEECH QUALITY EVALUATION
 
 35. Speech Quality Metrics and Evaluation: Measuring TTS Performance
 
@@ -316,7 +316,7 @@ features with Azerbaijani.
 - Relevance: Comprehensive guide to MOS, intelligibility, naturalness, and expressivity evaluation for TTS systems.
 
 ---
-10. FOUNDATIONAL & SEMINAL WORKS
+## FOUNDATIONAL & SEMINAL WORKS
 
 36. The Architecture of the Festival Speech Synthesis System
 
@@ -345,7 +345,7 @@ features with Azerbaijani.
 ---
 ADDITIONAL RESOURCES & TOOLS
 
-39. The Phonemizer: Simple Text to Phones Converter for Multiple Languages
+## The Phonemizer: Simple Text to Phones Converter for Multiple Languages
 
 - Authors: bootphon
 - Year: Ongoing
