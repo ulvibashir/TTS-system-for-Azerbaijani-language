@@ -3,33 +3,32 @@
 ## Key Papers
 
 ### Rule-Based TTS
-- [ ] Add paper title, author, year, DOI/URL
-- [ ] Add paper title, author, year, DOI/URL
+- 
 
 ### Azerbaijani Phonetics
-- [ ] Add paper title, author, year, DOI/URL
-- [ ] Add paper title, author, year, DOI/URL
+- 
 
 ### Grapheme-to-Phoneme (G2P)
-- [ ] Add paper title, author, year, DOI/URL
-- [ ] Add paper title, author, year, DOI/URL
+- 
 
 ### Prosody & Stress
-- [ ] Add paper title, author, year, DOI/URL
-- [ ] Add paper title, author, year, DOI/URL
+- 
 
 ---
 
 ## Useful Links
 
 ### TTS Systems
--
+- https://samirrustamov.com/en/products/
 
 ### Azerbaijani Language Resources
 -
 
 ### Tools & Libraries
 -
+
+### Research Papers
+- https://ieeexplore.ieee.org/document/8747154
 
 ---
 

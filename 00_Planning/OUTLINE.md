@@ -12,8 +12,8 @@
 
 ### Chapter 1: General
 - **1.1** General text-to-speech detailed
-- **1.2** Rule based text-to-speech cons (NLG?)
-- **1.3** Rule based TTS pros, cons (NLG?)
+- **1.2** Rule based text-to-speech cons
+- **1.3** Rule based TTS pros, cons
 
 ### Chapter 2
 - **2.1**
