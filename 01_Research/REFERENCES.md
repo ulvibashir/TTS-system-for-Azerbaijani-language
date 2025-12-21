@@ -36,4 +36,3 @@
 Using **APA 7** style for all references.
 
 ---
-*Last updated: 2025-12-21*
