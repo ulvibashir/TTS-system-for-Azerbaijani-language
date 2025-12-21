@@ -1,6 +1,7 @@
 # Project Roadmap
 
 ## Phase 1: Foundation (Nov-Dec 2025)
+- [X] Research articles
 - [ ] Complete literature review
 - [ ] Finalize dissertation outline
 - [ ] Define system architecture
