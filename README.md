@@ -48,23 +48,3 @@ UNEC/
 ```
 
 ---
-
-## How to Use
-
-**Daily:**
-- Check `00_Planning/DEADLINES.md` for upcoming milestones
-- Update `00_Planning/OUTLINE.md` to track progress
-
-**Research:**
-- Save documents to `01_Research/Documents/`
-- Add citation to `01_Research/REFERENCES.md`
-- Write notes in `01_Research/Notes/`
-- Save reference images to `01_Research/Images/`
-
-**Writing:**
-- Draft dissertation in `03_Dissertation/`
-- Update `00_Planning/OUTLINE.md` checkboxes
-
-**Implementation:**
-- Source code → `02_Technical/Code/`
-- Linguistic rules → `02_Technical/Rules/`
