@@ -4,7 +4,7 @@
 - [ ] Complete literature review
 - [ ] Finalize dissertation outline
 - [ ] Define system architecture
-- [ ] **Milestone:** Chapter 1.1 ready (01.01.25)
+- [ ] **Milestone:** Chapter 1.1 ready (01.01.26)
 
 ## Phase 2: Research & Design (Jan-Feb 2025)
 - [ ] Deep dive into Azerbaijani phonetics
@@ -33,4 +33,3 @@
 - [ ] **Final submission**
 
 ---
-*Last updated: 2025-12-21*
