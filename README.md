@@ -18,7 +18,7 @@
 
 **Research tracking in `01_Research/`:**
 - **[REFERENCES.md](01_Research/REFERENCES.md)** - Papers and links
-- **Notes/** - Research notes and summaries
+- **[NOTES.md](01_Research/Notes/NOTES.md)** - Research notes and summaries
 
 ---
 
