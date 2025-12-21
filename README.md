@@ -1,11 +1,17 @@
 # Design and Development of a Rule-Based TTS System for Azerbaijani Language
 
-**Institution:** Azerbaijan State Economic University (UNEC)
-**Program:** MBA in Artificial Intelligence (2nd Course)
-**Type:** Master's Dissertation
-**Target Length:** 51-75 pages
-**Citation Style:** APA 7
-**Supervisor:** Khanim Pashayeva (pashayeva-khanim@outlook.com)
+**Institution:** 
+- Azerbaijan State Economic University (UNEC)
+**Program:** 
+- MBA in Artificial Intelligence
+**Type:** 
+- Master's Dissertation
+**Target Length:** 
+- 51-75 pages
+**Citation Style:** 
+- APA 7
+**Mentor:** 
+- Khanim Pashayeva (pashayeva-khanim@outlook.com)
 
 ---
 
