@@ -1,0 +1,108 @@
+{
+  "_comment": "Azerbaijani Stress Assignment Rules",
+
+  "default_rule": {
+    "description": "Default stress falls on the final syllable of the word",
+    "position": "last",
+    "priority": 0
+  },
+
+  "exception_rules": [
+    {
+      "id": "negation_deyil",
+      "description": "The negative copula 'deyil' is stressed on the first syllable: DEY-il",
+      "word": "deyil",
+      "stressed_syllable": 0,
+      "priority": 10
+    },
+    {
+      "id": "interrogative_particle",
+      "description": "Question particles (mi/mı/mu/mü) do not receive stress; stress remains on the preceding word",
+      "suffixes": ["mi", "mı", "mu", "mü"],
+      "stressed_syllable": -1,
+      "host_stress": "last_syllable_of_stem",
+      "priority": 10
+    },
+    {
+      "id": "negative_suffix_ma_me",
+      "description": "Negation suffix -ma/-mə shifts stress to the syllable before it",
+      "suffixes": ["ma", "mə"],
+      "stressed_syllable": -2,
+      "priority": 8
+    },
+    {
+      "id": "vocative_proper_names",
+      "description": "Proper names in vocative form retain stress on the root (first) syllable",
+      "context": "vocative",
+      "stressed_syllable": 0,
+      "priority": 7
+    },
+    {
+      "id": "borrowed_words",
+      "description": "Recent loanwords (Russian, English) may retain original stress patterns",
+      "tag": "loanword",
+      "stress": "lexical",
+      "priority": 6
+    },
+    {
+      "id": "adverbs_heç",
+      "description": "Heç (none/never) and similar intensifiers stress first syllable",
+      "words": ["heç", "bəlkə", "yalnız", "ancaq", "lakin"],
+      "stressed_syllable": 0,
+      "priority": 9
+    },
+    {
+      "id": "postpositions",
+      "description": "Postpositions (üçün, ilə, kimi, etc.) are unstressed",
+      "postpositions": ["üçün", "ilə", "kimi", "qədər", "kimi", "haqqında", "qarşı", "görə", "sonra", "əvvəl", "yanında"],
+      "stressed_syllable": -1,
+      "priority": 9
+    },
+    {
+      "id": "conjunctions",
+      "description": "Conjunctions carry reduced stress",
+      "conjunctions": ["və", "ya", "amma", "lakin", "ancaq", "çünki", "ki", "nə", "həm"],
+      "stressed_syllable": -1,
+      "priority": 8
+    }
+  ],
+
+  "phrasal_stress": {
+    "description": "Rules for stress within a phrase (prosodic domain)",
+    "noun_phrase": {
+      "description": "In a noun phrase, the adjective modifier is more prominent than the noun",
+      "stress_position": "pre_head_modifier"
+    },
+    "verb_phrase": {
+      "description": "The finite verb receives the main phrasal stress",
+      "stress_position": "main_verb"
+    },
+    "focus_stress": {
+      "description": "Focused element (new information) receives the highest pitch accent",
+      "position": "immediately_before_verb"
+    }
+  },
+
+  "syllabification_rules": {
+    "description": "Rules for dividing words into syllables (required for stress placement)",
+    "vowel_nucleus": true,
+    "onset_maximization": true,
+    "comment": "Each syllable has exactly one vowel nucleus; consonant clusters prefer onset position",
+    "examples": {
+      "alma":    ["al", "ma"],
+      "kitab":   ["ki", "tab"],
+      "məktəb":  ["mək", "təb"],
+      "torpaq":  ["tor", "paq"],
+      "getmək":  ["get", "mək"],
+      "oxumaq":  ["o", "xu", "maq"],
+      "Azerbaijan": ["A", "zər", "bay", "can"]
+    }
+  },
+
+  "stress_notation": {
+    "description": "How stress is marked in phoneme output",
+    "primary_stress":   "ˈ",
+    "secondary_stress": "ˌ",
+    "unstressed":       ""
+  }
+}

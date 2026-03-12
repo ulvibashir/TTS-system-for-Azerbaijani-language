@@ -1,0 +1,156 @@
+{
+  "_comment": "Azerbaijani Prosody Rules — Pitch (F0), Duration, Pause",
+
+  "intonation_patterns": {
+    "declarative": {
+      "description": "Falling intonation for statements",
+      "f0_pattern": "high_rise_then_fall",
+      "final_boundary": "L%",
+      "pitch_range": "normal"
+    },
+    "interrogative_wh": {
+      "description": "Wh-questions (kim, nə, harada, etc.) — falling intonation",
+      "f0_pattern": "high_fall",
+      "final_boundary": "L%",
+      "pitch_range": "wide"
+    },
+    "interrogative_yn": {
+      "description": "Yes/No questions (marked by mi/mı/mu/mü) — rising intonation",
+      "f0_pattern": "low_rise",
+      "final_boundary": "H%",
+      "pitch_range": "normal"
+    },
+    "exclamatory": {
+      "description": "Exclamations — wide pitch range, sharp fall",
+      "f0_pattern": "very_high_fall",
+      "final_boundary": "L%",
+      "pitch_range": "very_wide"
+    },
+    "imperative": {
+      "description": "Commands — sharp fall on verb",
+      "f0_pattern": "high_fall",
+      "final_boundary": "L%",
+      "pitch_range": "wide"
+    },
+    "list": {
+      "description": "Enumeration — each item has slight rise except the last (fall)",
+      "f0_pattern": "series_of_rises",
+      "final_item": "fall",
+      "final_boundary": "L%"
+    }
+  },
+
+  "sentence_type_detection": {
+    "declarative_markers": ["."],
+    "yn_question_markers": ["mi", "mı", "mu", "mü", "?"],
+    "wh_question_words": ["kim", "nə", "nəyi", "nəyə", "harada", "haradan", "haraya", "niyə", "nə üçün", "necə", "neçə", "hansı", "nə vaxt"],
+    "exclamatory_markers": ["!"],
+    "imperative_markers": []
+  },
+
+  "pitch_accent_rules": [
+    {
+      "id": "focus_accent",
+      "description": "Focused (new information) constituent receives H* pitch accent",
+      "accent": "H*",
+      "position": "stressed_syllable_of_focus"
+    },
+    {
+      "id": "default_accent",
+      "description": "Non-focus stressed syllables receive default L+H* accent",
+      "accent": "L+H*",
+      "position": "stressed_syllable"
+    },
+    {
+      "id": "topic_accent",
+      "description": "Topic (given information) receives lower L* accent",
+      "accent": "L*",
+      "position": "stressed_syllable_of_topic"
+    }
+  ],
+
+  "duration_rules": {
+    "base_durations_ms": {
+      "comment": "Approximate phoneme durations in milliseconds",
+      "short_vowel":     80,
+      "long_vowel":     160,
+      "stop_closure":    60,
+      "stop_burst":      20,
+      "fricative":       90,
+      "nasal":           70,
+      "lateral":         70,
+      "rhotic":          60,
+      "approximant":     70,
+      "affricate":      100
+    },
+    "position_modifiers": {
+      "stressed_vowel":       1.4,
+      "unstressed_vowel":     1.0,
+      "word_final_consonant": 1.2,
+      "phrase_final_vowel":   1.5,
+      "phrase_final_consonant": 1.3,
+      "word_initial_consonant": 1.1
+    },
+    "speech_rate_modifiers": {
+      "slow":   1.4,
+      "normal": 1.0,
+      "fast":   0.75
+    }
+  },
+
+  "pause_rules": {
+    "comment": "Pause durations in milliseconds",
+    "sentence_boundary":          600,
+    "comma":                       250,
+    "semicolon":                   400,
+    "colon":                       350,
+    "dash":                        300,
+    "ellipsis":                    500,
+    "breath_group_boundary":       150,
+    "between_major_phrases":       200
+  },
+
+  "phrase_boundary_cues": [
+    {
+      "id": "punctuation_boundary",
+      "description": "Punctuation marks indicate phrase or sentence boundaries",
+      "triggers": [".", ",", ";", ":", "!", "?", "—", "..."]
+    },
+    {
+      "id": "conjunction_boundary",
+      "description": "Coordinating conjunctions may trigger a boundary before them",
+      "triggers": ["və", "ya", "amma", "lakin", "ancaq", "çünki"]
+    },
+    {
+      "id": "long_phrase_boundary",
+      "description": "Phrases exceeding ~7 content words are split at syntactic boundary",
+      "max_words": 7
+    }
+  ],
+
+  "speaking_styles": {
+    "neutral": {
+      "pitch_range_semitones": 8,
+      "speech_rate": "normal",
+      "pause_multiplier": 1.0
+    },
+    "formal": {
+      "pitch_range_semitones": 6,
+      "speech_rate": "slow",
+      "pause_multiplier": 1.2
+    },
+    "conversational": {
+      "pitch_range_semitones": 12,
+      "speech_rate": "fast",
+      "pause_multiplier": 0.8
+    }
+  },
+
+  "f0_reference": {
+    "comment": "Reference F0 values; actual values depend on speaker voice",
+    "male_baseline_hz":   110,
+    "female_baseline_hz": 200,
+    "pitch_ceiling_male": 280,
+    "pitch_ceiling_female": 450
+  }
+}
