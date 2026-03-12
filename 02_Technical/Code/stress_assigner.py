@@ -88,11 +88,10 @@ class StressAssigner:
                 self._mark_stress(word, idx)
             return word
 
-        # 3. Negation suffix -ma/-mə: stress penultimate syllable
-        if g.endswith(("maq", "mək")) and len(word.syllables) > 1:
-            # Infinitive: stress last syllable (default)
-            pass
-        if self._has_negation_suffix(g) and len(word.syllables) >= 2:
+        # 3. Negation suffix -ma/-mə: stress penultimate syllable.
+        # Require 3+ syllables to avoid false matches on common nouns/
+        # gerunds that happen to end in 'ma'/'mə' (e.g. alma = apple).
+        if self._has_negation_suffix(g) and len(word.syllables) >= 3:
             self._mark_stress(word, len(word.syllables) - 2)
             return word
 

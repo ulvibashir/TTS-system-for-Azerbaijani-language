@@ -46,15 +46,15 @@
   "context_sensitive_rules": [
     {
       "id": "g_front_vowel",
-      "description": "g → /c/ (palatal stop) before front vowels",
+      "description": "g → /ɟ/ (voiced palatal stop) before front vowels",
       "grapheme": "g",
       "context": "before_front_vowel",
-      "phoneme": "c",
+      "phoneme": "ɟ",
       "default_phoneme": "ɡ"
     },
     {
       "id": "k_front_vowel",
-      "description": "k → /c/ (palatal stop) before/after front vowels",
+      "description": "k → /c/ (voiceless palatal stop) before/after front vowels",
       "grapheme": "k",
       "context": "adjacent_front_vowel",
       "phoneme": "c",

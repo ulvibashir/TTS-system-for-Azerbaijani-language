@@ -188,8 +188,10 @@ def expand_symbols(text: str) -> str:
     for sym, word in RULES["currency_symbols"].items():
         text = text.replace(sym, " " + word + " ")
 
-    for sym, word in RULES["unit_symbols"].items():
-        # Only replace when immediately after a number
+    # Sort by descending key length so multi-char symbols (°C, °F) are
+    # matched before their single-char prefixes (°).
+    unit_items = sorted(RULES["unit_symbols"].items(), key=lambda x: -len(x[0]))
+    for sym, word in unit_items:
         text = re.sub(r"(\d)\s*" + re.escape(sym) + r"\b",
                       r"\1 " + word, text)
 
@@ -213,7 +215,8 @@ def normalize_dates(text: str) -> str:
         year  = match.group(3)
         day_word   = _int_to_words(day) + _ordinal_suffix(_int_to_words(day))
         month_word = months.get(month, month)
-        year_word  = _int_to_words(int(year)) + "-ci il"
+        year_num   = _int_to_words(int(year))
+        year_word  = year_num + _ordinal_suffix(year_num) + " il"
         return f"{day_word} {month_word} {year_word}"
 
     text = re.sub(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", replace_dmy, text)

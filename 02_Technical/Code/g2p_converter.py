@@ -36,7 +36,10 @@ FRONT_VOWELS = set(RULES["vowel_classes"]["front"])
 BACK_VOWELS  = set(RULES["vowel_classes"]["back"])
 CONSONANTS  = set(RULES["consonants"].keys())
 
-VOICED_OBSTRUENTS = {"b": "p", "d": "t", "g": "k", "c": "tʃ", "z": "s"}
+# Voiced → voiceless devoicing pairs (word-final).
+# Note: /ɟ/ is the voiced palatal stop (from palatalized /g/);
+#       /c/ is the voiceless palatal stop (from palatalized /k/) — already voiceless.
+VOICED_OBSTRUENTS = {"b": "p", "d": "t", "ɡ": "k", "ɟ": "c", "z": "s"}
 VELAR_CONSONANTS  = {"k", "q", "g", "ğ"}
 
 
@@ -169,13 +172,13 @@ class AzerbaijaniG2P:
         return None  # Unknown character
 
     def _map_g(self, next_ch: Optional[str], prev_ch: Optional[str]) -> str:
-        """g → /c/ before front vowels, /ɡ/ elsewhere."""
+        """g → /ɟ/ (voiced palatal stop) before front vowels, /ɡ/ elsewhere."""
         if next_ch in FRONT_VOWELS or prev_ch in FRONT_VOWELS:
-            return "c"
+            return "ɟ"
         return "ɡ"
 
     def _map_k(self, next_ch: Optional[str], prev_ch: Optional[str]) -> str:
-        """k → /c/ adjacent to front vowels, /k/ elsewhere."""
+        """k → /c/ (voiceless palatal stop) adjacent to front vowels, /k/ elsewhere."""
         if next_ch in FRONT_VOWELS or prev_ch in FRONT_VOWELS:
             return "c"
         return "k"
