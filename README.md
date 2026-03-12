@@ -13,23 +13,97 @@
 
 A fully rule-based text-to-speech synthesis pipeline for **North Azerbaijani** (Latin script). The system requires no speech training data and converts raw Azerbaijani text to spoken audio through five sequential modules.
 
+### Pipeline
+
+```mermaid
+flowchart TD
+    A([Raw Azerbaijani Text]) --> B
+
+    B["<b>1. Text Normalization</b><br/><code>text_normalizer.py</code><br/>numbers · abbreviations · dates · symbols"]
+    B --> C
+
+    C["<b>2. G2P Conversion</b><br/><code>g2p_converter.py</code><br/>graphemes → IPA phonemes · syllabification"]
+    C --> D
+
+    D["<b>3. Stress Assignment</b><br/><code>stress_assigner.py</code><br/>lexical stress · phrasal stress · clitics"]
+    D --> E
+
+    E["<b>4. Prosody Engine</b><br/><code>prosody_engine.py</code><br/>pitch accents · durations · pauses · SSML"]
+    E --> F
+
+    F["<b>5. Synthesizer</b><br/><code>synthesizer.py</code><br/>espeak-ng backend"]
+    F --> G([WAV Audio Output])
+
+    style A fill:#e8f5e9,stroke:#388e3c
+    style G fill:#e3f2fd,stroke:#1565c0
+    style B fill:#fff8e1,stroke:#f9a825
+    style C fill:#fff8e1,stroke:#f9a825
+    style D fill:#fff8e1,stroke:#f9a825
+    style E fill:#fff8e1,stroke:#f9a825
+    style F fill:#fff8e1,stroke:#f9a825
 ```
-Input Text
-    │
-    ▼
-Text Normalization     numbers, abbreviations, symbols → words
-    │
-    ▼
-G2P Conversion         graphemes → IPA phonemes + syllabification
-    │
-    ▼
-Stress Assignment      lexical + phrasal stress rules
-    │
-    ▼
-Prosody Engine         pitch accents, durations, pauses, SSML
-    │
-    ▼
-Synthesizer            espeak-ng backend → WAV audio
+
+### G2P Rule System
+
+```mermaid
+flowchart LR
+    subgraph Input
+        G[Grapheme]
+    end
+
+    subgraph Context["Context Check (priority order)"]
+        R1["Unstressed function word?<br/>(postposition / conjunction / particle)"]
+        R2["Known exception?<br/>(deyil, bəlkə, yalnız …)"]
+        R3["Palatalization context?<br/>(k/g adjacent to front vowel)"]
+        R4["ğ context?<br/>(intervocalic vs. word-final)"]
+        R5["Nasal before velar?<br/>(n + k/q/g → ŋ)"]
+        R6["Default mapping"]
+    end
+
+    subgraph Output
+        P[IPA Phoneme]
+    end
+
+    G --> R1 --> R2 --> R3 --> R4 --> R5 --> R6 --> P
+```
+
+### Stress Rule Hierarchy
+
+```mermaid
+flowchart TD
+    W([Word]) --> Q1{Function word?<br/>postposition · conjunction · clitic}
+    Q1 -- Yes --> S0[Unstressed]
+    Q1 -- No  --> Q2{Lexical exception?<br/>deyil · bəlkə · yalnız …}
+    Q2 -- Yes --> S1[Exception-defined syllable]
+    Q2 -- No  --> Q3{Ends in negation<br/>suffix -ma/-mə<br/>and 3+ syllables?}
+    Q3 -- Yes --> S2[Penultimate syllable]
+    Q3 -- No  --> S3[Final syllable — default]
+
+    style S0 fill:#ffebee,stroke:#c62828
+    style S1 fill:#fff3e0,stroke:#e65100
+    style S2 fill:#e8eaf6,stroke:#283593
+    style S3 fill:#e8f5e9,stroke:#2e7d32
+```
+
+### Vowel System
+
+```mermaid
+graph LR
+    subgraph Back
+        A[a — open back unrounded]
+        I[ı — close back unrounded]
+        O[o — close-mid back rounded]
+        U[u — close back rounded]
+    end
+    subgraph Front
+        E[e — close-mid front unrounded]
+        Ə[ə — near-open front unrounded]
+        İ[i — close front unrounded]
+        Ö[ö — close-mid front rounded]
+        Ü[ü — close front rounded]
+    end
+
+    Back -- "vowel harmony\n(suffix alternation)" --> Front
 ```
 
 ---
@@ -125,13 +199,25 @@ python -X utf8 main.py --interactive
 
 ## Project Status
 
-| Phase | Description | Status |
-|---|---|---|
-| 1 — Foundation | Research, literature review, architecture design | ✅ Done |
-| 2 — Design | Azerbaijani phonetics deep-dive, rule design | ✅ Done |
-| 3 — Implementation | All pipeline modules + dissertation chapters 1–3 | ✅ Done |
-| 4 — Evaluation | MOS study with native listeners, WER measurement | 🔄 In progress |
-| 5 — Finalization | Revisions, UNEC formatting, presentation | ⏳ Pending |
+```mermaid
+gantt
+    title Dissertation Timeline
+    dateFormat  YYYY-MM-DD
+    section Research
+        Literature review       :done,    2025-11-01, 2025-12-21
+        Architecture design     :done,    2025-12-01, 2025-12-21
+    section Design
+        Phonetics deep-dive     :done,    2026-01-01, 2026-02-01
+        Rule design             :done,    2026-01-15, 2026-02-15
+    section Implementation
+        Pipeline modules        :done,    2026-02-01, 2026-03-12
+        Dissertation chapters   :done,    2026-02-15, 2026-03-12
+    section Evaluation
+        MOS + WER study         :active,  2026-03-12, 2026-04-01
+    section Finalization
+        Revisions + formatting  :         2026-04-01, 2026-05-01
+        Final submission        :milestone, 2026-05-01, 1d
+```
 
 ---
 
