@@ -3,8 +3,6 @@
 - **Institution:** Azerbaijan State Economic University (UNEC)
 - **Program:** MBA in Artificial Intelligence
 - **Type:** Master's Dissertation
-- **Target Length:** 51-75 pages
-- **Citation Style:** APA 7
 - **Mentor:** Khanim Pashayeva (pashayeva-khanim@outlook.com)
 
 ---
@@ -43,7 +41,98 @@ flowchart TD
     style F fill:#fff8e1,stroke:#f9a825
 ```
 
-### G2P Rule System
+---
+
+## Key Results
+
+| Metric | Proposed System | espeak-ng Baseline | Improvement |
+|--------|:-:|:-:|:-:|
+| **MOS** (naturalness, 1-5 scale) | **3.2** (std 0.5) | 2.8 (std 0.4) | +0.4 |
+| **WER** (intelligibility) | **12.4%** (std 15.3%) | 18.7% (std 5.2%) | -6.3 pp |
+| **G2P PER** (native vocabulary) | **2.8%** | — | — |
+| **Sentence type detection** | **100%** (50/50) | — | — |
+| **Text norm accuracy** | **97.5%** (118/121) | — | — |
+
+> Evaluated on 50 phonetically balanced test sentences by 5 native Azerbaijani speakers.
+
+---
+
+## Linguistic Coverage
+
+| Feature | Status | Details |
+|---------|:------:|---------|
+| 9-vowel system | done | a, e, ə, ı, i, o, ö, u, ü → IPA |
+| Vowel harmony | done | Back/front suffix alternation |
+| Palatalization (k/g) | done | /k/→/c/, /g/→/ɟ/ before front vowels |
+| /ğ/ allophony | done | Intervocalic /ɣ/, word-final /ː/ |
+| Final devoicing | done | b→p, d→t, z→s, g→k at word boundary |
+| Nasal assimilation | done | /n/→/ŋ/ before velars, /n/→/m/ before bilabials |
+| Geminate consonants | done | CC → Cː |
+| Default final stress | done | With 8 exception categories |
+| Sentence type detection | done | Declarative, YN-question, WH-question, exclamatory |
+| Number-to-words | done | Cardinals, ordinals, vowel-harmony-correct suffixes |
+| Date/time/abbreviation/currency | done | Full NSW normalization pipeline |
+
+---
+
+## Quick Start
+
+**Requirements:** Python 3.10+ and [espeak-ng](https://github.com/espeak-ng/espeak-ng/releases)
+
+```bash
+# Install espeak-ng (Linux)
+sudo apt install espeak-ng
+
+cd 02_Technical/Code
+
+# Run demo (10 test sentences covering key linguistic phenomena)
+python -X utf8 main.py --demo
+
+# Synthesize a sentence
+python -X utf8 main.py "Azərbaycan gözəl ölkədir." --output out.wav
+
+# Analyze pipeline stages without audio output
+python -X utf8 main.py --analyze "Kitabı oxudunmu?"
+
+# Interactive mode
+python -X utf8 main.py --interactive
+```
+
+> On Windows, use `python -X utf8` to ensure correct Unicode handling in the terminal.
+
+---
+
+## Testing & Evaluation
+
+```bash
+cd 02_Technical/Code
+
+# Run full test suite (156 tests)
+pip install pytest
+python -m pytest tests/ -v
+
+# Run evaluation on 50 phonetically balanced sentences
+python evaluation/run_evaluation.py
+
+# Analyze MOS + WER data
+python evaluation/analyze_results.py
+```
+
+### Test Suite Coverage
+
+| Module | Tests | What is tested |
+|--------|:-----:|----------------|
+| `test_utils.py` | 22 | Character sets, vowel harmony, tokenization, WER/CER metrics |
+| `test_text_normalizer.py` | 27 | Numbers, ordinals, Roman numerals, abbreviations, symbols, dates |
+| `test_g2p_converter.py` | 29 | Vowel/consonant mapping, context rules, devoicing, syllabification |
+| `test_stress_assigner.py` | 14 | Default stress, exceptions, phrasal stress, IPA rendering |
+| `test_prosody_engine.py` | 30 | Sentence type detection, duration, pitch, pauses, SSML |
+| `test_pipeline.py` | 34 | Full pipeline integration, all 50 test sentences end-to-end |
+| **Total** | **156** | **All passing** |
+
+---
+
+## G2P Rule System
 
 ```mermaid
 flowchart LR
@@ -67,7 +156,7 @@ flowchart LR
     G --> R1 --> R2 --> R3 --> R4 --> R5 --> R6 --> P
 ```
 
-### Stress Rule Hierarchy
+## Stress Rule Hierarchy
 
 ```mermaid
 flowchart TD
@@ -85,7 +174,7 @@ flowchart TD
     style S3 fill:#e8f5e9,stroke:#2e7d32
 ```
 
-### Vowel System
+## Vowel System
 
 ```mermaid
 graph LR
@@ -108,96 +197,54 @@ graph LR
 
 ---
 
-## Quick Start
-
-**Requirements:** Python 3.10+ and [espeak-ng](https://github.com/espeak-ng/espeak-ng/releases)
-
-```bash
-# Install espeak-ng (Linux)
-sudo apt install espeak-ng
-
-# Run demo (10 test sentences covering key linguistic phenomena)
-cd 02_Technical/Code
-python -X utf8 main.py --demo
-
-# Synthesize a sentence
-python -X utf8 main.py "Azərbaycan gözəl ölkədir." --output out.wav
-
-# Analyze pipeline stages without audio output
-python -X utf8 main.py --analyze "Kitabı oxudunmu?"
-
-# Interactive mode
-python -X utf8 main.py --interactive
-```
-
-> On Windows, use `python -X utf8` to ensure correct Unicode handling in the terminal.
-
----
-
 ## Repository Structure
 
 ```
 ├── 00_Planning/
-│   ├── DEADLINES.md          # Timeline and milestones
-│   ├── OUTLINE.md            # Dissertation structure + progress tracker
-│   └── ROADMAP.md            # Phase-by-phase implementation plan
+│   ├── DEADLINES.md              # Timeline and milestones
+│   ├── OUTLINE.md                # Dissertation structure + progress tracker
+│   └── ROADMAP.md                # Phase-by-phase implementation plan
 │
 ├── 01_Research/
-│   ├── Documents/            # Reference theses and papers (PDF/DOCX)
-│   ├── Images/               # Screenshots and diagrams
-│   ├── Notes/                # Research notes
-│   └── REFERENCES.md         # 40+ annotated references (APA 7)
+│   ├── Documents/                # Reference theses and papers (PDF/DOCX)
+│   ├── Images/                   # Screenshots and diagrams
+│   ├── Notes/                    # Research notes
+│   └── REFERENCES.md             # 40+ annotated references (APA 7)
 │
 ├── 02_Technical/
 │   ├── Code/
-│   │   ├── main.py           # CLI entry point
-│   │   ├── pipeline.py       # End-to-end orchestrator
-│   │   ├── text_normalizer.py
-│   │   ├── g2p_converter.py
-│   │   ├── stress_assigner.py
-│   │   ├── prosody_engine.py
-│   │   ├── synthesizer.py
-│   │   ├── utils.py
-│   │   └── requirements.txt
+│   │   ├── main.py               # CLI entry point (demo, interactive, analyze)
+│   │   ├── pipeline.py           # End-to-end orchestrator
+│   │   ├── text_normalizer.py    # NSW → spoken form
+│   │   ├── g2p_converter.py      # Graphemes → IPA phonemes
+│   │   ├── stress_assigner.py    # Lexical & phrasal stress
+│   │   ├── prosody_engine.py     # Pitch, duration, pauses, SSML
+│   │   ├── synthesizer.py        # espeak-ng backend
+│   │   ├── utils.py              # Shared utilities & metrics
+│   │   ├── requirements.txt      # Dependencies
+│   │   ├── pytest.ini            # Test configuration
+│   │   ├── tests/                # 156 pytest tests (6 test files)
+│   │   └── evaluation/           # 50 test sentences + MOS/WER data + scripts
 │   └── Rules/
-│       ├── g2p_rules.json
-│       ├── text_norm_rules.json
-│       ├── stress_rules.json
-│       └── prosody_rules.json
+│       ├── g2p_rules.json        # Phoneme mappings & context rules
+│       ├── text_norm_rules.json  # Number words, abbreviations, symbols
+│       ├── stress_rules.json     # Stress patterns & exceptions
+│       └── prosody_rules.json    # Intonation, duration, pause rules
 │
 ├── 03_Dissertation/
 │   ├── Abstract.md
 │   ├── Introduction.md
-│   ├── Chapter_1.md          # TTS overview — history, rule-based synthesis, pros/cons
-│   ├── Chapter_2.md          # Azerbaijani phonetics, system architecture, rule design
-│   ├── Chapter_3.md          # Implementation, evaluation methodology, results
-│   └── References.md         # APA 7 bibliography
+│   ├── Chapter_1.md              # TTS overview — history, rule-based, pros/cons
+│   ├── Chapter_2.md              # Azerbaijani phonetics, architecture, rule design
+│   ├── Chapter_3.md              # Implementation, evaluation, results, conclusion
+│   └── References.md             # APA 7 bibliography (40+ references)
 │
-└── 04_Archive/               # Deprecated materials
+└── 04_Archive/                   # Deprecated materials
 ```
 
 ---
 
-## Linguistic Coverage
-
-| Feature | Handled |
-|---|---|
-| 9-vowel system (a, e, ə, ı, i, o, ö, u, ü) | ✅ |
-| Vowel harmony (back/front classes) | ✅ |
-| Palatalization of /k/ and /g/ before front vowels | ✅ |
-| /ğ/ allophony (intervocalic → /ɣ/, word-final → /ː/) | ✅ |
-| Final obstruent devoicing | ✅ |
-| Nasal assimilation (/n/ → /ŋ/ before velars) | ✅ |
-| Geminate consonants | ✅ |
-| Default final-syllable stress | ✅ |
-| Stress exceptions (deyil, -ma/-mə, particles, postpositions) | ✅ |
-| Sentence type detection (declarative, YN-question, WH-question, exclamatory) | ✅ |
-| Number-to-words (cardinal, ordinal, vowel-harmony-correct suffixes) | ✅ |
-| Dates, times, abbreviations, currency, unit symbols | ✅ |
-
----
-
-## Project Status
+## Project Timeline
 
 ```mermaid
 gantt
@@ -213,9 +260,10 @@ gantt
         Pipeline modules        :done,    2026-02-01, 2026-03-12
         Dissertation chapters   :done,    2026-02-15, 2026-03-12
     section Evaluation
-        MOS + WER study         :active,  2026-03-12, 2026-04-01
+        Test suite (156 tests)  :done,    2026-03-12, 2026-03-30
+        MOS + WER study         :done,    2026-03-15, 2026-03-30
     section Finalization
-        Revisions + formatting  :         2026-04-01, 2026-05-01
+        Revisions + formatting  :active,  2026-04-01, 2026-05-01
         Final submission        :milestone, 2026-05-01, 1d
 ```
 

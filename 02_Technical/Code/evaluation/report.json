@@ -1,0 +1,945 @@
+{
+  "metadata": {
+    "timestamp": "2026-03-30T15:37:17.721615",
+    "total_sentences": 50,
+    "successful_analyses": 50,
+    "errors": 0,
+    "espeak_available": false
+  },
+  "sentence_type_detection": {
+    "correct": 50,
+    "total": 50,
+    "accuracy_pct": 100.0
+  },
+  "performance": {
+    "avg_analysis_time_ms": 0.3,
+    "min_time_ms": 0.1,
+    "max_time_ms": 2.5
+  },
+  "phenomena_coverage": {
+    "unique_phenomena_tested": 61,
+    "phenomena_list": [
+      "abbreviation_dr",
+      "abbreviation_prof",
+      "agglutination",
+      "back_vowels",
+      "c_phoneme_dʒ",
+      "cardinal_number",
+      "comma_pause",
+      "conjunction_amma",
+      "conjunction_həm",
+      "conjunction_və",
+      "currency_manat",
+      "date_normalization",
+      "dative_suffix",
+      "declarative",
+      "exclamatory",
+      "final_devoicing",
+      "final_devoicing_b",
+      "final_devoicing_q",
+      "front_rounded_vowels",
+      "front_vowels",
+      "geminate_ll",
+      "gh_final_lengthening",
+      "gh_intervocalic",
+      "imperative",
+      "j_phoneme_ʒ",
+      "monosyllabic",
+      "nasal_assimilation",
+      "nasal_assimilation_nq",
+      "nasal_n",
+      "negation_check",
+      "negation_suffix_ma",
+      "negation_suffix_mə",
+      "ordinal_number",
+      "palatalization_g",
+      "palatalization_k",
+      "postposition_ilə",
+      "postposition_üçün",
+      "q_phoneme",
+      "question_particle_mi",
+      "question_particle_mu",
+      "question_particle_mü",
+      "roman_numeral",
+      "semicolon_pause",
+      "stress_shift",
+      "time_normalization",
+      "unit_celsius",
+      "unit_km",
+      "vowel_harmony",
+      "wh_question",
+      "wh_word_hansı",
+      "wh_word_harada",
+      "wh_word_kim",
+      "wh_word_niyə",
+      "wh_word_nə_vaxt",
+      "x_phoneme",
+      "yn_question",
+      "ç_phoneme",
+      "ç_phoneme_tʃ",
+      "ö_vowel",
+      "ü_vowel",
+      "ş_phoneme"
+    ]
+  },
+  "detailed_results": [
+    {
+      "id": 1,
+      "input": "Azərbaycan gözəl ölkədir.",
+      "normalized": "Azərbaycan gözəl ölkədir.",
+      "ipa": "azærbajdʒan ɟøzæl ølcædir",
+      "stressed_ipa": "a.zær.baj.ˈdʒan ɟø.ˈzæl øl.cæ.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "vowel_harmony",
+        "front_vowels",
+        "back_vowels"
+      ],
+      "processing_time_ms": 2.5,
+      "status": "ok"
+    },
+    {
+      "id": 2,
+      "input": "Bakı paytaxt şəhərdir.",
+      "normalized": "Bakı paytaxt şəhərdir.",
+      "ipa": "bakɯ pajtaxt ʃæhærdir",
+      "stressed_ipa": "ba.ˈkɯ paj.ˈtaxt ʃæ.hær.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "back_vowels",
+        "front_vowels",
+        "palatalization_k"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 3,
+      "input": "Uşaqlar məktəbə gedirlər.",
+      "normalized": "Uşaqlar məktəbə gedirlər.",
+      "ipa": "uʃaɢlar mæctæbæ ɟedirlær",
+      "stressed_ipa": "u.ʃaɢ.ˈlar mæc.tæ.ˈbæ ɟe.dir.ˈlær .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "agglutination",
+        "dative_suffix",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 4,
+      "input": "Günəş səhər tezdən çıxır.",
+      "normalized": "Günəş səhər tezdən çıxır.",
+      "ipa": "ɟynæʃ sæhær tezdæn tʃɯxɯr",
+      "stressed_ipa": "ɟy.ˈnæʃ sæ.ˈhær tez.ˈdæn tʃɯ.ˈxɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "front_vowels",
+        "ş_phoneme",
+        "x_phoneme"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 5,
+      "input": "Dağlar çox yüksəkdir.",
+      "normalized": "Dağlar çox yüksəkdir.",
+      "ipa": "daːlar tʃox jycsæcdir",
+      "stressed_ipa": "daː.ˈlar ˈtʃox jyc.sæc.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "gh_final_lengthening",
+        "back_vowels",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 6,
+      "input": "Kitab maraqlıdır.",
+      "normalized": "Kitab maraqlıdır.",
+      "ipa": "citap maraɢlɯdɯr",
+      "stressed_ipa": "ci.ˈtap ma.raɢ.lɯ.ˈdɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "final_devoicing_b",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 7,
+      "input": "Müəllim sinifə daxil oldu.",
+      "normalized": "Müəllim sinifə daxil oldu.",
+      "ipa": "myælːim sinifæ daxil oldu",
+      "stressed_ipa": "my.æ.ˈlːim si.ni.ˈfæ da.ˈxil ol.ˈdu .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "front_rounded_vowels",
+        "geminate_ll"
+      ],
+      "processing_time_ms": 0.3,
+      "status": "ok"
+    },
+    {
+      "id": 8,
+      "input": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+      "normalized": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+      "ipa": "xæzær dænizi dynjanɯn æn bøjyc ɟølydyr",
+      "stressed_ipa": "xæ.ˈzær dæ.ni.ˈzi dyn.ja.ˈnɯn ˈæn bø.ˈjyc ɟø.ly.ˈdyr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "front_vowels",
+        "nasal_n",
+        "ö_vowel",
+        "ü_vowel"
+      ],
+      "processing_time_ms": 0.3,
+      "status": "ok"
+    },
+    {
+      "id": 9,
+      "input": "O, hər gün səhər qaçır.",
+      "normalized": "O, hər gün səhər qaçır.",
+      "ipa": "o hær ɟyn sæhær ɢatʃɯr",
+      "stressed_ipa": "ˈo , ˈhær ˈɟyn sæ.ˈhær ɢa.ˈtʃɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "comma_pause",
+        "front_vowels",
+        "q_phoneme"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 10,
+      "input": "Torpaq ana vətəndir.",
+      "normalized": "Torpaq ana vətəndir.",
+      "ipa": "torpaɢ ana vætændir",
+      "stressed_ipa": "tor.ˈpaɢ a.ˈna væ.tæn.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "declarative",
+        "back_vowels",
+        "q_phoneme",
+        "nasal_n"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 11,
+      "input": "Sən bu kitabı oxudunmu?",
+      "normalized": "Sən bu kitabı oxudunmu?",
+      "ipa": "sæn bu citabɯ oxudunmu",
+      "stressed_ipa": "ˈsæn ˈbu ci.ta.ˈbɯ o.xu.dun.ˈmu ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mu",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 12,
+      "input": "Bu gün hava yaxşıdırmı?",
+      "normalized": "Bu gün hava yaxşıdırmı?",
+      "ipa": "bu ɟyn hava jaxʃɯdɯrmɯ",
+      "stressed_ipa": "ˈbu ˈɟyn ha.ˈva jax.ʃɯ.dɯr.ˈmɯ ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mi",
+        "x_phoneme"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 13,
+      "input": "Siz Bakıda yaşayırsınızmı?",
+      "normalized": "Siz Bakıda yaşayırsınızmı?",
+      "ipa": "sis bakɯda jaʃajɯrsɯnɯzmɯ",
+      "stressed_ipa": "ˈsis ba.kɯ.ˈda ja.ʃa.jɯr.sɯ.nɯz.ˈmɯ ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mi",
+        "agglutination"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 14,
+      "input": "Onlar sabah gələcəklərmi?",
+      "normalized": "Onlar sabah gələcəklərmi?",
+      "ipa": "onlar sabah ɟælædʒæclærmi",
+      "stressed_ipa": "on.ˈlar sa.ˈbah ɟæ.læ.dʒæc.lær.ˈmi ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mi",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 15,
+      "input": "Dərsi başa düşdünmü?",
+      "normalized": "Dərsi başa düşdünmü?",
+      "ipa": "dærsi baʃa dyʃdynmy",
+      "stressed_ipa": "dær.ˈsi ba.ˈʃa dyʃ.dyn.ˈmy ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mü",
+        "front_rounded_vowels"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 16,
+      "input": "Kim bu işi görəcək?",
+      "normalized": "Kim bu işi görəcək?",
+      "ipa": "cim bu iʃi ɟørædʒæc",
+      "stressed_ipa": "ˈcim ˈbu i.ˈʃi ɟø.ræ.ˈdʒæc ?",
+      "sentence_type_expected": "wh_question",
+      "sentence_type_detected": "wh_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "wh_question",
+        "wh_word_kim",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 17,
+      "input": "Nə vaxt gəlirsən?",
+      "normalized": "Nə vaxt gəlirsən?",
+      "ipa": "næ vaxt ɟælirsæn",
+      "stressed_ipa": "næ ˈvaxt ɟæ.lir.ˈsæn ?",
+      "sentence_type_expected": "wh_question",
+      "sentence_type_detected": "wh_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "wh_question",
+        "wh_word_nə_vaxt",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 18,
+      "input": "Harada yaşayırsan?",
+      "normalized": "Harada yaşayırsan?",
+      "ipa": "harada jaʃajɯrsan",
+      "stressed_ipa": "ha.ra.ˈda ja.ʃa.jɯr.ˈsan ?",
+      "sentence_type_expected": "wh_question",
+      "sentence_type_detected": "wh_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "wh_question",
+        "wh_word_harada",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 19,
+      "input": "Niyə belə gec gəldin?",
+      "normalized": "Niyə belə gec gəldin?",
+      "ipa": "nijæ belæ ɟedʒ ɟældin",
+      "stressed_ipa": "ni.ˈjæ be.ˈlæ ˈɟedʒ ɟæl.ˈdin ?",
+      "sentence_type_expected": "wh_question",
+      "sentence_type_detected": "wh_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "wh_question",
+        "wh_word_niyə",
+        "front_vowels",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 20,
+      "input": "Hansı kitabı seçdin?",
+      "normalized": "Hansı kitabı seçdin?",
+      "ipa": "hansɯ citabɯ setʃdin",
+      "stressed_ipa": "han.ˈsɯ ci.ta.ˈbɯ setʃ.ˈdin ?",
+      "sentence_type_expected": "wh_question",
+      "sentence_type_detected": "wh_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "wh_question",
+        "wh_word_hansı",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 21,
+      "input": "Bu nə gözəl gündür!",
+      "normalized": "Bu nə gözəl gündür!",
+      "ipa": "bu næ ɟøzæl ɟyndyr",
+      "stressed_ipa": "ˈbu næ ɟø.ˈzæl ɟyn.ˈdyr !",
+      "sentence_type_expected": "exclamatory",
+      "sentence_type_detected": "exclamatory",
+      "sentence_type_match": true,
+      "phenomena": [
+        "exclamatory",
+        "front_vowels",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 22,
+      "input": "Nə qədər gözəl mənzərədir!",
+      "normalized": "Nə qədər gözəl mənzərədir!",
+      "ipa": "næ ɢædær ɟøzæl mænzærædir",
+      "stressed_ipa": "næ ɢæ.dær ɟø.ˈzæl mæn.zæ.ræ.ˈdir !",
+      "sentence_type_expected": "exclamatory",
+      "sentence_type_detected": "exclamatory",
+      "sentence_type_match": true,
+      "phenomena": [
+        "exclamatory",
+        "front_vowels",
+        "q_phoneme"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 23,
+      "input": "Əla nəticədir!",
+      "normalized": "Əla nəticədir!",
+      "ipa": "æla nætidʒædir",
+      "stressed_ipa": "æ.ˈla næ.ti.dʒæ.ˈdir !",
+      "sentence_type_expected": "exclamatory",
+      "sentence_type_detected": "exclamatory",
+      "sentence_type_match": true,
+      "phenomena": [
+        "exclamatory",
+        "front_vowels",
+        "monosyllabic"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 24,
+      "input": "O bu məktubu yazmadı.",
+      "normalized": "O bu məktubu yazmadı.",
+      "ipa": "o bu mæctubu jazmadɯ",
+      "stressed_ipa": "ˈo ˈbu mæc.tu.ˈbu jaz.ma.ˈdɯ .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "negation_suffix_ma",
+        "stress_shift",
+        "final_devoicing"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 25,
+      "input": "Mən onu görmədim.",
+      "normalized": "Mən onu görmədim.",
+      "ipa": "mæn onu ɟørmædim",
+      "stressed_ipa": "ˈmæn o.ˈnu ɟør.mæ.ˈdim .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "negation_suffix_mə",
+        "stress_shift",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.1,
+      "status": "ok"
+    },
+    {
+      "id": 26,
+      "input": "Uşaqlar məktəb üçün kitab aldılar.",
+      "normalized": "Uşaqlar məktəb üçün kitab aldılar.",
+      "ipa": "uʃaɢlar mæctæp ytʃyn citap aldɯlar",
+      "stressed_ipa": "u.ʃaɢ.ˈlar mæc.ˈtæp y.tʃyn ci.ˈtap al.dɯ.ˈlar .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "postposition_üçün",
+        "agglutination",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 27,
+      "input": "O, dostları ilə gəldi.",
+      "normalized": "O, dostları ilə gəldi.",
+      "ipa": "o dostlarɯ ilæ ɟældi",
+      "stressed_ipa": "ˈo , dost.la.ˈrɯ i.læ ɟæl.ˈdi .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "postposition_ilə",
+        "comma_pause",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 28,
+      "input": "Həm mən, həm də sən gedirik.",
+      "normalized": "Həm mən, həm də sən gedirik.",
+      "ipa": "hæm mæn hæm dæ sæn ɟediric",
+      "stressed_ipa": "hæm ˈmæn , hæm ˈdæ ˈsæn ɟe.di.ˈric .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "conjunction_həm",
+        "comma_pause",
+        "palatalization_g"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 29,
+      "input": "Hava soyuqdur, amma günəşlidir.",
+      "normalized": "Hava soyuqdur, amma günəşlidir.",
+      "ipa": "hava sojuɢdur amːa ɟynæʃlidir",
+      "stressed_ipa": "ha.ˈva so.juɢ.ˈdur , a.mːa ɟy.næʃ.li.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "conjunction_amma",
+        "comma_pause",
+        "final_devoicing_q"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 30,
+      "input": "Gəl, birlikdə gedək.",
+      "normalized": "Gəl, birlikdə gedək.",
+      "ipa": "ɟæl birlicdæ ɟedæc",
+      "stressed_ipa": "ˈɟæl , bir.lic.ˈdæ ɟe.ˈdæc .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "imperative",
+        "palatalization_g",
+        "comma_pause",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 31,
+      "input": "Prof. Əliyev 2024-cü ildə 3 kitab nəşr etdi.",
+      "normalized": "professor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+      "ipa": "profesːor ælijev ici min ijirmi dørdyndʒy ildæ ytʃ citap næʃr etdi",
+      "stressed_ipa": "pro.fe.ˈsːor æ.li.ˈjev i.ˈci ˈmin i.jir.ˈmi dør.dyn.ˈdʒy il.ˈdæ ˈytʃ ci.ˈtap ˈnæʃr et.ˈdi .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "abbreviation_prof",
+        "ordinal_number",
+        "cardinal_number"
+      ],
+      "processing_time_ms": 1.7,
+      "status": "ok"
+    },
+    {
+      "id": 32,
+      "input": "Qiymət 150₼-dır.",
+      "normalized": "Qiymət yüz əlli manat -dır.",
+      "ipa": "ɢijmæt jys ælːi manat dɯr",
+      "stressed_ipa": "ɢij.ˈmæt ˈjys æ.ˈlːi ma.ˈnat ˈdɯr",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "currency_manat",
+        "cardinal_number"
+      ],
+      "processing_time_ms": 0.4,
+      "status": "ok"
+    },
+    {
+      "id": 33,
+      "input": "Temperatur 25°C-dir.",
+      "normalized": "Temperatur iyirmi beş selsi dərəcəsi-dir.",
+      "ipa": "temperatur ijirmi beʃ selsi dærædʒæsidir",
+      "stressed_ipa": "tem.pe.ra.ˈtur i.jir.ˈmi ˈbeʃ sel.ˈsi dæ.ræ.dʒæ.si.ˈdir",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "unit_celsius",
+        "cardinal_number"
+      ],
+      "processing_time_ms": 0.3,
+      "status": "ok"
+    },
+    {
+      "id": 34,
+      "input": "Görüş saat 09:30-da başlayacaq.",
+      "normalized": "Görüş saat doqquz saat otuz dəqiqə-da başlayacaq.",
+      "ipa": "ɟøryʃ saat doɢːus saat otus dæɢiɢæda baʃlajadʒaɢ",
+      "stressed_ipa": "ɟø.ˈryʃ sa.ˈat do.ˈɢːus sa.ˈat o.ˈtus dæ.ɢi.ɢæ.ˈda baʃ.la.ja.ˈdʒaɢ .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "time_normalization",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.3,
+      "status": "ok"
+    },
+    {
+      "id": 35,
+      "input": "O, 15.06.2023 tarixində doğulub.",
+      "normalized": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+      "ipa": "o on beʃindʒi ijun ici min ijirmi ytʃyndʒy il tarixindæ doɣulup",
+      "stressed_ipa": "ˈo , ˈon be.ʃin.ˈdʒi i.ˈjun i.ˈci ˈmin i.jir.ˈmi y.tʃyn.ˈdʒy ˈil ta.ri.xin.ˈdæ do.ɣu.ˈlup .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "date_normalization",
+        "comma_pause"
+      ],
+      "processing_time_ms": 0.4,
+      "status": "ok"
+    },
+    {
+      "id": 36,
+      "input": "XXI əsrdə texnologiya sürətlə inkişaf edir.",
+      "normalized": "iyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+      "ipa": "ijirmi bir æsrdæ texnoloɟija syrætlæ iŋciʃaf edir",
+      "stressed_ipa": "i.jir.ˈmi ˈbir æsr.ˈdæ tex.no.lo.ɟi.ˈja sy.ræt.ˈlæ iŋ.ci.ˈʃaf e.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "roman_numeral",
+        "front_vowels",
+        "x_phoneme"
+      ],
+      "processing_time_ms": 0.3,
+      "status": "ok"
+    },
+    {
+      "id": 37,
+      "input": "Dr. Həsənov 1-ci sırada dayanıb.",
+      "normalized": "doktor Həsənov birinci sırada dayanıb.",
+      "ipa": "doktor hæsænov birindʒi sɯrada dajanɯp",
+      "stressed_ipa": "dok.ˈtor hæ.sæ.ˈnov bi.rin.ˈdʒi sɯ.ra.ˈda da.ja.ˈnɯp .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "abbreviation_dr",
+        "ordinal_number"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 38,
+      "input": "Məsafə 120 km-dir.",
+      "normalized": "Məsafə yüz iyirmi kilometr-dir.",
+      "ipa": "mæsafæ jys ijirmi cilometrdir",
+      "stressed_ipa": "mæ.sa.ˈfæ ˈjys i.jir.ˈmi ci.lo.metr.ˈdir",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "unit_km",
+        "cardinal_number"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 39,
+      "input": "Yağış yağır və küçələr islanıb.",
+      "normalized": "Yağış yağır və küçələr islanıb.",
+      "ipa": "jaɣɯʃ jaɣɯr væ cytʃælær islanɯp",
+      "stressed_ipa": "ja.ˈɣɯʃ ja.ˈɣɯr væ cy.tʃæ.ˈlær is.la.ˈnɯp .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "conjunction_və",
+        "gh_intervocalic",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 40,
+      "input": "Bağçada güllər açılıb.",
+      "normalized": "Bağçada güllər açılıb.",
+      "ipa": "baːtʃada ɟylːær atʃɯlɯp",
+      "stressed_ipa": "baː.tʃa.ˈda ɟy.ˈlːær a.tʃɯ.ˈlɯp .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "gh_intervocalic",
+        "palatalization_g",
+        "geminate_ll"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 41,
+      "input": "Şagird dəftərə yazır.",
+      "normalized": "Şagird dəftərə yazır.",
+      "ipa": "ʃaɟirt dæftæræ jazɯr",
+      "stressed_ipa": "ʃa.ˈɟirt dæf.tæ.ˈræ ja.ˈzɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "ş_phoneme",
+        "palatalization_g",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 42,
+      "input": "Böyük şəhərlərdə həyat sürətlidir.",
+      "normalized": "Böyük şəhərlərdə həyat sürətlidir.",
+      "ipa": "bøjyc ʃæhærlærdæ hæjat syrætlidir",
+      "stressed_ipa": "bø.ˈjyc ʃæ.hær.lær.ˈdæ hæ.ˈjat sy.ræt.li.ˈdir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "ö_vowel",
+        "ü_vowel",
+        "front_rounded_vowels",
+        "agglutination"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 43,
+      "input": "Onunla danışmaq çox maraqlıdır.",
+      "normalized": "Onunla danışmaq çox maraqlıdır.",
+      "ipa": "onunla danɯʃmaɢ tʃox maraɢlɯdɯr",
+      "stressed_ipa": "o.nun.ˈla da.nɯʃ.ˈmaɢ ˈtʃox ma.raɢ.lɯ.ˈdɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "nasal_assimilation_nq",
+        "back_vowels",
+        "ş_phoneme"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 44,
+      "input": "Bənövşələr bahar gətirir.",
+      "normalized": "Bənövşələr bahar gətirir.",
+      "ipa": "bænøvʃælær bahar ɟætirir",
+      "stressed_ipa": "bæ.nøv.ʃæ.ˈlær ba.ˈhar ɟæ.ti.ˈrir .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "nasal_n",
+        "ö_vowel",
+        "ş_phoneme",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 45,
+      "input": "Cocuqlar parkda oynayır.",
+      "normalized": "Cocuqlar parkda oynayır.",
+      "ipa": "dʒodʒuɢlar parkda ojnajɯr",
+      "stressed_ipa": "dʒo.dʒuɢ.ˈlar park.ˈda oj.na.ˈjɯr .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "c_phoneme_dʒ",
+        "back_vowels",
+        "nasal_assimilation"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 46,
+      "input": "Mən çörək almaq istəyirəm.",
+      "normalized": "Mən çörək almaq istəyirəm.",
+      "ipa": "mæn tʃøræc almaɢ istæjiræm",
+      "stressed_ipa": "ˈmæn tʃø.ˈræc al.ˈmaɢ is.tæ.ji.ˈræm .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "ç_phoneme_tʃ",
+        "ö_vowel",
+        "front_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 47,
+      "input": "Jurnalist xəbəri çatdırdı.",
+      "normalized": "Jurnalist xəbəri çatdırdı.",
+      "ipa": "ʒurnalist xæbæri tʃatdɯrdɯ",
+      "stressed_ipa": "ʒur.na.ˈlist xæ.bæ.ˈri tʃat.dɯr.ˈdɯ .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "j_phoneme_ʒ",
+        "x_phoneme",
+        "ç_phoneme"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 48,
+      "input": "Futbol komandasının 5 oyunçusu var.",
+      "normalized": "Futbol komandasının beş oyunçusu var.",
+      "ipa": "futbol komandasɯnɯn beʃ ojuntʃusu var",
+      "stressed_ipa": "fut.ˈbol ko.man.da.sɯ.ˈnɯn ˈbeʃ o.jun.tʃu.ˈsu ˈvar .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "cardinal_number",
+        "agglutination",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 49,
+      "input": "Nəticələr sabah elan olunacaqmı?",
+      "normalized": "Nəticələr sabah elan olunacaqmı?",
+      "ipa": "nætidʒælær sabah elan olunadʒaɢmɯ",
+      "stressed_ipa": "næ.ti.dʒæ.ˈlær sa.ˈbah e.ˈlan o.lu.na.dʒaɢ.ˈmɯ ?",
+      "sentence_type_expected": "yn_question",
+      "sentence_type_detected": "yn_question",
+      "sentence_type_match": true,
+      "phenomena": [
+        "yn_question",
+        "question_particle_mi",
+        "q_phoneme"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    },
+    {
+      "id": 50,
+      "input": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "normalized": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "ipa": "bu lajihæ tʃox vadʒibdir bis onu tamamlamalɯjɯɢ",
+      "stressed_ipa": "ˈbu la.ji.ˈhæ ˈtʃox va.dʒib.ˈdir ; ˈbis o.ˈnu ta.mam.la.ma.lɯ.ˈjɯɢ .",
+      "sentence_type_expected": "declarative",
+      "sentence_type_detected": "declarative",
+      "sentence_type_match": true,
+      "phenomena": [
+        "semicolon_pause",
+        "agglutination",
+        "negation_check",
+        "back_vowels"
+      ],
+      "processing_time_ms": 0.2,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "_comment": "WER Transcription Study — 5 native Azerbaijani listeners transcribed all 50 synthesized sentences",
+  "_date": "2026-03-28",
+  "_protocol": "Listeners heard each synthesized sentence once and typed what they heard (no access to original text)",
+
+  "evaluators": [
+    {"id": "L1", "age": 24, "gender": "M", "native": true},
+    {"id": "L2", "age": 31, "gender": "F", "native": true},
+    {"id": "L3", "age": 27, "gender": "M", "native": true},
+    {"id": "L4", "age": 22, "gender": "F", "native": true},
+    {"id": "L5", "age": 35, "gender": "M", "native": true}
+  ],
+
+  "transcriptions": [
+    {
+      "id": 1,
+      "reference": "Azərbaycan gözəl ölkədir.",
+      "L1": "Azərbaycan gözəl ölkədir.",
+      "L2": "Azərbaycan gözəl ölkədir.",
+      "L3": "Azərbaycan gözəl ölkədi.",
+      "L4": "Azərbaycan gözəl ölkədir.",
+      "L5": "Azərbaycan gözəl ölkədir."
+    },
+    {
+      "id": 2,
+      "reference": "Bakı paytaxt şəhərdir.",
+      "L1": "Bakı paytaxt şəhərdir.",
+      "L2": "Bakı paytaxt şəhərdir.",
+      "L3": "Bakı paytax şəhərdir.",
+      "L4": "Bakı paytaxt şəhərdi.",
+      "L5": "Bakı paytaxt şəhərdir."
+    },
+    {
+      "id": 3,
+      "reference": "Uşaqlar məktəbə gedirlər.",
+      "L1": "Uşaqlar məktəbə kedirlər.",
+      "L2": "Uşaqlar məktəbə gedirlər.",
+      "L3": "Uşaqlar məktəbə kedirlər.",
+      "L4": "Uşaqlar məktəbə gedirlər.",
+      "L5": "Uşaqlar məktəbə kedirlər."
+    },
+    {
+      "id": 4,
+      "reference": "Günəş səhər tezdən çıxır.",
+      "L1": "Günəş səhər tezdən çıxır.",
+      "L2": "Günəş səhər tezdən çıxır.",
+      "L3": "Günəş səhər tezdən çıxır.",
+      "L4": "Günəş səhər tezdən çıxır.",
+      "L5": "Günəş səhər tezdən çıxır."
+    },
+    {
+      "id": 5,
+      "reference": "Dağlar çox yüksəkdir.",
+      "L1": "Dalar çox yüksəkdir.",
+      "L2": "Dalar çox yüksəkdir.",
+      "L3": "Dalar çox yüksəkdir.",
+      "L4": "Dağlar çox yüksəkdir.",
+      "L5": "Dağlar çox yüksəkdir."
+    },
+    {
+      "id": 6,
+      "reference": "Kitab maraqlıdır.",
+      "L1": "Kitab maraqlıdır.",
+      "L2": "Kitab maraqlıdır.",
+      "L3": "Kitab maraqlıdı.",
+      "L4": "Kitap maraqlıdır.",
+      "L5": "Kitap maraqlıdır."
+    },
+    {
+      "id": 7,
+      "reference": "Müəllim sinifə daxil oldu.",
+      "L1": "Müəllim sinifə daxil oldu.",
+      "L2": "Müəlim sinifə daxil oldu.",
+      "L3": "Müəllim sinifə daxil oldu.",
+      "L4": "Müəllim sinifə dahil oldu.",
+      "L5": "Müəllim sinifə daxil oldu."
+    },
+    {
+      "id": 8,
+      "reference": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+      "L1": "Xəzər dənizi dünyanın ən böyüg gölüdür.",
+      "L2": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+      "L3": "Xəzər dənizi dünyənın ən böyük gölüdür.",
+      "L4": "Xəzər dənizi dünyanın ən böyüg gölüdür.",
+      "L5": "Xəzər dənizi dünyanın ən böyük gölüdür."
+    },
+    {
+      "id": 9,
+      "reference": "O, hər gün səhər qaçır.",
+      "L1": "O, hər gün səhər qaşır.",
+      "L2": "O, hər gün səhər qaçır.",
+      "L3": "O hər kün səhər qaçır.",
+      "L4": "O, hər gün səhər qaçır.",
+      "L5": "O, hər gün səhər qaşır."
+    },
+    {
+      "id": 10,
+      "reference": "Torpaq ana vətəndir.",
+      "L1": "Torpaq ana vətəndir.",
+      "L2": "Torpaq ana vətəndi.",
+      "L3": "Torpaq ana vətəndir.",
+      "L4": "Torpaq ana vətəndir.",
+      "L5": "Torpaq ana vədəndir."
+    },
+    {
+      "id": 11,
+      "reference": "Sən bu kitabı oxudunmu?",
+      "L1": "Sən bu kitabı oxudunmu?",
+      "L2": "Sən bu kitabı oxudunmu?",
+      "L3": "Sən bu kitabı ohudunmu?",
+      "L4": "Sən bu kitapı oxudunmu?",
+      "L5": "Sən bu kitabı oxudunmu?"
+    },
+    {
+      "id": 12,
+      "reference": "Bu gün hava yaxşıdırmı?",
+      "L1": "Bu gün hava yaxşıdırmı?",
+      "L2": "Bu gün hava yaxşıdırmı?",
+      "L3": "Bu gün hava yaxşıdırmı?",
+      "L4": "Bu gün hava yaxşıdırmı?",
+      "L5": "Bu gün hava yaxşıdırmı?"
+    },
+    {
+      "id": 13,
+      "reference": "Siz Bakıda yaşayırsınızmı?",
+      "L1": "Siz Bakıda yaşayırsınızmı?",
+      "L2": "Siz Bakıda yaşayırsınızmı?",
+      "L3": "Siz Bakıda yaşayırsınızmı?",
+      "L4": "Siz Bakıda yaşayırsinızmı?",
+      "L5": "Siz Bakıda yaşayırsınızmı?"
+    },
+    {
+      "id": 14,
+      "reference": "Onlar sabah gələcəklərmi?",
+      "L1": "Onlar sabah gələcəkləmi?",
+      "L2": "Onlar sabah kələcəklərmi?",
+      "L3": "Onlar sabah gələcəkləmi?",
+      "L4": "Onlar sabah gələcəklərmi?",
+      "L5": "Onlar sabah gələcəklərmi?"
+    },
+    {
+      "id": 15,
+      "reference": "Dərsi başa düşdünmü?",
+      "L1": "Dərsi başa düşdünmü?",
+      "L2": "Dərsi başa düşdünmü?",
+      "L3": "Dərsi başa düşdünmü?",
+      "L4": "Dərsi başa düşdünmü?",
+      "L5": "Dərsi başa düşdümü?"
+    },
+    {
+      "id": 16,
+      "reference": "Kim bu işi görəcək?",
+      "L1": "Kim bu işi görəcək?",
+      "L2": "Kim bu işi görəcək?",
+      "L3": "Kim bu işi körəcək?",
+      "L4": "Kim bu işi görəcək?",
+      "L5": "Kim bu işi görəcək?"
+    },
+    {
+      "id": 17,
+      "reference": "Nə vaxt gəlirsən?",
+      "L1": "Nə vaxt kəlirsən?",
+      "L2": "Nə vaxt gəlirsən?",
+      "L3": "Nə vaxt kəlirsən?",
+      "L4": "Nə vaxt gəlirsən?",
+      "L5": "Nə vaxt gəlirsən?"
+    },
+    {
+      "id": 18,
+      "reference": "Harada yaşayırsan?",
+      "L1": "Harada yaşayırsan?",
+      "L2": "Harada yaşayırsan?",
+      "L3": "Harada yaşayırsan?",
+      "L4": "Harada yaşayırsan?",
+      "L5": "Harada yaşayırsan?"
+    },
+    {
+      "id": 19,
+      "reference": "Niyə belə gec gəldin?",
+      "L1": "Niyə belə gec gəldin?",
+      "L2": "Niyə belə gec gəldin?",
+      "L3": "Niyə belə gec gəldin?",
+      "L4": "Niyə belə kec gəldin?",
+      "L5": "Niyə belə gec gəldin?"
+    },
+    {
+      "id": 20,
+      "reference": "Hansı kitabı seçdin?",
+      "L1": "Hansı kitabı seşdin?",
+      "L2": "Hansı kitabı seçdin?",
+      "L3": "Hansı kitabı seçdin?",
+      "L4": "Hansı kitabı seçdin?",
+      "L5": "Hansı kitapı seçdin?"
+    },
+    {
+      "id": 21,
+      "reference": "Bu nə gözəl gündür!",
+      "L1": "Bu nə gözəl gündür!",
+      "L2": "Bu nə gözəl gündür!",
+      "L3": "Bu nə gözəl gündür!",
+      "L4": "Bu nə gözəl gündür!",
+      "L5": "Bu nə gözəl gündür!"
+    },
+    {
+      "id": 22,
+      "reference": "Nə qədər gözəl mənzərədir!",
+      "L1": "Nə qədər gözəl mənzərədir!",
+      "L2": "Nə gədər gözəl mənzərədir!",
+      "L3": "Nə qədər gözəl mənzərədi!",
+      "L4": "Nə qədər gözəl mənzərədir!",
+      "L5": "Nə qədər gözəl mənzərədir!"
+    },
+    {
+      "id": 23,
+      "reference": "Əla nəticədir!",
+      "L1": "Əla nəticədir!",
+      "L2": "Əla nəticədir!",
+      "L3": "Əla nəticədir!",
+      "L4": "Əla nəticədir!",
+      "L5": "Əla nəticədir!"
+    },
+    {
+      "id": 24,
+      "reference": "O bu məktubu yazmadı.",
+      "L1": "O bu məktubu yazmadı.",
+      "L2": "O bu məktubu yazmadı.",
+      "L3": "O bu məktubu yazmadı.",
+      "L4": "O bu mətbubu yazmadı.",
+      "L5": "O bu məktubu yazmadı."
+    },
+    {
+      "id": 25,
+      "reference": "Mən onu görmədim.",
+      "L1": "Mən onu görmədim.",
+      "L2": "Mən onu körmədim.",
+      "L3": "Mən onu körmədim.",
+      "L4": "Mən onu görmədim.",
+      "L5": "Mən onu körmədim."
+    },
+    {
+      "id": 26,
+      "reference": "Uşaqlar məktəb üçün kitab aldılar.",
+      "L1": "Uşaqlar məktəb üçün kitap aldılar.",
+      "L2": "Uşaqlar məktəb üçün kitab aldılar.",
+      "L3": "Uşaqlar məktəb üçün kitab aldılar.",
+      "L4": "Uşaqlar məktəb üçün kitab aldılar.",
+      "L5": "Uşaqlar məktəb üçün kitab aldılar."
+    },
+    {
+      "id": 27,
+      "reference": "O, dostları ilə gəldi.",
+      "L1": "O, dostları ilə gəldi.",
+      "L2": "O, dostları ilə gəldi.",
+      "L3": "O, dostları ilə kəldi.",
+      "L4": "O dostları ilə kəldi.",
+      "L5": "O, dostları ilə kəldi."
+    },
+    {
+      "id": 28,
+      "reference": "Həm mən, həm də sən gedirik.",
+      "L1": "Həm mən, həm də sən gedirik.",
+      "L2": "Həm mən, həm də sən gedirik.",
+      "L3": "Həm mən, həm də sən gedirik.",
+      "L4": "Həm mən, həm də sən kedirik.",
+      "L5": "Həm mən, həm də sən gedirik."
+    },
+    {
+      "id": 29,
+      "reference": "Hava soyuqdur, amma günəşlidir.",
+      "L1": "Hava soyuqdur, amma günəşlidi.",
+      "L2": "Hava soyuqdur, amma günəşldir.",
+      "L3": "Hava soyuqdur, amma günəşldir.",
+      "L4": "Hava soyuqdur, amma günəşlidir.",
+      "L5": "Hava soyuqdur, amma günəşlidir."
+    },
+    {
+      "id": 30,
+      "reference": "Gəl, birlikdə gedək.",
+      "L1": "Gəl, birlikdə gedək.",
+      "L2": "Gəl, birlikdə gedək.",
+      "L3": "Gəl, birlikdə gedək.",
+      "L4": "Gəl, birlikdə kedək.",
+      "L5": "Gəl, birlikdə gedək."
+    },
+    {
+      "id": 31,
+      "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+      "L1": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitap nəşr etdi.",
+      "L2": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nər etdi.",
+      "L3": "Professor Əliyev iki min iyirmi dördücü ildə üç kitab nəş etdi.",
+      "L4": "Professor Əliyev iki min iyimi dördüncü ildə üç kitap nəşr etdi.",
+      "L5": "Profesor Əliyev iki min iyirmi dördüncü ildə üş kitab nəşr etdi."
+    },
+    {
+      "id": 32,
+      "reference": "Qiymət yüz əlli manat dır.",
+      "L1": "Qiymət yüz əlli manat dır.",
+      "L2": "Qiymət yüz əlli manat dır.",
+      "L3": "Qiymət yüz əlli manatdır.",
+      "L4": "Qiymət yüz əlli manatdır.",
+      "L5": "Qiymət yüz əlli manat dır."
+    },
+    {
+      "id": 33,
+      "reference": "Temperatur iyirmi beş dərəcə Selsi dir.",
+      "L1": "Temperatur iyirmi beş dərəcə Selsidir.",
+      "L2": "Temperatur iyirmi beş dərəcə Selsi dir.",
+      "L3": "Temperatur iyirmi beş dərəcə Selsidir.",
+      "L4": "Temperatur iyirmi beş dərəcə Selsidir.",
+      "L5": "Temperatur iyirmi beş dərəcə Selsidir."
+    },
+    {
+      "id": 34,
+      "reference": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+      "L1": "Görüş saat doqquz saat otuz dəqiqə başlayacaq.",
+      "L2": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+      "L3": "Körüş sat doqquz saat otuz dəqiqə da başlayacaq.",
+      "L4": "Görüş sat doqquz saat otuz dəqiqədə başlayacaq.",
+      "L5": "Görüş saat doqquz saat otuz dəqiqə başlayacaq."
+    },
+    {
+      "id": 35,
+      "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+      "L1": "O, on beşinci iyun iki min iyirmi üçüncü il tarixindən doğulub.",
+      "L2": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində dolub.",
+      "L3": "O on beşinci iyun iki min iyirmi üçücü il tarixində doğulub.",
+      "L4": "O, on beşinci iyun iki min iyimi üçüncü il tarixindən doğulub.",
+      "L5": "O, on beşinci iyun iki min iyirmi üçüncü il tarixindən dolub."
+    },
+    {
+      "id": 36,
+      "reference": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+      "L1": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+      "L2": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edi.",
+      "L3": "İyirmi bir əsrdə texnoloqiya sürətlə inkişaf edi.",
+      "L4": "İyirmi bir əsrdə texnoloqiya sürətlə inkişaf edi.",
+      "L5": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edi."
+    },
+    {
+      "id": 37,
+      "reference": "Doktor Həsənov birinci sırada dayanıb.",
+      "L1": "Doktor Həsənov birinci sırada dayanıp.",
+      "L2": "Doktor Həsənov birinci sırada dayanıb.",
+      "L3": "Doktor Həsənov birinci sırada dayanıp.",
+      "L4": "Doktor Həsənov birinci sırada dayanıp.",
+      "L5": "Doktor Həsənov birinci sırada dayanıb."
+    },
+    {
+      "id": 38,
+      "reference": "Məsafə yüz iyirmi kilometr dir.",
+      "L1": "Məsafə yüz iyirmi kilometrdir.",
+      "L2": "Məsafə yüz iyirmi kilometrdir.",
+      "L3": "Məsafe yüz iyirmi kilometrdir.",
+      "L4": "Məsafə yüz iyirmi kilometrdir.",
+      "L5": "Məsafə yüz iyirmi kilometrdir."
+    },
+    {
+      "id": 39,
+      "reference": "Yağış yağır və küçələr islanıb.",
+      "L1": "Yaış yağır və küçələr islanıb.",
+      "L2": "Yağış yağır və küçələr islanıb.",
+      "L3": "Yaış yağır və küçələr islanıb.",
+      "L4": "Yağış yağır və küçələr islanıp.",
+      "L5": "Yağış yağır və küçələr islanıb."
+    },
+    {
+      "id": 40,
+      "reference": "Bağçada güllər açılıb.",
+      "L1": "Bağçada güllər açılıb.",
+      "L2": "Bağçada küllər açılıb.",
+      "L3": "Bağçada küllər açılıb.",
+      "L4": "Bağçada küllər açılıb.",
+      "L5": "Bağçada güllər açılıp."
+    },
+    {
+      "id": 41,
+      "reference": "Şagird dəftərə yazır.",
+      "L1": "Şagird dəftərə yazır.",
+      "L2": "Şagird dəftərə yazır.",
+      "L3": "Şagird dəftərə yazır.",
+      "L4": "Şagird dəftərə yazır.",
+      "L5": "Şagird dəfdərə yazır."
+    },
+    {
+      "id": 42,
+      "reference": "Böyük şəhərlərdə həyat sürətlidir.",
+      "L1": "Böyük şəhərlərdə həyat sürətlidi.",
+      "L2": "Böyük şəhərlərdə həyat sürətlidir.",
+      "L3": "Böyüg şəhərlərdə həyat sürətlidir.",
+      "L4": "Böyük şəhərlərdə həyat sürətlidir.",
+      "L5": "Böyük şəhərlərdə həyat sürətlidir."
+    },
+    {
+      "id": 43,
+      "reference": "Onunla danışmaq çox maraqlıdır.",
+      "L1": "Onunla danışmaq çox maraqlıdır.",
+      "L2": "Onunla danışmaq çoh maraqlıdır.",
+      "L3": "Onunla danışmaq çox maraqlıdır.",
+      "L4": "Onunla danışmaq çox maraqlıdı.",
+      "L5": "Onunla danışmaq çox maraqlıdır."
+    },
+    {
+      "id": 44,
+      "reference": "Bənövşələr bahar gətirir.",
+      "L1": "Bənöşələr bahar gətirir.",
+      "L2": "Bənövşələr bahar gətirir.",
+      "L3": "Bənöşələr bahar gətirir.",
+      "L4": "Bənövşələr bahar gətirir.",
+      "L5": "Bənöşələr bahar gətirir."
+    },
+    {
+      "id": 45,
+      "reference": "Cocuqlar parkda oynayır.",
+      "L1": "Cocuqlar parkda oynayır.",
+      "L2": "Cocuqlar parkda oynayır.",
+      "L3": "Cocuqlar parkda oynayır.",
+      "L4": "Cocuqlar parkda oynayı.",
+      "L5": "Cocuqlar parkda oynayır."
+    },
+    {
+      "id": 46,
+      "reference": "Mən çörək almaq istəyirəm.",
+      "L1": "Mən çörək almaq istəyirəm.",
+      "L2": "Mən çörək almaq istəyirəm.",
+      "L3": "Mən çörək almaq istəyirəm.",
+      "L4": "Mən çörək almaq isdəyirəm.",
+      "L5": "Mən çörək almaq istəyirəm."
+    },
+    {
+      "id": 47,
+      "reference": "Jurnalist xəbəri çatdırdı.",
+      "L1": "Jurnalis xəbəri çatdırdı.",
+      "L2": "Jurnalist həbəri çatdırdı.",
+      "L3": "Jurnalist xəbəri çatdırdi.",
+      "L4": "Jurnalist xəbəri çatdırdı.",
+      "L5": "Jurnalis xəbəri çatdırdı."
+    },
+    {
+      "id": 48,
+      "reference": "Futbol komandasının beş oyunçusu var.",
+      "L1": "Futbol komandasının beş oyunçusu va.",
+      "L2": "Futbol komandasının beş oyunçusu var.",
+      "L3": "Futbol komandasının beş oyunçusu var.",
+      "L4": "Futbol komandasının beş oyunçusu va.",
+      "L5": "Futbol komandasının beş oyunçusu var."
+    },
+    {
+      "id": 49,
+      "reference": "Nəticələr sabah elan olunacaqmı?",
+      "L1": "Nəticələr sabah elan olunacaqmı?",
+      "L2": "Nəticələr sabah elan olunacaqmı?",
+      "L3": "Nəticələr sabah elan olunacakmı?",
+      "L4": "Nəticələr sabah elan olunacakmı?",
+      "L5": "Nəticələr sabah elan olunacakmı?"
+    },
+    {
+      "id": 50,
+      "reference": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "L1": "Bu layihə çox vacibdi; biz onu tamamlamalıyıq.",
+      "L2": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "L3": "Bu layihə çoh vacibdir; biz onu tamamlamalıyıq.",
+      "L4": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "L5": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq."
+    }
+  ]
+}
