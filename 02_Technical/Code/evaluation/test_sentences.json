@@ -1,0 +1,349 @@
+{
+  "_comment": "50 Phonetically Balanced Test Sentences for Azerbaijani TTS Evaluation",
+  "_coverage": "All 9 vowels, all context-sensitive rules, multiple sentence types, NSW phenomena",
+
+  "sentences": [
+    {
+      "id": 1,
+      "text": "Azərbaycan gözəl ölkədir.",
+      "phenomena": ["declarative", "vowel_harmony", "front_vowels", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 2,
+      "text": "Bakı paytaxt şəhərdir.",
+      "phenomena": ["declarative", "back_vowels", "front_vowels", "palatalization_k"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 3,
+      "text": "Uşaqlar məktəbə gedirlər.",
+      "phenomena": ["declarative", "agglutination", "dative_suffix", "palatalization_g"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 4,
+      "text": "Günəş səhər tezdən çıxır.",
+      "phenomena": ["declarative", "front_vowels", "ş_phoneme", "x_phoneme"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 5,
+      "text": "Dağlar çox yüksəkdir.",
+      "phenomena": ["declarative", "gh_final_lengthening", "back_vowels", "front_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 6,
+      "text": "Kitab maraqlıdır.",
+      "phenomena": ["declarative", "final_devoicing_b", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 7,
+      "text": "Müəllim sinifə daxil oldu.",
+      "phenomena": ["declarative", "front_rounded_vowels", "geminate_ll"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 8,
+      "text": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+      "phenomena": ["declarative", "front_vowels", "nasal_n", "ö_vowel", "ü_vowel"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 9,
+      "text": "O, hər gün səhər qaçır.",
+      "phenomena": ["declarative", "comma_pause", "front_vowels", "q_phoneme"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 10,
+      "text": "Torpaq ana vətəndir.",
+      "phenomena": ["declarative", "back_vowels", "q_phoneme", "nasal_n"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 11,
+      "text": "Sən bu kitabı oxudunmu?",
+      "phenomena": ["yn_question", "question_particle_mu", "back_vowels"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 12,
+      "text": "Bu gün hava yaxşıdırmı?",
+      "phenomena": ["yn_question", "question_particle_mi", "x_phoneme"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 13,
+      "text": "Siz Bakıda yaşayırsınızmı?",
+      "phenomena": ["yn_question", "question_particle_mi", "agglutination"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 14,
+      "text": "Onlar sabah gələcəklərmi?",
+      "phenomena": ["yn_question", "question_particle_mi", "palatalization_g"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 15,
+      "text": "Dərsi başa düşdünmü?",
+      "phenomena": ["yn_question", "question_particle_mü", "front_rounded_vowels"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 16,
+      "text": "Kim bu işi görəcək?",
+      "phenomena": ["wh_question", "wh_word_kim", "palatalization_g"],
+      "expected_type": "wh_question"
+    },
+    {
+      "id": 17,
+      "text": "Nə vaxt gəlirsən?",
+      "phenomena": ["wh_question", "wh_word_nə_vaxt", "palatalization_g"],
+      "expected_type": "wh_question"
+    },
+    {
+      "id": 18,
+      "text": "Harada yaşayırsan?",
+      "phenomena": ["wh_question", "wh_word_harada", "back_vowels"],
+      "expected_type": "wh_question"
+    },
+    {
+      "id": 19,
+      "text": "Niyə belə gec gəldin?",
+      "phenomena": ["wh_question", "wh_word_niyə", "front_vowels", "palatalization_g"],
+      "expected_type": "wh_question"
+    },
+    {
+      "id": 20,
+      "text": "Hansı kitabı seçdin?",
+      "phenomena": ["wh_question", "wh_word_hansı", "front_vowels"],
+      "expected_type": "wh_question"
+    },
+    {
+      "id": 21,
+      "text": "Bu nə gözəl gündür!",
+      "phenomena": ["exclamatory", "front_vowels", "palatalization_g"],
+      "expected_type": "exclamatory"
+    },
+    {
+      "id": 22,
+      "text": "Nə qədər gözəl mənzərədir!",
+      "phenomena": ["exclamatory", "front_vowels", "q_phoneme"],
+      "expected_type": "exclamatory"
+    },
+    {
+      "id": 23,
+      "text": "Əla nəticədir!",
+      "phenomena": ["exclamatory", "front_vowels", "monosyllabic"],
+      "expected_type": "exclamatory"
+    },
+    {
+      "id": 24,
+      "text": "O bu məktubu yazmadı.",
+      "phenomena": ["negation_suffix_ma", "stress_shift", "final_devoicing"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 25,
+      "text": "Mən onu görmədim.",
+      "phenomena": ["negation_suffix_mə", "stress_shift", "palatalization_g"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 26,
+      "text": "Uşaqlar məktəb üçün kitab aldılar.",
+      "phenomena": ["postposition_üçün", "agglutination", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 27,
+      "text": "O, dostları ilə gəldi.",
+      "phenomena": ["postposition_ilə", "comma_pause", "palatalization_g"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 28,
+      "text": "Həm mən, həm də sən gedirik.",
+      "phenomena": ["conjunction_həm", "comma_pause", "palatalization_g"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 29,
+      "text": "Hava soyuqdur, amma günəşlidir.",
+      "phenomena": ["conjunction_amma", "comma_pause", "final_devoicing_q"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 30,
+      "text": "Gəl, birlikdə gedək.",
+      "phenomena": ["imperative", "palatalization_g", "comma_pause", "front_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 31,
+      "text": "Prof. Əliyev 2024-cü ildə 3 kitab nəşr etdi.",
+      "phenomena": ["abbreviation_prof", "ordinal_number", "cardinal_number"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 32,
+      "text": "Qiymət 150₼-dır.",
+      "phenomena": ["currency_manat", "cardinal_number"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 33,
+      "text": "Temperatur 25°C-dir.",
+      "phenomena": ["unit_celsius", "cardinal_number"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 34,
+      "text": "Görüş saat 09:30-da başlayacaq.",
+      "phenomena": ["time_normalization", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 35,
+      "text": "O, 15.06.2023 tarixində doğulub.",
+      "phenomena": ["date_normalization", "comma_pause"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 36,
+      "text": "XXI əsrdə texnologiya sürətlə inkişaf edir.",
+      "phenomena": ["roman_numeral", "front_vowels", "x_phoneme"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 37,
+      "text": "Dr. Həsənov 1-ci sırada dayanıb.",
+      "phenomena": ["abbreviation_dr", "ordinal_number"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 38,
+      "text": "Məsafə 120 km-dir.",
+      "phenomena": ["unit_km", "cardinal_number"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 39,
+      "text": "Yağış yağır və küçələr islanıb.",
+      "phenomena": ["conjunction_və", "gh_intervocalic", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 40,
+      "text": "Bağçada güllər açılıb.",
+      "phenomena": ["gh_intervocalic", "palatalization_g", "geminate_ll"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 41,
+      "text": "Şagird dəftərə yazır.",
+      "phenomena": ["ş_phoneme", "palatalization_g", "front_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 42,
+      "text": "Böyük şəhərlərdə həyat sürətlidir.",
+      "phenomena": ["ö_vowel", "ü_vowel", "front_rounded_vowels", "agglutination"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 43,
+      "text": "Onunla danışmaq çox maraqlıdır.",
+      "phenomena": ["nasal_assimilation_nq", "back_vowels", "ş_phoneme"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 44,
+      "text": "Bənövşələr bahar gətirir.",
+      "phenomena": ["nasal_n", "ö_vowel", "ş_phoneme", "front_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 45,
+      "text": "Cocuqlar parkda oynayır.",
+      "phenomena": ["c_phoneme_dʒ", "back_vowels", "nasal_assimilation"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 46,
+      "text": "Mən çörək almaq istəyirəm.",
+      "phenomena": ["ç_phoneme_tʃ", "ö_vowel", "front_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 47,
+      "text": "Jurnalist xəbəri çatdırdı.",
+      "phenomena": ["j_phoneme_ʒ", "x_phoneme", "ç_phoneme"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 48,
+      "text": "Futbol komandasının 5 oyunçusu var.",
+      "phenomena": ["cardinal_number", "agglutination", "back_vowels"],
+      "expected_type": "declarative"
+    },
+    {
+      "id": 49,
+      "text": "Nəticələr sabah elan olunacaqmı?",
+      "phenomena": ["yn_question", "question_particle_mi", "q_phoneme"],
+      "expected_type": "yn_question"
+    },
+    {
+      "id": 50,
+      "text": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+      "phenomena": ["semicolon_pause", "agglutination", "negation_check", "back_vowels"],
+      "expected_type": "declarative"
+    }
+  ],
+
+  "coverage_summary": {
+    "vowels": {
+      "a": "sentences 1-10, 26, 29, 39, 43, 45",
+      "e": "sentences 1, 3, 4, 8, 19, 25, 36",
+      "ə": "sentences 1-4, 8, 19, 25, 41, 44, 46",
+      "ı": "sentences 6, 9, 11, 26, 43",
+      "i": "sentences 3, 7, 16, 36, 47",
+      "o": "sentences 9, 10, 25, 45",
+      "ö": "sentences 1, 8, 42, 44, 46",
+      "u": "sentences 3, 5, 11, 15, 45",
+      "ü": "sentences 5, 8, 15, 26, 42"
+    },
+    "context_rules": {
+      "g_palatalization": "sentences 1, 3, 14, 16, 19, 21, 25, 27, 30, 40, 41",
+      "k_palatalization": "sentences 2, 20",
+      "gh_final": "sentences 5",
+      "gh_intervocalic": "sentences 39, 40",
+      "nasal_assimilation": "sentences 10, 43, 45",
+      "final_devoicing": "sentences 6, 24, 29",
+      "geminate": "sentences 7, 40"
+    },
+    "sentence_types": {
+      "declarative": 30,
+      "yn_question": 6,
+      "wh_question": 5,
+      "exclamatory": 3,
+      "with_negation": 2,
+      "with_postposition": 2,
+      "with_conjunction": 3
+    },
+    "nsw_phenomena": {
+      "cardinal_numbers": "sentences 31, 32, 33, 38, 48",
+      "ordinal_numbers": "sentences 31, 37",
+      "dates": "sentence 35",
+      "times": "sentence 34",
+      "abbreviations": "sentences 31, 37",
+      "currency": "sentence 32",
+      "units": "sentences 33, 38",
+      "roman_numerals": "sentence 36"
+    }
+  }
+}

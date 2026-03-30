@@ -67,5 +67,9 @@
 - [x] `02_Technical/Code/main.py`
 - [x] `02_Technical/Code/utils.py`
 - [x] `02_Technical/Code/requirements.txt`
+- [x] `02_Technical/Code/pytest.ini`
+- [x] `02_Technical/Code/tests/` (6 test files, 156 tests)
+- [x] `02_Technical/Code/evaluation/test_sentences.json` (50 sentences)
+- [x] `02_Technical/Code/evaluation/run_evaluation.py`
 
 ---
