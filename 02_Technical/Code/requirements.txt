@@ -1,0 +1,25 @@
+# Azerbaijani TTS System — Dependencies
+#
+# Core dependencies (required)
+# No external Python packages required for the rule-based pipeline.
+# The system uses Python standard library only for the core modules.
+#
+# espeak-ng must be installed separately as a system package:
+#   Linux:   sudo apt install espeak-ng
+#   macOS:   brew install espeak
+#   Windows: https://github.com/espeak-ng/espeak-ng/releases
+
+# Optional: audio playback
+sounddevice>=0.4.6
+scipy>=1.11.0
+
+# Optional: evaluation and analysis
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# Optional: Jupyter notebook support (for experiments)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Development / testing
+pytest>=7.4.0

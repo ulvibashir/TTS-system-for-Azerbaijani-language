@@ -1,0 +1,143 @@
+{
+  "_comment": "Azerbaijani Grapheme-to-Phoneme Rules (Latin script → IPA)",
+
+  "vowels": {
+    "a": "a",
+    "e": "e",
+    "ə": "æ",
+    "ı": "ɯ",
+    "i": "i",
+    "o": "o",
+    "ö": "ø",
+    "u": "u",
+    "ü": "y"
+  },
+
+  "vowel_classes": {
+    "back":  ["a", "ı", "o", "u"],
+    "front": ["e", "ə", "i", "ö", "ü"],
+    "rounded": ["o", "ö", "u", "ü"],
+    "unrounded": ["a", "e", "ə", "ı", "i"]
+  },
+
+  "consonants": {
+    "b": "b",
+    "c": "dʒ",
+    "ç": "tʃ",
+    "d": "d",
+    "f": "f",
+    "h": "h",
+    "j": "ʒ",
+    "l": "l",
+    "m": "m",
+    "n": "n",
+    "p": "p",
+    "q": "ɢ",
+    "r": "r",
+    "s": "s",
+    "ş": "ʃ",
+    "t": "t",
+    "v": "v",
+    "x": "x",
+    "y": "j",
+    "z": "z"
+  },
+
+  "context_sensitive_rules": [
+    {
+      "id": "g_front_vowel",
+      "description": "g → /ɟ/ (voiced palatal stop) before front vowels",
+      "grapheme": "g",
+      "context": "before_front_vowel",
+      "phoneme": "ɟ",
+      "default_phoneme": "ɡ"
+    },
+    {
+      "id": "k_front_vowel",
+      "description": "k → /c/ (voiceless palatal stop) before/after front vowels",
+      "grapheme": "k",
+      "context": "adjacent_front_vowel",
+      "phoneme": "c",
+      "default_phoneme": "k"
+    },
+    {
+      "id": "gh_intervocalic",
+      "description": "ğ → /ɣ/ (voiced velar fricative) between vowels",
+      "grapheme": "ğ",
+      "context": "intervocalic",
+      "phoneme": "ɣ"
+    },
+    {
+      "id": "gh_final",
+      "description": "ğ at word-final position → lengthens preceding vowel (ː)",
+      "grapheme": "ğ",
+      "context": "word_final",
+      "phoneme": "ː"
+    },
+    {
+      "id": "gh_initial",
+      "description": "ğ at word-initial or post-consonant → /ɣ/",
+      "grapheme": "ğ",
+      "context": "default",
+      "phoneme": "ɣ"
+    },
+    {
+      "id": "n_before_velar",
+      "description": "n → /ŋ/ (velar nasal) before k, q, g",
+      "grapheme": "n",
+      "context": "before_velar",
+      "phoneme": "ŋ",
+      "default_phoneme": "n",
+      "trigger_graphemes": ["k", "q", "g"]
+    },
+    {
+      "id": "geminate_consonant",
+      "description": "Double consonant → long/geminate phoneme (ː suffix on base phoneme)",
+      "grapheme": "CC",
+      "context": "geminate",
+      "phoneme": "Cː"
+    },
+    {
+      "id": "final_devoicing",
+      "description": "Voiced obstruents devoice at word boundary: b→p, d→t, g→k, c→ç, z→s",
+      "context": "word_final",
+      "pairs": {
+        "b": "p",
+        "d": "t",
+        "g": "k",
+        "c": "tʃ",
+        "z": "s"
+      }
+    }
+  ],
+
+  "syllable_structure": {
+    "pattern": "(C)(C)V(C)(C)",
+    "comment": "Azerbaijani syllable is (C)V(C) with onset and coda constraints"
+  },
+
+  "vowel_harmony_suffix_maps": {
+    "comment": "Suffix vowel selection based on last root vowel",
+    "e_type": {
+      "back_vowel_root":  "a",
+      "front_vowel_root": "ə"
+    },
+    "i_type": {
+      "a_or_ı": "ı",
+      "e_or_ə": "i",
+      "o_or_u": "u",
+      "ö_or_ü": "ü"
+    }
+  },
+
+  "punctuation_pause_map": {
+    ".": "long",
+    "!": "long",
+    "?": "long",
+    ",": "short",
+    ";": "medium",
+    ":": "medium",
+    "—": "medium",
+    "-": "none"
+  }
+}
