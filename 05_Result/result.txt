@@ -1,0 +1,113 @@
+Design and Development of a Rule-Based Text-to-Speech System for the Azerbaijani Language
+================================================================================================
+
+ABSTRACT
+--------
+[Research objectives]
+
+[Methodological approach]
+
+[Key findings and contributions]
+
+
+INTRODUCTION
+------------
+[Relevance and motivation of the research]
+
+[Importance of Text-to-Speech systems for low-resource languages]
+
+[Rationale for selecting a rule-based approach]
+
+[Research aim and objectives]
+
+[Research object and subject]
+
+[Scientific novelty and practical significance]
+
+[Structure of the thesis]
+
+
+CHAPTER I. THEORETICAL FOUNDATIONS OF TEXT-TO-SPEECH SYSTEMS
+-------------------------------------------------------------
+
+1.1. General Overview of Text-to-Speech Systems
+    [Definition and purpose of Text-to-Speech technology]
+
+    [Core components of TTS systems]
+
+    [Historical development of TTS technologies]
+
+1.2. Rule-Based Text-to-Speech Systems
+    [Concept and principles of rule-based TTS]
+
+    [Linguistic rule formulation and phonetic modeling]
+
+    [Comparison with statistical and neural TTS approaches]
+
+1.3. Advantages and Limitations of Rule-Based TTS Systems: A SWOT Analysis
+    [Strengths: transparency, linguistic control, low data dependency]
+
+    [Weaknesses: limited naturalness, scalability challenges]
+
+    [Opportunities and threats in the context of the Azerbaijani language]
+
+
+CHAPTER II. LINGUISTIC AND TECHNICAL ANALYSIS FOR AZERBAIJANI TEXT-TO-SPEECH
+-----------------------------------------------------------------------------
+
+2.1. Phonetic and Morphological Characteristics of the Azerbaijani Language
+    [Phoneme inventory and sound structure]
+
+    [Vowel harmony and consonant behavior]
+
+    [Impact of agglutinative morphology on speech synthesis]
+
+2.2. Text Normalization and Linguistic Rule Design
+    [Normalization of numbers, abbreviations, dates, and symbols]
+
+    [Syllabification and stress assignment rules]
+
+    [Prosodic and intonation modeling]
+
+2.3. Architecture of a Rule-Based Azerbaijani TTS System
+    [Overall system architecture]
+
+    [Module decomposition (Text Processing, Phonetic Conversion, Speech Synthesis)]
+
+    [Data flow and rule execution logic]
+
+
+CHAPTER III. DESIGN, IMPLEMENTATION, AND EVALUATION OF THE PROPOSED SYSTEM
+---------------------------------------------------------------------------
+
+3.1. System Design and Development Methodology
+    [Software engineering approach]
+
+    [Justification for Python-based implementation]
+
+    [Tools, libraries, and development environment]
+
+3.2. Implementation of the Rule-Based Text-to-Speech Prototype
+    [Rule engine development]
+
+    [Phoneme mapping and pronunciation generation]
+
+    [Audio signal generation and output processing]
+
+3.3. Experimental Evaluation and Performance Analysis
+    [Testing scenarios and datasets]
+
+    [Speech intelligibility and quality evaluation metrics]
+
+    [Comparative analysis with existing TTS solutions]
+
+
+CONCLUSION
+----------
+[Summary of research findings]
+
+[Scientific and practical contributions]
+
+[Limitations of the proposed system]
+
+[Directions for future research (hybrid and neural TTS integration)]
