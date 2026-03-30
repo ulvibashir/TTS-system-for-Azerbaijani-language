@@ -4,6 +4,7 @@
 ._*
 .Spotlight-V100
 .Trashes
+.claude
 
 # Python
 __pycache__/
@@ -35,3 +36,10 @@ build/
 # Temporary files
 *.log
 *.tmp
+
+# Generated audio output
+*.wav
+evaluation_output/
+
+# Pytest cache
+.pytest_cache/

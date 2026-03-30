@@ -1,0 +1,964 @@
+{
+  "mos": {
+    "proposed": {
+      "n_ratings": 180,
+      "mean": 3.2,
+      "std": 0.5,
+      "ci_95": [
+        3.1,
+        3.3
+      ],
+      "per_evaluator": {
+        "E1": 3.22,
+        "E2": 3.14,
+        "E3": 3.19,
+        "E4": 3.19,
+        "E5": 3.17
+      },
+      "per_sentence": {
+        "1": 3.4,
+        "2": 3.2,
+        "3": 3.4,
+        "4": 3.4,
+        "5": 3.4,
+        "6": 3.4,
+        "7": 3.0,
+        "8": 3.0,
+        "9": 3.4,
+        "10": 3.2,
+        "11": 3.2,
+        "12": 3.2,
+        "13": 3.4,
+        "14": 3.0,
+        "16": 3.2,
+        "21": 3.6,
+        "24": 2.8,
+        "26": 3.4,
+        "30": 3.4,
+        "31": 2.8,
+        "32": 2.8,
+        "34": 3.4,
+        "35": 3.0,
+        "36": 3.4,
+        "39": 3.2,
+        "40": 3.2,
+        "41": 3.2,
+        "42": 2.8,
+        "43": 3.2,
+        "44": 3.2,
+        "45": 3.2,
+        "46": 3.2,
+        "47": 2.8,
+        "48": 3.0,
+        "49": 3.0,
+        "50": 3.2
+      },
+      "score_distribution": {
+        "1": 0,
+        "2": 10,
+        "3": 127,
+        "4": 43,
+        "5": 0
+      }
+    },
+    "baseline": {
+      "n_ratings": 180,
+      "mean": 2.8,
+      "std": 0.4,
+      "ci_95": [
+        2.7,
+        2.9
+      ],
+      "per_evaluator": {
+        "E1": 2.81,
+        "E2": 2.81,
+        "E3": 2.78,
+        "E4": 2.75,
+        "E5": 2.83
+      },
+      "per_sentence": {
+        "1": 3.0,
+        "2": 3.0,
+        "3": 2.8,
+        "4": 3.0,
+        "5": 2.8,
+        "6": 2.8,
+        "7": 2.8,
+        "8": 2.8,
+        "9": 3.0,
+        "10": 3.0,
+        "11": 2.8,
+        "12": 3.0,
+        "13": 2.8,
+        "14": 2.8,
+        "16": 2.8,
+        "21": 3.0,
+        "24": 2.6,
+        "26": 3.0,
+        "30": 3.0,
+        "31": 2.4,
+        "32": 2.4,
+        "34": 2.8,
+        "35": 2.6,
+        "36": 2.8,
+        "39": 2.8,
+        "40": 2.6,
+        "41": 2.8,
+        "42": 2.6,
+        "43": 2.6,
+        "44": 3.0,
+        "45": 2.6,
+        "46": 2.8,
+        "47": 2.4,
+        "48": 2.6,
+        "49": 3.0,
+        "50": 3.0
+      },
+      "score_distribution": {
+        "1": 0,
+        "2": 37,
+        "3": 143,
+        "4": 0,
+        "5": 0
+      }
+    }
+  },
+  "wer": {
+    "n_evaluations": 250,
+    "mean_wer_pct": 12.4,
+    "std_pct": 15.3,
+    "per_listener": {
+      "L1": 10.4,
+      "L2": 7.4,
+      "L3": 18.0,
+      "L4": 15.2,
+      "L5": 10.9
+    },
+    "per_sentence": {
+      "1": 6.7,
+      "2": 13.3,
+      "3": 20.0,
+      "4": 0.0,
+      "5": 20.0,
+      "6": 30.0,
+      "7": 10.0,
+      "8": 10.0,
+      "9": 16.0,
+      "10": 13.3,
+      "11": 10.0,
+      "12": 0.0,
+      "13": 6.7,
+      "14": 20.0,
+      "15": 6.7,
+      "16": 5.0,
+      "17": 13.3,
+      "18": 0.0,
+      "19": 5.0,
+      "20": 13.3,
+      "21": 0.0,
+      "22": 10.0,
+      "23": 0.0,
+      "24": 5.0,
+      "25": 20.0,
+      "26": 4.0,
+      "27": 20.0,
+      "28": 3.3,
+      "29": 15.0,
+      "30": 6.7,
+      "31": 16.4,
+      "32": 16.0,
+      "33": 26.7,
+      "34": 17.5,
+      "35": 14.5,
+      "36": 17.1,
+      "37": 12.0,
+      "38": 44.0,
+      "39": 12.0,
+      "40": 26.7,
+      "41": 6.7,
+      "42": 10.0,
+      "43": 10.0,
+      "44": 20.0,
+      "45": 6.7,
+      "46": 5.0,
+      "47": 26.7,
+      "48": 8.0,
+      "49": 15.0,
+      "50": 5.7
+    },
+    "perfect_sentences": 5,
+    "sentences_with_errors": 45,
+    "errors": [
+      {
+        "sentence_id": 1,
+        "listener": "L3",
+        "reference": "Azərbaycan gözəl ölkədir.",
+        "hypothesis": "Azərbaycan gözəl ölkədi.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 2,
+        "listener": "L3",
+        "reference": "Bakı paytaxt şəhərdir.",
+        "hypothesis": "Bakı paytax şəhərdir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 2,
+        "listener": "L4",
+        "reference": "Bakı paytaxt şəhərdir.",
+        "hypothesis": "Bakı paytaxt şəhərdi.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 3,
+        "listener": "L1",
+        "reference": "Uşaqlar məktəbə gedirlər.",
+        "hypothesis": "Uşaqlar məktəbə kedirlər.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 3,
+        "listener": "L3",
+        "reference": "Uşaqlar məktəbə gedirlər.",
+        "hypothesis": "Uşaqlar məktəbə kedirlər.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 3,
+        "listener": "L5",
+        "reference": "Uşaqlar məktəbə gedirlər.",
+        "hypothesis": "Uşaqlar məktəbə kedirlər.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 5,
+        "listener": "L1",
+        "reference": "Dağlar çox yüksəkdir.",
+        "hypothesis": "Dalar çox yüksəkdir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 5,
+        "listener": "L2",
+        "reference": "Dağlar çox yüksəkdir.",
+        "hypothesis": "Dalar çox yüksəkdir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 5,
+        "listener": "L3",
+        "reference": "Dağlar çox yüksəkdir.",
+        "hypothesis": "Dalar çox yüksəkdir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 6,
+        "listener": "L3",
+        "reference": "Kitab maraqlıdır.",
+        "hypothesis": "Kitab maraqlıdı.",
+        "wer": 50.0
+      },
+      {
+        "sentence_id": 6,
+        "listener": "L4",
+        "reference": "Kitab maraqlıdır.",
+        "hypothesis": "Kitap maraqlıdır.",
+        "wer": 50.0
+      },
+      {
+        "sentence_id": 6,
+        "listener": "L5",
+        "reference": "Kitab maraqlıdır.",
+        "hypothesis": "Kitap maraqlıdır.",
+        "wer": 50.0
+      },
+      {
+        "sentence_id": 7,
+        "listener": "L2",
+        "reference": "Müəllim sinifə daxil oldu.",
+        "hypothesis": "Müəlim sinifə daxil oldu.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 7,
+        "listener": "L4",
+        "reference": "Müəllim sinifə daxil oldu.",
+        "hypothesis": "Müəllim sinifə dahil oldu.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 8,
+        "listener": "L1",
+        "reference": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+        "hypothesis": "Xəzər dənizi dünyanın ən böyüg gölüdür.",
+        "wer": 16.7
+      },
+      {
+        "sentence_id": 8,
+        "listener": "L3",
+        "reference": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+        "hypothesis": "Xəzər dənizi dünyənın ən böyük gölüdür.",
+        "wer": 16.7
+      },
+      {
+        "sentence_id": 8,
+        "listener": "L4",
+        "reference": "Xəzər dənizi dünyanın ən böyük gölüdür.",
+        "hypothesis": "Xəzər dənizi dünyanın ən böyüg gölüdür.",
+        "wer": 16.7
+      },
+      {
+        "sentence_id": 9,
+        "listener": "L1",
+        "reference": "O, hər gün səhər qaçır.",
+        "hypothesis": "O, hər gün səhər qaşır.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 9,
+        "listener": "L3",
+        "reference": "O, hər gün səhər qaçır.",
+        "hypothesis": "O hər kün səhər qaçır.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 9,
+        "listener": "L5",
+        "reference": "O, hər gün səhər qaçır.",
+        "hypothesis": "O, hər gün səhər qaşır.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 10,
+        "listener": "L2",
+        "reference": "Torpaq ana vətəndir.",
+        "hypothesis": "Torpaq ana vətəndi.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 10,
+        "listener": "L5",
+        "reference": "Torpaq ana vətəndir.",
+        "hypothesis": "Torpaq ana vədəndir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 11,
+        "listener": "L3",
+        "reference": "Sən bu kitabı oxudunmu?",
+        "hypothesis": "Sən bu kitabı ohudunmu?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 11,
+        "listener": "L4",
+        "reference": "Sən bu kitabı oxudunmu?",
+        "hypothesis": "Sən bu kitapı oxudunmu?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 13,
+        "listener": "L4",
+        "reference": "Siz Bakıda yaşayırsınızmı?",
+        "hypothesis": "Siz Bakıda yaşayırsinızmı?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 14,
+        "listener": "L1",
+        "reference": "Onlar sabah gələcəklərmi?",
+        "hypothesis": "Onlar sabah gələcəkləmi?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 14,
+        "listener": "L2",
+        "reference": "Onlar sabah gələcəklərmi?",
+        "hypothesis": "Onlar sabah kələcəklərmi?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 14,
+        "listener": "L3",
+        "reference": "Onlar sabah gələcəklərmi?",
+        "hypothesis": "Onlar sabah gələcəkləmi?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 15,
+        "listener": "L5",
+        "reference": "Dərsi başa düşdünmü?",
+        "hypothesis": "Dərsi başa düşdümü?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 16,
+        "listener": "L3",
+        "reference": "Kim bu işi görəcək?",
+        "hypothesis": "Kim bu işi körəcək?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 17,
+        "listener": "L1",
+        "reference": "Nə vaxt gəlirsən?",
+        "hypothesis": "Nə vaxt kəlirsən?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 17,
+        "listener": "L3",
+        "reference": "Nə vaxt gəlirsən?",
+        "hypothesis": "Nə vaxt kəlirsən?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 19,
+        "listener": "L4",
+        "reference": "Niyə belə gec gəldin?",
+        "hypothesis": "Niyə belə kec gəldin?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 20,
+        "listener": "L1",
+        "reference": "Hansı kitabı seçdin?",
+        "hypothesis": "Hansı kitabı seşdin?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 20,
+        "listener": "L5",
+        "reference": "Hansı kitabı seçdin?",
+        "hypothesis": "Hansı kitapı seçdin?",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 22,
+        "listener": "L2",
+        "reference": "Nə qədər gözəl mənzərədir!",
+        "hypothesis": "Nə gədər gözəl mənzərədir!",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 22,
+        "listener": "L3",
+        "reference": "Nə qədər gözəl mənzərədir!",
+        "hypothesis": "Nə qədər gözəl mənzərədi!",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 24,
+        "listener": "L4",
+        "reference": "O bu məktubu yazmadı.",
+        "hypothesis": "O bu mətbubu yazmadı.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 25,
+        "listener": "L2",
+        "reference": "Mən onu görmədim.",
+        "hypothesis": "Mən onu körmədim.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 25,
+        "listener": "L3",
+        "reference": "Mən onu görmədim.",
+        "hypothesis": "Mən onu körmədim.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 25,
+        "listener": "L5",
+        "reference": "Mən onu görmədim.",
+        "hypothesis": "Mən onu körmədim.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 26,
+        "listener": "L1",
+        "reference": "Uşaqlar məktəb üçün kitab aldılar.",
+        "hypothesis": "Uşaqlar məktəb üçün kitap aldılar.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 27,
+        "listener": "L3",
+        "reference": "O, dostları ilə gəldi.",
+        "hypothesis": "O, dostları ilə kəldi.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 27,
+        "listener": "L4",
+        "reference": "O, dostları ilə gəldi.",
+        "hypothesis": "O dostları ilə kəldi.",
+        "wer": 50.0
+      },
+      {
+        "sentence_id": 27,
+        "listener": "L5",
+        "reference": "O, dostları ilə gəldi.",
+        "hypothesis": "O, dostları ilə kəldi.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 28,
+        "listener": "L4",
+        "reference": "Həm mən, həm də sən gedirik.",
+        "hypothesis": "Həm mən, həm də sən kedirik.",
+        "wer": 16.7
+      },
+      {
+        "sentence_id": 29,
+        "listener": "L1",
+        "reference": "Hava soyuqdur, amma günəşlidir.",
+        "hypothesis": "Hava soyuqdur, amma günəşlidi.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 29,
+        "listener": "L2",
+        "reference": "Hava soyuqdur, amma günəşlidir.",
+        "hypothesis": "Hava soyuqdur, amma günəşldir.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 29,
+        "listener": "L3",
+        "reference": "Hava soyuqdur, amma günəşlidir.",
+        "hypothesis": "Hava soyuqdur, amma günəşldir.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 30,
+        "listener": "L4",
+        "reference": "Gəl, birlikdə gedək.",
+        "hypothesis": "Gəl, birlikdə kedək.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 31,
+        "listener": "L1",
+        "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+        "hypothesis": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitap nəşr etdi.",
+        "wer": 9.1
+      },
+      {
+        "sentence_id": 31,
+        "listener": "L2",
+        "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+        "hypothesis": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nər etdi.",
+        "wer": 9.1
+      },
+      {
+        "sentence_id": 31,
+        "listener": "L3",
+        "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+        "hypothesis": "Professor Əliyev iki min iyirmi dördücü ildə üç kitab nəş etdi.",
+        "wer": 27.3
+      },
+      {
+        "sentence_id": 31,
+        "listener": "L4",
+        "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+        "hypothesis": "Professor Əliyev iki min iyimi dördüncü ildə üç kitap nəşr etdi.",
+        "wer": 27.3
+      },
+      {
+        "sentence_id": 31,
+        "listener": "L5",
+        "reference": "Profesor Əliyev iki min iyirmi dördüncü ildə üç kitab nəşr etdi.",
+        "hypothesis": "Profesor Əliyev iki min iyirmi dördüncü ildə üş kitab nəşr etdi.",
+        "wer": 9.1
+      },
+      {
+        "sentence_id": 32,
+        "listener": "L3",
+        "reference": "Qiymət yüz əlli manat dır.",
+        "hypothesis": "Qiymət yüz əlli manatdır.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 32,
+        "listener": "L4",
+        "reference": "Qiymət yüz əlli manat dır.",
+        "hypothesis": "Qiymət yüz əlli manatdır.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 33,
+        "listener": "L1",
+        "reference": "Temperatur iyirmi beş dərəcə Selsi dir.",
+        "hypothesis": "Temperatur iyirmi beş dərəcə Selsidir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 33,
+        "listener": "L3",
+        "reference": "Temperatur iyirmi beş dərəcə Selsi dir.",
+        "hypothesis": "Temperatur iyirmi beş dərəcə Selsidir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 33,
+        "listener": "L4",
+        "reference": "Temperatur iyirmi beş dərəcə Selsi dir.",
+        "hypothesis": "Temperatur iyirmi beş dərəcə Selsidir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 33,
+        "listener": "L5",
+        "reference": "Temperatur iyirmi beş dərəcə Selsi dir.",
+        "hypothesis": "Temperatur iyirmi beş dərəcə Selsidir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 34,
+        "listener": "L1",
+        "reference": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+        "hypothesis": "Görüş saat doqquz saat otuz dəqiqə başlayacaq.",
+        "wer": 12.5
+      },
+      {
+        "sentence_id": 34,
+        "listener": "L3",
+        "reference": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+        "hypothesis": "Körüş sat doqquz saat otuz dəqiqə da başlayacaq.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 34,
+        "listener": "L4",
+        "reference": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+        "hypothesis": "Görüş sat doqquz saat otuz dəqiqədə başlayacaq.",
+        "wer": 37.5
+      },
+      {
+        "sentence_id": 34,
+        "listener": "L5",
+        "reference": "Görüş saat doqquz saat otuz dəqiqə da başlayacaq.",
+        "hypothesis": "Görüş saat doqquz saat otuz dəqiqə başlayacaq.",
+        "wer": 12.5
+      },
+      {
+        "sentence_id": 35,
+        "listener": "L1",
+        "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+        "hypothesis": "O, on beşinci iyun iki min iyirmi üçüncü il tarixindən doğulub.",
+        "wer": 9.1
+      },
+      {
+        "sentence_id": 35,
+        "listener": "L2",
+        "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+        "hypothesis": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində dolub.",
+        "wer": 9.1
+      },
+      {
+        "sentence_id": 35,
+        "listener": "L3",
+        "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+        "hypothesis": "O on beşinci iyun iki min iyirmi üçücü il tarixində doğulub.",
+        "wer": 18.2
+      },
+      {
+        "sentence_id": 35,
+        "listener": "L4",
+        "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+        "hypothesis": "O, on beşinci iyun iki min iyimi üçüncü il tarixindən doğulub.",
+        "wer": 18.2
+      },
+      {
+        "sentence_id": 35,
+        "listener": "L5",
+        "reference": "O, on beşinci iyun iki min iyirmi üçüncü il tarixində doğulub.",
+        "hypothesis": "O, on beşinci iyun iki min iyirmi üçüncü il tarixindən dolub.",
+        "wer": 18.2
+      },
+      {
+        "sentence_id": 36,
+        "listener": "L2",
+        "reference": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+        "hypothesis": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edi.",
+        "wer": 14.3
+      },
+      {
+        "sentence_id": 36,
+        "listener": "L3",
+        "reference": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+        "hypothesis": "İyirmi bir əsrdə texnoloqiya sürətlə inkişaf edi.",
+        "wer": 28.6
+      },
+      {
+        "sentence_id": 36,
+        "listener": "L4",
+        "reference": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+        "hypothesis": "İyirmi bir əsrdə texnoloqiya sürətlə inkişaf edi.",
+        "wer": 28.6
+      },
+      {
+        "sentence_id": 36,
+        "listener": "L5",
+        "reference": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edir.",
+        "hypothesis": "İyirmi bir əsrdə texnologiya sürətlə inkişaf edi.",
+        "wer": 14.3
+      },
+      {
+        "sentence_id": 37,
+        "listener": "L1",
+        "reference": "Doktor Həsənov birinci sırada dayanıb.",
+        "hypothesis": "Doktor Həsənov birinci sırada dayanıp.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 37,
+        "listener": "L3",
+        "reference": "Doktor Həsənov birinci sırada dayanıb.",
+        "hypothesis": "Doktor Həsənov birinci sırada dayanıp.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 37,
+        "listener": "L4",
+        "reference": "Doktor Həsənov birinci sırada dayanıb.",
+        "hypothesis": "Doktor Həsənov birinci sırada dayanıp.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 38,
+        "listener": "L1",
+        "reference": "Məsafə yüz iyirmi kilometr dir.",
+        "hypothesis": "Məsafə yüz iyirmi kilometrdir.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 38,
+        "listener": "L2",
+        "reference": "Məsafə yüz iyirmi kilometr dir.",
+        "hypothesis": "Məsafə yüz iyirmi kilometrdir.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 38,
+        "listener": "L3",
+        "reference": "Məsafə yüz iyirmi kilometr dir.",
+        "hypothesis": "Məsafe yüz iyirmi kilometrdir.",
+        "wer": 60.0
+      },
+      {
+        "sentence_id": 38,
+        "listener": "L4",
+        "reference": "Məsafə yüz iyirmi kilometr dir.",
+        "hypothesis": "Məsafə yüz iyirmi kilometrdir.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 38,
+        "listener": "L5",
+        "reference": "Məsafə yüz iyirmi kilometr dir.",
+        "hypothesis": "Məsafə yüz iyirmi kilometrdir.",
+        "wer": 40.0
+      },
+      {
+        "sentence_id": 39,
+        "listener": "L1",
+        "reference": "Yağış yağır və küçələr islanıb.",
+        "hypothesis": "Yaış yağır və küçələr islanıb.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 39,
+        "listener": "L3",
+        "reference": "Yağış yağır və küçələr islanıb.",
+        "hypothesis": "Yaış yağır və küçələr islanıb.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 39,
+        "listener": "L4",
+        "reference": "Yağış yağır və küçələr islanıb.",
+        "hypothesis": "Yağış yağır və küçələr islanıp.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 40,
+        "listener": "L2",
+        "reference": "Bağçada güllər açılıb.",
+        "hypothesis": "Bağçada küllər açılıb.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 40,
+        "listener": "L3",
+        "reference": "Bağçada güllər açılıb.",
+        "hypothesis": "Bağçada küllər açılıb.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 40,
+        "listener": "L4",
+        "reference": "Bağçada güllər açılıb.",
+        "hypothesis": "Bağçada küllər açılıb.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 40,
+        "listener": "L5",
+        "reference": "Bağçada güllər açılıb.",
+        "hypothesis": "Bağçada güllər açılıp.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 41,
+        "listener": "L5",
+        "reference": "Şagird dəftərə yazır.",
+        "hypothesis": "Şagird dəfdərə yazır.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 42,
+        "listener": "L1",
+        "reference": "Böyük şəhərlərdə həyat sürətlidir.",
+        "hypothesis": "Böyük şəhərlərdə həyat sürətlidi.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 42,
+        "listener": "L3",
+        "reference": "Böyük şəhərlərdə həyat sürətlidir.",
+        "hypothesis": "Böyüg şəhərlərdə həyat sürətlidir.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 43,
+        "listener": "L2",
+        "reference": "Onunla danışmaq çox maraqlıdır.",
+        "hypothesis": "Onunla danışmaq çoh maraqlıdır.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 43,
+        "listener": "L4",
+        "reference": "Onunla danışmaq çox maraqlıdır.",
+        "hypothesis": "Onunla danışmaq çox maraqlıdı.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 44,
+        "listener": "L1",
+        "reference": "Bənövşələr bahar gətirir.",
+        "hypothesis": "Bənöşələr bahar gətirir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 44,
+        "listener": "L3",
+        "reference": "Bənövşələr bahar gətirir.",
+        "hypothesis": "Bənöşələr bahar gətirir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 44,
+        "listener": "L5",
+        "reference": "Bənövşələr bahar gətirir.",
+        "hypothesis": "Bənöşələr bahar gətirir.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 45,
+        "listener": "L4",
+        "reference": "Cocuqlar parkda oynayır.",
+        "hypothesis": "Cocuqlar parkda oynayı.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 46,
+        "listener": "L4",
+        "reference": "Mən çörək almaq istəyirəm.",
+        "hypothesis": "Mən çörək almaq isdəyirəm.",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 47,
+        "listener": "L1",
+        "reference": "Jurnalist xəbəri çatdırdı.",
+        "hypothesis": "Jurnalis xəbəri çatdırdı.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 47,
+        "listener": "L2",
+        "reference": "Jurnalist xəbəri çatdırdı.",
+        "hypothesis": "Jurnalist həbəri çatdırdı.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 47,
+        "listener": "L3",
+        "reference": "Jurnalist xəbəri çatdırdı.",
+        "hypothesis": "Jurnalist xəbəri çatdırdi.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 47,
+        "listener": "L5",
+        "reference": "Jurnalist xəbəri çatdırdı.",
+        "hypothesis": "Jurnalis xəbəri çatdırdı.",
+        "wer": 33.3
+      },
+      {
+        "sentence_id": 48,
+        "listener": "L1",
+        "reference": "Futbol komandasının beş oyunçusu var.",
+        "hypothesis": "Futbol komandasının beş oyunçusu va.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 48,
+        "listener": "L4",
+        "reference": "Futbol komandasının beş oyunçusu var.",
+        "hypothesis": "Futbol komandasının beş oyunçusu va.",
+        "wer": 20.0
+      },
+      {
+        "sentence_id": 49,
+        "listener": "L3",
+        "reference": "Nəticələr sabah elan olunacaqmı?",
+        "hypothesis": "Nəticələr sabah elan olunacakmı?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 49,
+        "listener": "L4",
+        "reference": "Nəticələr sabah elan olunacaqmı?",
+        "hypothesis": "Nəticələr sabah elan olunacakmı?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 49,
+        "listener": "L5",
+        "reference": "Nəticələr sabah elan olunacaqmı?",
+        "hypothesis": "Nəticələr sabah elan olunacakmı?",
+        "wer": 25.0
+      },
+      {
+        "sentence_id": 50,
+        "listener": "L1",
+        "reference": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+        "hypothesis": "Bu layihə çox vacibdi; biz onu tamamlamalıyıq.",
+        "wer": 14.3
+      },
+      {
+        "sentence_id": 50,
+        "listener": "L3",
+        "reference": "Bu layihə çox vacibdir; biz onu tamamlamalıyıq.",
+        "hypothesis": "Bu layihə çoh vacibdir; biz onu tamamlamalıyıq.",
+        "wer": 14.3
+      }
+    ]
+  }
+}
