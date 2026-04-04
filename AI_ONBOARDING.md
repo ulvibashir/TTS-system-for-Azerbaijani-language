@@ -79,26 +79,35 @@ it exactly and be in **English**. Code and technical files are also in **English
 │           ├── wer_transcriptions.json
 │           └── analyze_results.py
 │
-├── 03_Dissertation/          ← Source chapter files (English, detailed)
-│   ├── Abstract.md
-│   ├── Introduction.md
-│   ├── Chapter_1.md          ← TTS overview, rule-based theory
-│   ├── Chapter_2.md          ← Azerbaijani phonetics + system architecture
-│   ├── Chapter_3.md          ← Implementation + evaluation results
-│   └── References.md
+├── 03_Dissertation/          ← ONE .txt FILE PER SECTION — edit these, paste into Word
+│   ├── References.md         ← Master reference list (APA 7)
+│   ├── Chapter_1/
+│   │   ├── result-1.1.txt        ← DONE
+│   │   ├── result-1.2.txt        ← DONE
+│   │   └── result-1.3.txt        ← DONE (+ Ch1 references)
+│   ├── Chapter_2/
+│   │   ├── result-2.1.txt        ← DONE
+│   │   ├── result-2.2.txt        ← DONE
+│   │   └── result-2.3.txt        ← DONE (+ Ch2 references)
+│   └── Chapter_3/
+│       ├── result-3.1.txt        ← [placeholder]
+│       ├── result-3.2.txt        ← [placeholder]
+│       └── result-3.3.txt        ← [placeholder]
 │
 ├── 04_Archive/               ← Deprecated materials, ignore
 │
-└── 05_Result/
-    ├── result.txt            ← MAIN DISSERTATION FILE (plain text, English) ← ACTIVE
-    └── TTS Dissertation.docx ← Final formatted Word document (work in progress)
+└── 05_Result/                ← Front matter and conclusion files
+    ├── TTS-Dissertation.docx     ← User's Word file (do not edit)
+    ├── result-abstract.txt       ← DONE
+    ├── result-introduction.txt   ← DONE
+    └── result-conclusion.txt     ← [placeholder]
 ```
 
 ---
 
 ## 3. The Dissertation Structure (Advisor-Required)
 
-All content in `05_Result/result.txt` must follow this exact structure in **English**:
+All dissertation content lives in `03_Dissertation/` chapter folders and `05_Result/` front-matter files, and must follow this exact structure in **English**:
 
 ```
 ABSTRACT
@@ -166,7 +175,7 @@ CONCLUSION
 
 ---
 
-## 4. Current Project Status (as of 2026-03-30)
+## 4. Current Project Status (as of 2026-04-03)
 
 ### Phase completion (from ROADMAP.md):
 - [x] Phase 1 — Foundation (Nov–Dec 2025): research, literature review, architecture
@@ -186,23 +195,25 @@ CONCLUSION
 - Sentence type detection: **100% accuracy** on 50 test sentences
 - Pipeline avg analysis time: **0.3 ms** per sentence
 - 61 unique linguistic phenomena covered in test set
-- `05_Result/result.txt` — **Chapter I fully written** in English with all citations
-- `05_Result/result.txt` — **Chapter II fully written** in English with all citations
-- `03_Dissertation/` — Chapters 1–3 written in detailed English (use as source material)
+- `03_Dissertation/Chapter_1/` — **All three sections fully written and revised** (1.1, 1.2, 1.3 + references)
+  - All 10 subsections meet the 2-page minimum (≥550 words each)
+  - 1.3.1 citations added to all strength items (S1–S6)
+  - 1.3.2 cleaned: weaknesses now describe internal limitations only (O/T framing removed)
+  - New citations added: Allen et al. (1987), Chomsky & Halle (1968)
+- `03_Dissertation/Chapter_2/` — **All three sections fully written** (2.1, 2.2, 2.3 + references)
+- `05_Result/result-abstract.txt` — **DONE** (soft-wrapped, cited, full content)
+- `05_Result/result-introduction.txt` — **DONE** (soft-wrapped, all 7 advisor-required sections)
 
 ### What is STILL TODO:
-- `05_Result/result.txt` — **Chapter III not yet written** (placeholder only)
-- `05_Result/result.txt` — **Chapter III not yet written** (placeholder only)
-- `05_Result/result.txt` — **Abstract not yet written** (placeholder only)
-
-- `05_Result/result.txt` — **Introduction not yet written** (placeholder only)
-- `05_Result/result.txt` — **Conclusion not yet written** (placeholder only)
-- Introduction missing sections: "Research aim and objectives", "Research object
-  and subject", "Scientific novelty and practical significance"
-- Chapter I: SWOT Opportunities and Threats section must be present
+- `03_Dissertation/Chapter_3/` — **Chapter III not yet written** (all three sections placeholder)
+- `05_Result/result-conclusion.txt` — **not yet written** (placeholder)
 - Chapter III: comparative analysis with other Azerbaijani TTS systems needs
   expansion (Rustamov, IS2AI, Aida-Zade 2010)
-- `05_Result/TTS Dissertation.docx` — final formatted document (pending)
+- `03_Dissertation/Chapter_1/` and `03_Dissertation/Chapter_2/` txt files — **hard-wrapped at 72 chars** (pending reformat to soft-wrap)
+  - When pasted into Word, each line break becomes a visible line break → paragraphs break into short lines
+  - Fix: rewrite paragraph text as single long lines; only use newlines for blank lines, headings, bullets, table rows
+  - `result-abstract.txt` and `result-introduction.txt` are already soft-wrapped correctly
+- Chapter III: comparative analysis with other Azerbaijani TTS systems needs expansion (Rustamov, IS2AI, Aida-Zade 2010)
 - Phase 5: advisor review, UNEC formatting, presentation slides
 
 ---
@@ -262,18 +273,36 @@ Key linguistic rules implemented:
 ## 7. Important Conventions
 
 ### Language rules:
-- **ALL dissertation writing** (`05_Result/result.txt`) is in **ENGLISH**
+- **ALL dissertation writing** (`05_Result/` section files) is in **ENGLISH**
 - All code, comments, filenames, and technical docs are in **English**
 - References use **APA 7** format throughout
 - Citations must include URLs
 
-### result.txt rules:
-- The file lives at `05_Result/result.txt` — this is the **only master dissertation file**
-- It is plain text now; will become `05_Result/TTS Dissertation.docx` at the end
-- Chapters are written section by section; the rest remain as `[placeholder]`
-- When writing a chapter, use `03_Dissertation/` files as source material and expand
-- Include `[Figure X.Y: description]` and `[Table X.Y: description]` placeholders
-  with source references for all figures and tables
+### Dissertation writing workflow:
+- **AI writes content into section `.txt` files** in `03_Dissertation/` (chapters) and `05_Result/` (front matter + conclusion)
+- **User pastes the text into Word manually**, applying formatting and adding images
+- Each section is a separate file — one file per section (e.g. `result-2.1.txt`)
+- Unwritten sections contain `[placeholder]` markers
+- When writing a section, read the matching `03_Dissertation/` chapter file as source
+- Include `[Figure X.Y: description]` and `[Table X.Y: description]` markers
+  with `[Source: ...]` lines so the user knows where to insert images/tables in Word
+- References go at the end of the last section file of each chapter
+
+### CRITICAL — txt file formatting (soft-wrap):
+- **Paragraphs must be written as a single long unbroken line** — no manual line
+  breaks inside a paragraph. Word wraps lines visually; a newline in the txt file
+  becomes a visible line break when pasted into Word.
+- Only use actual newlines for: blank lines between paragraphs, heading lines,
+  bullet/list items, table rows, and figure/source caption lines.
+- DO NOT hard-wrap at 72 characters (old habit — causes broken lines in Word).
+
+### Mentor feedback (Khanim Pashayeva) — active rules:
+- **Every subsection must be a minimum of 2 pages** (~550+ words). Check word
+  count before finalising any section.
+- **All paragraphs must have citations** — no uncited factual claims.
+- **SWOT sections must be strictly categorised**: Strengths/Weaknesses describe
+  internal system properties only; Opportunities/Threats describe external
+  environmental factors only. Do not mix framing across categories.
 
 ### Memory files location:
 - `/Users/basirovulvi/.claude/projects/-Users-basirovulvi-Desktop-TTS-system-for-Azerbaijani-language/memory/`
@@ -286,12 +315,11 @@ Key linguistic rules implemented:
 When working on dissertation content, read these in order:
 
 1. `01_Research/REFERENCES.md` — all 40+ citations with URLs
-2. `03_Dissertation/Chapter_1.md` — detailed English source for Chapter I
-3. `03_Dissertation/Chapter_2.md` — detailed English source for Chapter II
-4. `03_Dissertation/Chapter_3.md` — detailed English source for Chapter III
-5. `02_Technical/Code/evaluation/results_summary.json` — real evaluation numbers
-6. `02_Technical/Code/evaluation/report.json` — full test run details
-7. `01_Research/Notes/NOTES.md` — known gaps and issues
+2. `03_Dissertation/References.md` — master APA 7 reference list
+3. `02_Technical/Code/evaluation/results_summary.json` — real evaluation numbers
+4. `02_Technical/Code/evaluation/report.json` — full test run details
+5. `01_Research/Notes/NOTES.md` — known gaps and issues
+6. Existing completed sections (e.g. `03_Dissertation/Chapter_1/result-1.3.txt`) for style and citation conventions
 
 ---
 
@@ -327,6 +355,8 @@ When updating:
 ## 11. Quick Commands
 
 ```bash
+# === TECHNICAL ===
+
 # Run full test suite
 cd 02_Technical/Code && python -m pytest tests/ -v
 
@@ -345,8 +375,4 @@ cd 02_Technical/Code && python -X utf8 main.py "Salam dünya." --output out.wav
 
 ---
 
-*Last updated: 2026-03-30 — result.txt moved to 05_Result/result.txt. Dissertation
-language confirmed as English. Mentor: Khanim Pashayeva. Evaluation framework and
-pytest suite (156 tests) added. Chapter I and Chapter II fully written in English
-in result.txt. Chapters III, Abstract, Introduction, and Conclusion still as
-placeholders.*
+*Last updated: 2026-04-03 — File restructure completed: chapter folders moved from 05_Result/ to 03_Dissertation/. Abstract.md, Introduction.md, Chapter_1.md, Chapter_2.md, Chapter_3.md deleted. result-abstract.txt and result-introduction.txt written in full (soft-wrapped, cited). Chapter I fully revised: all subsections ≥550 words, 1.3.1 citations added (S1–S6), 1.3.2 O/T framing removed. Chapter III still placeholder. Conclusion still placeholder.*

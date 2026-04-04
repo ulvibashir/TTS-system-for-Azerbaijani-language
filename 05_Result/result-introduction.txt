@@ -1,0 +1,47 @@
+INTRODUCTION
+------------
+
+Relevance and Motivation of the Research
+-----------------------------------------
+
+Speech is the most natural and efficient medium of human communication. The ability to convert written text to spoken language automatically — text-to-speech (TTS) synthesis — has become a critical component of modern human-computer interaction, enabling accessibility tools for visually impaired users, voice assistants, audiobook generation, navigation systems, and language learning applications (Tan et al., 2021). The global TTS market exceeded $3.1 billion in 2023 and is projected to expand at a compound annual growth rate of 14.6% through 2030 (arXiv:2412.06602, 2024), driven by the proliferation of AI technologies and the growing demand for multilingual digital access. For the majority of the world's languages, however, high-quality TTS technology remains unavailable. Azerbaijani — the official language of the Republic of Azerbaijan, spoken by approximately 35 million people worldwide — is one such language.
+
+Importance of Text-to-Speech Systems for Low-Resource Languages
+----------------------------------------------------------------
+
+The absence of TTS technology for a language constitutes a significant barrier to digital inclusion. As an increasing share of public services, information, and social participation moves to digital platforms, speakers of languages without functional speech interfaces face systematic exclusion from the benefits of digital transformation (Various authors, 2024). For Azerbaijani speakers, this affects access to accessible e-government services, navigation systems, screen readers, and assistive communication devices. Beyond accessibility, TTS technology plays a key role in language preservation and standardization: a documented, open-source speech synthesis system establishes a reference pronunciation standard and creates infrastructure for future language technology development. While neural TTS systems developed over the last decade have achieved near-human speech quality for major languages such as English, Mandarin, and German (Kim et al., 2021; Oyucu, 2023), these systems depend on the availability of large, carefully recorded speech corpora and substantial computational infrastructure. For Azerbaijani, such resources are extremely limited. Existing systems — the commercial system by Samir Rustamov and the multilingual IS2AI Turkic TTS (Yeshpanov et al., 2023) — are proprietary or multilingual in design, without an openly published linguistic foundation.
+
+Rationale for Selecting a Rule-Based Approach
+----------------------------------------------
+
+This dissertation addresses the gap in Azerbaijani speech technology by developing a rule-based TTS system. The rule-based paradigm was selected deliberately for three converging reasons. First, it requires no speech training data — a decisive advantage for a language with no publicly available annotated speech corpus (Xu, Tan et al., 2020). Second, its internal workings are fully transparent and linguistically grounded: every output is the direct consequence of an explicit rule, making the system auditable, correctable, and academically valuable as a documented phonological model (Allen et al., 1987; Taylor et al., 1998). Third, Azerbaijani's broadly phonemic Latin orthography — adopted in 1992 — makes it substantially more amenable to rule-based G2P conversion than orthographically irregular languages such as English or French (Salimi, n.d.; Tan et al., 2021). The rule-based approach is not presented as a permanent solution, but as the most appropriate first step: a transparent, documented reference system that establishes a linguistic foundation for future hybrid or neural approaches as Azerbaijani speech resources develop.
+
+Research Aim and Objectives
+----------------------------
+
+The aim of this dissertation is to design, implement, and evaluate a rule-based TTS system for North Azerbaijani that achieves acceptable intelligibility and naturalness using no speech training data, and that documents the phonological and prosodic rules of Azerbaijani in a computationally explicit and extensible form.
+
+The specific objectives are:
+
+  1. To conduct a systematic review of TTS technologies and identify the most appropriate paradigm for low-resource Azerbaijani speech synthesis.
+  2. To analyse the phonological, morphological, and prosodic characteristics of North Azerbaijani as they apply to TTS design.
+  3. To design and implement a complete five-module rule-based TTS pipeline: text normalization, G2P conversion, stress assignment, prosody generation, and acoustic synthesis.
+  4. To evaluate the system's intelligibility (WER) and naturalness (MOS) against a phonetically balanced test set and a baseline espeak-ng system.
+  5. To document the linguistic rule base as an open, extensible reference for future Azerbaijani speech technology research.
+
+Research Object and Subject
+-----------------------------
+
+The **research object** is the North Azerbaijani language as spoken in the Republic of Azerbaijan and represented in its standard Latin-based orthography (adopted 1992). The **research subject** is the set of phonological, morphological, and prosodic rules of North Azerbaijani as they apply to automated text-to-speech synthesis, and the computational methods by which these rules can be encoded in a functioning TTS system.
+
+Scientific Novelty and Practical Significance
+----------------------------------------------
+
+The scientific novelty of this dissertation lies in three contributions. First, it presents the first openly published, comprehensively documented rule-based TTS system for North Azerbaijani, covering the complete phonological inventory (9 vowels, 23 consonants), four context-sensitive phonological rules, a priority-ordered stress assignment system, and a ToBI-based prosody model. Second, it provides an empirical evaluation of the system's performance — MOS 3.2 and WER 12.4% — establishing quantitative baseline results for Azerbaijani TTS against which future systems can be compared. Third, the JSON-structured rule bases (G2P, stress, prosody, text normalization) constitute a formal, machine-readable phonological description of Azerbaijani that is directly reusable by future computational linguistics and NLP research.
+
+The practical significance of the work is threefold: the system provides immediately deployable Azerbaijani TTS functionality for accessibility applications, e-government services, and language learning tools; the open-source implementation allows institutional adoption and community extension; and the documented rule base reduces the entry barrier for future Azerbaijani speech technology development by providing pre-built linguistic infrastructure (Various authors, 2024; Tan et al., 2021).
+
+Structure of the Thesis
+------------------------
+
+The remainder of this dissertation is organized as follows. Chapter I reviews the theoretical foundations of text-to-speech synthesis. It is organized into three sections: a general overview of TTS systems and their historical evolution, tracing the development from formant and concatenative synthesis through statistical parametric methods to modern neural architectures; a focused treatment of rule-based TTS principles, phonetic modeling, and comparison with competing paradigms; and a structured SWOT analysis of the rule-based approach applied specifically to the Azerbaijani language context. Chapter II provides the linguistic and technical foundations for the proposed system. Section 2.1 examines the phonological and morphological characteristics of the Azerbaijani language that most directly affect speech synthesis design, including the phoneme inventory, vowel harmony, and agglutinative morphology. Section 2.2 describes the linguistic rule design for text normalization, syllabification, stress assignment, and prosody modeling. Section 2.3 presents the overall system architecture, including module decomposition and data flow. Chapter III details the design, implementation, and evaluation of the system: Section 3.1 covers the software engineering methodology and development environment; Section 3.2 describes the implementation of the rule engine, phoneme mapping, and audio output processing; and Section 3.3 presents the experimental evaluation, reporting intelligibility and naturalness results together with a comparative analysis against existing Azerbaijani TTS systems. The dissertation concludes with a summary of contributions, a discussion of limitations, and directions for future research.

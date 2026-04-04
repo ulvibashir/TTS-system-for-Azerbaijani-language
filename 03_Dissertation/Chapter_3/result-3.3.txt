@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+3.3. Experimental Evaluation and Performance Analysis
+------------------------------------------------------------------------
+
+[To be written — use 03_Dissertation/Chapter_3.md as source material]
+
+[Testing scenarios and datasets — 50 phonetically balanced sentences]
+
+[Speech intelligibility (WER = 12.4%) and quality (MOS = 3.2) metrics]
+
+[Comparative analysis with espeak-ng baseline and existing TTS solutions:
+ Rustamov commercial system, IS2AI TurkicTTS (Yeshpanov et al. 2023),
+ Aida-Zade & Sharifova (2010)]

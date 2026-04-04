@@ -1,0 +1,228 @@
+================================================================================
+CHAPTER II. LINGUISTIC AND TECHNICAL ANALYSIS FOR AZERBAIJANI TTS
+================================================================================
+
+------------------------------------------------------------------------
+2.1. Phonetic and Morphological Characteristics of Azerbaijani
+------------------------------------------------------------------------
+
+2.1.1. Typological Classification and Orthography
+--------------------------------------------------
+
+Azerbaijani (also called Azeri) belongs to the Oghuz branch of the Turkic
+language family, closely related to Turkish, Turkmen, and Gagauz. It is the
+official language of the Republic of Azerbaijan, spoken by approximately
+10 million people within Azerbaijan and an estimated 25 million in northwestern
+Iran (South Azerbaijani). This dissertation addresses North Azerbaijani — the
+standard variety codified in the Latin-based orthography adopted in 1992
+following the dissolution of the Soviet Union (Various authors, 2024).
+
+As a Turkic language, Azerbaijani exhibits several typological features with
+direct relevance to TTS design:
+
+  - Agglutinative morphology: words are formed by concatenating morphemes, each
+    with a clearly defined phonological and grammatical function. A single verbal
+    form may carry several suffixes encoding tense, aspect, mood, negation, and
+    agreement. This property dramatically increases the number of distinct word
+    forms encountered at runtime, making a lexicon-based pronunciation dictionary
+    impractical as the primary G2P strategy.
+  - Vowel harmony: suffixal vowels must agree with the root vowel in
+    frontness/backness. Vowel harmony is largely encoded in the spelling for
+    native words, simplifying the G2P task.
+  - Verb-final word order (SOV): the main verb occupies sentence-final position,
+    which influences prosodic phrasing and pitch accent placement.
+  - Predominantly suffixing morphological system: derivational and inflectional
+    morphemes are appended to the right of the stem.
+
+Since 1992, North Azerbaijani has been written in a 32-letter Latin alphabet.
+The orthography is broadly phonemic — the correspondence between graphemes and
+phonemes is close, though not entirely one-to-one — making it considerably more
+amenable to rule-based G2P conversion than English or French (Salimi, n.d.).
+
+2.1.2. Phoneme Inventory
+-------------------------
+
+Azerbaijani has nine vowel phonemes and twenty-three consonant phonemes — a
+richer inventory than Turkish and considerably richer than most Indo-European
+languages (Cambridge Core, n.d.; Comparative Analysis, 2024).
+
+[Table 2.1: Azerbaijani vowel inventory with IPA, articulatory features,
+and example words]
++----------+-----+-----------+-----------+-----------+--------------------+
+| Grapheme | IPA | Height    | Backness  | Rounding  | Example            |
++----------+-----+-----------+-----------+-----------+--------------------+
+| a        | /a/ | Open      | Back      | Unrounded | alma (apple)       |
+| e        | /e/ | Close-mid | Front     | Unrounded | ev (house)         |
+| ə        | /æ/ | Near-open | Front     | Unrounded | əl (hand)          |
+| ı        | /ɯ/ | Close     | Back      | Unrounded | ıldız (star)       |
+| i        | /i/ | Close     | Front     | Unrounded | il (year)          |
+| o        | /o/ | Close-mid | Back      | Rounded   | od (fire)          |
+| ö        | /ø/ | Close-mid | Front     | Rounded   | öz (self)          |
+| u        | /u/ | Close     | Back      | Rounded   | uşaq (child)       |
+| ü        | /y/ | Close     | Front     | Rounded   | üz (face)          |
++----------+-----+-----------+-----------+-----------+--------------------+
+[Source: Cambridge Core. (n.d.). Azerbaijani (phonetic description).
+https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/azerbaijani/EC9EF0910D4B8B6C24937E5C49F59A82;
+Comparative analysis of Azerbaijani and English phonetic systems. (2024).
+https://www.researchgate.net/publication/384969855]
+
+Two distinctions are especially important for G2P conversion:
+  - ə (near-open front unrounded) versus e (close-mid front unrounded):
+    phonemically contrastive; must be preserved exactly.
+  - ı (dotless i, close back unrounded) versus i (close front unrounded):
+    both the uppercase forms (I vs. İ) and lowercase forms (ı vs. i) must be
+    handled correctly, including case normalization.
+
+Vowel length is not phonemically contrastive in native vocabulary, although the
+letter ğ triggers compensatory lengthening of the preceding vowel (see Section
+2.1.3). Long vowels are denoted with the IPA length diacritic /ː/.
+
+The 23-consonant inventory contains several grapheme-to-IPA correspondences
+that deviate from European alphabetic conventions and are critical for G2P:
+  - c → /dʒ/ (affricate, as in English "judge"); not /k/.
+  - x → /x/ (velar fricative, as in German "Bach"); not /ks/.
+  - q → /ɢ/ (uvular stop, absent from English); distinct from /k/.
+  - ğ → allophone (see Section 2.1.3).
+
+[Table 2.2: Azerbaijani consonant inventory]
++----------+----------+-------------+----------------+-----------+-------------------+
+| Grapheme | IPA      | Manner      | Place          | Voicing   | Example           |
++----------+----------+-------------+----------------+-----------+-------------------+
+| b        | /b/      | Stop        | Bilabial       | Voiced    | baş (head)        |
+| c        | /dʒ/     | Affricate   | Post-alveolar  | Voiced    | can (soul)        |
+| ç        | /tʃ/     | Affricate   | Post-alveolar  | Voiceless | çay (tea)         |
+| d        | /d/      | Stop        | Alveolar       | Voiced    | dağ (mountain)    |
+| f        | /f/      | Fricative   | Labiodental    | Voiceless | fil (elephant)    |
+| g        | /ɡ/ ~/c/ | Stop        | Velar/Palatal  | Voiced    | gül (rose)        |
+| ğ        | /ɣ/ ~/ː/ | Fricative   | Velar          | Voiced    | dağ (mountain)    |
+| h        | /h/      | Fricative   | Glottal        | Voiceless | hava (air)        |
+| x        | /x/      | Fricative   | Velar          | Voiceless | xəbər (news)      |
+| j        | /ʒ/      | Fricative   | Post-alveolar  | Voiced    | jurnal (journal)  |
+| k        | /k/ ~/c/ | Stop        | Velar/Palatal  | Voiceless | kitab (book)      |
+| q        | /ɢ/      | Stop        | Uvular         | Voiced    | qız (girl)        |
+| l        | /l/      | Lateral     | Alveolar       | Voiced    | liman (port)      |
+| m        | /m/      | Nasal       | Bilabial       | Voiced    | meşə (forest)     |
+| n        | /n/ ~/ŋ/ | Nasal       | Alveolar/Velar | Voiced    | nə (what)         |
+| p        | /p/      | Stop        | Bilabial       | Voiceless | paltar (clothes)  |
+| r        | /r/      | Trill       | Alveolar       | Voiced    | rəng (color)      |
+| s        | /s/      | Fricative   | Alveolar       | Voiceless | su (water)        |
+| ş        | /ʃ/      | Fricative   | Post-alveolar  | Voiceless | şəhər (city)      |
+| t        | /t/      | Stop        | Alveolar       | Voiceless | torpaq (soil)     |
+| v        | /v/      | Fricative   | Labiodental    | Voiced    | vaxt (time)       |
+| y        | /j/      | Approximant | Palatal        | Voiced    | yol (road)        |
+| z        | /z/      | Fricative   | Alveolar       | Voiced    | zaman (time)      |
++----------+----------+-------------+----------------+-----------+-------------------+
+[Source: Salimi, H. (n.d.). A generative phonology of Azerbaijani [Doctoral
+dissertation, University of Florida].
+https://ufdcimages.uflib.ufl.edu/AA/00/05/27/76/00001/generativephonol00sali.pdf]
+
+2.1.3. Context-Sensitive Phonological Rules
+--------------------------------------------
+
+Four phonological rules are most significant for G2P conversion:
+
+PALATALIZATION OF /k/ AND /g/
+When the velar stops /k/ and /ɡ/ occur adjacent to front vowels (e, ə, i, ö,
+ü), they are realized as palatal stops /c/ (Salimi, n.d.; Cambridge Core, n.d.):
+  - gül → /cyl/     (rose)  — /g/ before /ü/ (front)
+  - gəl → /cæl/     (come)  — /g/ before /ə/ (front)
+  - kitab → /citab/ (book)  — /k/ before /i/ (front)
+  - gol → /ɡol/     (goal)  — /g/ before /o/ (back), no palatalization
+
+This rule is handled in the G2P converter by inspecting the vowel immediately
+adjacent to each /k/ or /g/ and substituting /c/ when the vowel is front.
+
+THE /ğ/ ALLOPHONY
+The letter ğ (soft g) does not represent a stable consonant; its phonetic
+realization is position-dependent:
+  - Between two vowels → voiced velar fricative /ɣ/
+    Example: ağıl → /aɣɯl/ (reason), ağac → /aɣadʒ/ (tree)
+  - Word-finally or before a consonant → compensatory vowel lengthening /ː/
+    Example: dağ → /daː/ (mountain), bağlı → /baːlɯ/ (closed)
+This allophonic behavior reflects the historical lenition of a velar fricative
+that was subsequently lost with compensatory lengthening (Salimi, n.d.).
+
+FINAL OBSTRUENT DEVOICING
+Azerbaijani, like Turkish and other Turkic languages, exhibits word-final
+devoicing of voiced obstruents:
+  - /b/ → /p/ — kitab → /kitap/ (book)
+  - /d/ → /t/ — od → /ot/ (fire)
+  - /g/ → /k/ — word-finally
+This alternation is not reflected in Azerbaijani spelling and is applied as a
+default post-processing rule in the G2P converter.
+
+NASAL ASSIMILATION
+The nasal /n/ assimilates in place to a following velar consonant, yielding
+the velar nasal /ŋ/: n → /ŋ/ before /k/, /q/, /g/, /ğ/.
+  - Examples: rəng → /ræŋ/ (color), sənki → /sæŋci/ (as if)
+
+GEMINATE CONSONANTS
+Double consonants in orthography represent long (geminate) consonants in
+pronunciation:
+  - amma → /amːa/ (but/however)
+  - əlli → /æliː/ (fifty)
+The geminate is represented as the consonant symbol followed by /ː/.
+
+2.1.4. Vowel Harmony and Consonant Behavior
+--------------------------------------------
+
+Vowel harmony is a defining feature of Turkic languages. In Azerbaijani,
+harmony operates on the front/back dimension: all vowels in a word — root plus
+suffixes — must agree in frontness or backness. Some suffix classes additionally
+exhibit rounding harmony (Various authors, 2013):
+  - Back vowels:  a, ı, o, u
+  - Front vowels: e, ə, i, ö, ü
+
+When suffixes are attached to roots, the suffix vowel is selected to match the
+harmony class of the root's final vowel. Examples with the progressive suffix
+/-ır/-ir/-ur/-ür/:
+  - gəlir (comes)  — root gəl has /ə/ (front) → suffix vowel /i/ (front)
+  - alır (takes)   — root al has /a/ (back)  → suffix vowel /ı/ (back)
+  - oxuyur (reads) — root oxu has /u/ (back rounded) → suffix vowel /u/
+
+For TTS purposes, vowel harmony is largely already encoded in the written form,
+so the G2P module need not predict harmonized vowels for most native words.
+However, vowel harmony serves as a diagnostic for loanwords, which often violate
+harmony (e.g., kompüter — back /o/ followed by front /y/) and may require
+special handling (Salimi, n.d.).
+
+[Figure 2.1: Vowel harmony diagram showing front/back vowel classes and
+suffix alternation patterns in Azerbaijani]
+[Source: Various authors. (2013). Vowel harmony: A comparative study of Turkish
+and Azerbaijani Turkish. Procedia — Social and Behavioral Sciences.
+https://www.sciencedirect.com/science/article/pii/S1877042813001419]
+
+2.1.5. Impact of Agglutinative Morphology on Speech Synthesis
+--------------------------------------------------------------
+
+Azerbaijani's agglutinative morphology has five direct implications for TTS
+system design (MorAz, 2019; Various authors, 2024):
+
+  1. LARGE VOCABULARY
+     The productive concatenation of suffixes generates a very large number of
+     distinct word forms. A pronunciation dictionary covering all word forms is
+     impractical; rule-based G2P operating at the grapheme level is required.
+
+  2. MORPHOLOGICAL BOUNDARY EFFECTS
+     Phonological rules such as /ğ/ allophony apply at morphological boundaries.
+     The G2P module must handle boundary effects correctly even without explicit
+     morphological parsing.
+
+  3. STRESS OVER SUFFIXED FORMS
+     Default final-syllable stress must be computed over the entire suffixed word.
+     Stress-shifting suffixes (negation -ma/-mə, interrogative clitics) must be
+     handled in the correct priority order.
+
+  4. SUFFIX-ATTACHED NUMERALS IN TEXT
+     Azerbaijani ordinal suffixes attach to digit strings with a hyphen (e.g.,
+     1-ci "first", 3-üncü "third"), using vowel-harmony-aware suffix selection.
+     The text normalizer must compute the correct suffix form.
+
+  5. PROSODIC PHRASE BOUNDARIES
+     Heavy suffix load lengthens prosodic words, shifting phrase boundaries.
+     The prosody engine accounts for this via duration scaling based on word
+     position and suffix count.
+
+The canonical syllable structure is (C)V(C)(C): every syllable has exactly one
+vowel nucleus; complex onsets are restricted to loanwords. Syllabification
+follows the onset-maximization principle.

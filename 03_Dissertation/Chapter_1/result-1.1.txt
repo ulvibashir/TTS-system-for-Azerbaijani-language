@@ -1,0 +1,278 @@
+================================================================================
+CHAPTER I. THEORETICAL FOUNDATIONS OF TEXT-TO-SPEECH SYSTEMS
+================================================================================
+
+------------------------------------------------------------------------
+1.1. General Overview of Text-to-Speech Systems
+------------------------------------------------------------------------
+
+1.1.1. Definition and Purpose of Text-to-Speech Technology
+-----------------------------------------------------------
+
+Text-to-speech (TTS) synthesis is the automatic conversion of written natural
+language text into intelligible, natural-sounding spoken audio. The goal is not
+merely to produce any sound corresponding to the input text, but to generate
+speech that is simultaneously intelligible — correctly understood by listeners —
+and natural — resembling the prosodic and phonetic properties of human speech
+(Taylor et al., 1998; Tan et al., 2021).
+
+These two qualities — intelligibility and naturalness — are analytically distinct
+and are evaluated by different metrics. Intelligibility is a threshold property:
+speech is either understandable or it is not, and it can be measured objectively
+through word error rate (WER), which compares a human or ASR transcription of the
+synthesized audio to the original text. Naturalness is a continuous perceptual
+quality reflecting how closely synthesized speech resembles natural human
+production in prosody, rhythm, voice quality, and coarticulation; it is measured
+subjectively through the Mean Opinion Score (MOS) protocol defined in ITU-T
+Recommendation P.800 (Speech Quality Metrics, 2020–2024). A TTS system can
+achieve high intelligibility while scoring low on naturalness — as formant
+synthesizers typically do — meaning the two dimensions must be targeted and
+evaluated independently.
+
+TTS technology has become a critical component of modern human-computer
+interaction across a broad spectrum of applications:
+
+  - Accessibility tools for individuals with visual impairments or reading
+    disabilities (screen readers, navigation aids)
+  - Voice assistants and conversational agents (Siri, Alexa, Google Assistant)
+  - Audiobook and podcast generation from written content
+  - Navigation and mapping systems providing turn-by-turn guidance
+  - Language learning and e-learning platforms with pronunciation models
+  - Customer service automation and interactive voice response (IVR) systems
+  - Assistive and augmentative communication (AAC) devices for people with
+    speech or language disorders
+  - Real-time dubbing and localization of video content
+
+Beyond convenience applications, TTS carries direct implications for linguistic
+equity and digital inclusion. As a growing share of information, public services,
+and social participation migrates to digital platforms, languages that lack
+functional speech interfaces are at risk of systematic exclusion from the
+benefits of digital transformation (Various authors, 2024). For a speaker of a
+low-resource language, the absence of TTS support in navigation systems, screen
+readers, or voice interfaces effectively imposes a barrier to equal access to
+digital services. This dimension makes TTS development for underserved languages
+a matter not only of technical interest but also of social and policy relevance.
+
+Market research indicates that the global TTS market exceeded $3.1 billion in
+2023 and is projected to expand at a compound annual growth rate of 14.6%
+through 2030 (arXiv:2412.06602, 2024). This growth is driven primarily by the
+proliferation of artificial intelligence technologies, the spread of smart
+devices, and growing demand for multilingual content accessibility. However,
+this market expansion is highly uneven across languages: the overwhelming
+majority of commercial investment is directed at a small number of high-resource
+languages — English, Mandarin, Spanish, Arabic — while the remaining majority
+of the world's approximately 7,000 languages receive little or no commercial
+attention (arXiv:2412.06602, 2024).
+
+High-quality TTS technology remains unavailable for the majority of the world's
+languages. Azerbaijani — the official language of the Republic of Azerbaijan
+and spoken by approximately 35 million people worldwide — is among the
+languages underserved by modern speech technology. The existing Azerbaijani TTS
+landscape is thin: Samir Rustamov's commercial system (samirrustamov.com)
+provides a proprietary service without published technical documentation; the
+IS2AI multilingual Turkic TTS system (Yeshpanov et al., 2023) covers Azerbaijani
+among ten Turkic languages but is primarily designed for a multilingual setting
+rather than a linguistically grounded Azerbaijani-specific architecture; and
+Aghalari's (2023) Tacotron 2-based neural TTS was a research prototype trained
+on approximately 19 hours of proprietary data, without a published model or
+open-source release. No openly available, well-documented system with a
+transparent linguistic foundation and published rule base currently exists for
+Azerbaijani. Addressing this gap — and producing a documented reference
+architecture for Azerbaijani speech synthesis — is the principal motivation of
+this dissertation.
+
+1.1.2. Core Components of TTS Systems
+--------------------------------------
+
+Despite the diversity of acoustic backends, all TTS systems share a common
+two-stage architecture: a linguistic front-end that analyzes and enriches the
+input text, and an acoustic back-end that converts the linguistic representation
+to a waveform (Tan et al., 2021).
+
+[Figure 1.1: General TTS system architecture — block diagram from text input
+to speech output]
+[Source: ResearchGate (2021). Text-To-Speech system architecture.
+https://www.researchgate.net/figure/Text-To-Speech-system-architecture_fig1_241025907]
+
+The linguistic front-end comprises four principal components:
+
+1. TEXT NORMALIZATION
+   Conversion of non-standard words (NSWs) — numerals, abbreviations, symbols,
+   dates, times, currency amounts — into their fully expanded, pronounceable
+   form. For example, "15.06.2024" must be read as "the fifteenth of June, two
+   thousand and twenty-four" in English, or its equivalent in any target
+   language. Production systems such as NVIDIA NeMo use weighted finite-state
+   transducers (WFSTs) for this process (NVIDIA, 2020–2024). Recent LLM-based
+   approaches such as PolyNorm (Apple Machine Learning Research, 2024) achieve
+   multilingual normalization from few examples (arXiv:2511.03080).
+
+2. MORPHOLOGICAL ANALYSIS
+   Segmentation of words into morphemes, assignment of part-of-speech labels,
+   and resolution of lexical ambiguity. Agglutinative languages — Azerbaijani
+   among them — present particular challenges at this stage, since a single word
+   may consist of a root plus many suffixes, each modifying the pronunciation
+   of the whole (MorAz, 2019).
+
+3. GRAPHEME-TO-PHONEME (G2P) CONVERSION
+   Mapping of orthographic characters to their phonemic representation, typically
+   in the International Phonetic Alphabet (IPA). This step must handle the
+   language-specific correspondences between spelling and pronunciation, including
+   context-sensitive rules and exceptions. A comprehensive 2024 survey of G2P
+   methods (Survey of G2P Methods, 2024) demonstrates that rule-based, statistical,
+   and transformer-based approaches each suit different resource contexts.
+
+4. PROSODY PREDICTION
+   Generation of the suprasegmental properties of speech: lexical stress,
+   phrase-level pitch accents, intonation contours (F0 trajectories over time),
+   phone durations, and pause locations. Recent work on prosody modeling includes
+   LSTM-based natural prosody learning (Sensors, 2024) and PitchFlow (Sadekova
+   et al., 2024), which adds pitch control to a flow-matching TTS model.
+
+The acoustic back-end converts the phonemic and prosodic representation to audio.
+In rule-based systems this involves a formant synthesizer or a concatenative
+system that stitches pre-recorded phoneme segments together. In statistical
+systems, a parametric model generates acoustic feature sequences, and a vocoder
+converts them to a waveform. In neural systems, the acoustic model generates a
+mel-spectrogram and a neural vocoder (WaveNet, HiFi-GAN) converts it to high-
+fidelity audio (Tan et al., 2021). The back-end is the single largest determinant
+of a system's naturalness ceiling: improvements to the linguistic front-end
+cannot compensate for limitations in the acoustic model.
+
+TTS system quality is measured along two primary dimensions (Speech Quality
+Metrics, 2020–2024):
+
+  - Mean Opinion Score (MOS): human listeners rate naturalness on a five-point
+    ITU-T P.800 scale from 1 (bad) to 5 (excellent). MOS tests are conducted
+    under controlled conditions with a minimum number of listeners per condition.
+    Results are reported as a mean with confidence intervals.
+  - Word Error Rate (WER): intelligibility measured via transcription accuracy,
+    computed as WER = (S + D + I) / N, where S = substitutions,
+    D = deletions, I = insertions, and N = total reference words. Lower WER
+    indicates higher intelligibility. WER can be obtained from human
+    transcribers or automatic speech recognition (ASR) systems.
+
+A third metric increasingly used in recent work is the Phoneme Error Rate (PER),
+which measures pronunciation accuracy at the phoneme level rather than the word
+level, and is especially informative for evaluating front-end G2P quality
+independently of the acoustic back-end.
+
+[Table 1.1: MOS evaluation scale]
++-------+-----------+-----------------------------------------------+
+| Score | Label     | Description                                   |
++-------+-----------+-----------------------------------------------+
+| 5     | Excellent | Completely natural, no synthetic quality      |
+| 4     | Good      | Mostly natural, minor synthetic quality       |
+| 3     | Fair      | Noticeable synthetic quality, fully intelligible|
+| 2     | Poor      | Clearly synthetic, somewhat difficult to follow|
+| 1     | Bad       | Completely unnatural, very difficult to follow|
++-------+-----------+-----------------------------------------------+
+[Source: Speech Quality Metrics and Evaluation (2020–2024).
+https://indextts2.online/blog/speech-quality-metrics-evaluation]
+
+For reference: natural human speech consistently achieves MOS 4.4–4.7; current
+neural TTS systems for English reach MOS 4.2–4.5; rule-based systems typically
+achieve MOS 3.0–3.8 depending on language and evaluator population (Kim et al.,
+2021; Oyucu, 2023). The present Azerbaijani system achieved MOS 3.2 against a
+baseline espeak-ng MOS of 2.8, representing a statistically significant
+improvement of 0.4 MOS points (see Chapter III for full evaluation details).
+
+1.1.3. Historical Development of TTS Technologies
+---------------------------------------------------
+
+The history of TTS synthesis spans nearly a century and is characterized by a
+succession of distinct technological paradigms, each achieving progressively
+greater naturalness at the cost of increasing data and computational requirements.
+
+[Figure 1.2: Timeline of TTS technology development from 1939 to the present]
+[Source: Tan et al. (2021). A Survey on Neural Speech Synthesis. arXiv:2106.15561.
+https://arxiv.org/abs/2106.15561]
+
+EARLY MECHANICAL SPEECH SYNTHESIS (1930s–1950s)
+------------------------------------------------
+Attempts at creating artificial speech date to the eighteenth century. In 1779,
+Wolfgang von Kempelen constructed a mechanical speaking machine that simulated
+the human vocal tract (Aghalari, 2023). The first electronic speech synthesizer
+was the VODER (Voice Operating Demonstrator), developed by Homer Dudley at Bell
+Laboratories and demonstrated at the 1939 World's Fair. A trained operator
+controlled formant resonances using a keyboard and foot pedal, producing
+intelligible but robotic-sounding speech. This device established a key insight:
+the perceptually essential information in speech can be captured by a small
+number of acoustic parameters — primarily the resonant frequencies of the vocal
+tract, later formalized as formants (Tan et al., 2021).
+
+FORMANT SYNTHESIS (1960s–1990s)
+---------------------------------
+The first fully automated TTS systems were based on formant synthesis, which
+modeled the human vocal tract as a series of acoustic tubes whose resonant
+frequencies (F1, F2, F3) determine vowel and consonant quality. The Klatt
+cascade-parallel formant synthesizer (Klatt, 1980) became the dominant
+architecture and formed the acoustic backbone of commercial products such as
+DECtalk — famously adopted by physicist Stephen Hawking as his communication
+device. Formant synthesizers produce intelligible speech but carry an
+unmistakably synthetic, robotic quality (Aida-Zade & Sharifova, 2010).
+
+In the Azerbaijani context specifically, the earliest documented Azerbaijani
+TTS system was presented by Aida-Zade and Sharifova (2010) at the Third
+International Conference on Problems of Cybernetics and Informatics (Baku).
+Their system used a formant-concatenative hybrid approach, constructing the
+acoustic basis from diphone units recorded from a donor speaker, with prosodic
+characteristics applied via rules. This work represents the foundational
+reference for Azerbaijani TTS research.
+
+CONCATENATIVE SYNTHESIS (1990s–2000s)
+----------------------------------------
+To overcome the naturalness limitations of formant synthesis, researchers
+developed concatenative synthesis systems that construct speech by stitching
+together pre-recorded segments of natural human speech. Two main variants
+emerged:
+
+  Diphone synthesis: Systems such as MBROLA (Dutoit et al., 1993) use databases
+  of approximately 1,000–2,000 diphone units (transitions between phoneme
+  midpoints). Diphone systems achieve more natural phoneme quality than formant
+  synthesis but introduce audible concatenation artifacts at unit boundaries.
+
+  Unit selection synthesis: The Festival Speech Synthesis System (Taylor et al.,
+  1998), developed at the University of Edinburgh, selects and concatenates
+  larger speech units from large recorded corpora. A dynamic programming
+  algorithm minimizes a combination of target cost (prosodic deviation) and join
+  cost (acoustic discontinuity). Typical unit selection databases require 20–50
+  hours of recorded speech.
+
+STATISTICAL PARAMETRIC SYNTHESIS (2000s–2010s)
+------------------------------------------------
+Hidden Markov Model (HMM)-based statistical parametric speech synthesis (SPSS),
+most fully realized in the HTS system (Zen et al., 2009), marked a significant
+paradigm shift. Rather than storing speech segments, these systems learn
+statistical models of acoustic features — mel-cepstral coefficients, fundamental
+frequency, and durations — from annotated training data. HMM-based synthesis is
+more consistent than unit selection for unseen phonetic contexts, but is
+characterized by a distinctive "muffled" quality due to over-smoothing of
+statistical averages (Statistical Parametric Speech Synthesis, 2015).
+
+NEURAL TTS (2016–present)
+---------------------------
+The deep learning revolution produced a fundamental paradigm shift in TTS.
+Google's Tacotron (Wang et al., 2017) and Tacotron 2 (Shen et al., 2018)
+demonstrated that end-to-end sequence-to-sequence models could learn to map
+character sequences directly to mel-spectrograms, bypassing explicit phonological
+analysis. Combined with neural vocoders such as WaveNet (van den Oord et al.,
+2016) or HiFi-GAN (Kong et al., 2020), these systems achieved MOS scores
+indistinguishable from natural speech for English (MOS ≈ 4.5).
+
+Subsequent architectures — FastSpeech (Ren et al., 2019), VITS (Kim et al.,
+2021), and flow-matching models — further improved efficiency and quality. As of
+2024, trends toward integrating large language models (LLMs) with TTS synthesis
+are establishing "controllable speech synthesis" as the next standard paradigm
+(arXiv:2412.06602, 2024).
+
+[Table 1.2: Comparison of TTS paradigms across generations]
++-----------------------------+----------+-----------+-----------+----------+
+| Criterion                   | Formant  | Concat.   | HMM       | Neural   |
++-----------------------------+----------+-----------+-----------+----------+
+| MOS (approximate)           | 2.5–3.0  | 3.0–3.8   | 3.5–4.0   | 4.2–4.5  |
+| Training data required      | None     | 20–50 hrs | 5–20 hrs  | 1–50+ hrs|
+| Computational cost          | Very low | Low       | Medium    | High     |
+| Interpretability            | Full     | Full      | Partial   | Minimal  |
+| Lexical flexibility         | Low      | Medium    | High      | High     |
++-----------------------------+----------+-----------+-----------+----------+
+[Source: Compiled by the author based on Tan et al. (2021)]

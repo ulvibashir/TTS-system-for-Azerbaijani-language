@@ -1,0 +1,11 @@
+CONCLUSION
+----------
+[To be written]
+
+[Summary of research findings]
+
+[Scientific and practical contributions]
+
+[Limitations of the proposed system]
+
+[Directions for future research (hybrid and neural TTS integration)]

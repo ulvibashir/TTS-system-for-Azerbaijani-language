@@ -1,0 +1,411 @@
+------------------------------------------------------------------------
+1.3. Advantages and Limitations of Rule-Based TTS Systems: A SWOT Analysis
+------------------------------------------------------------------------
+
+SWOT analysis — Strengths, Weaknesses, Opportunities, Threats — is a widely
+employed strategic assessment framework in management science and research
+planning. This section presents a SWOT analysis of the rule-based TTS approach
+applied specifically to the Azerbaijani language context, drawing on the
+comparative analysis in Section 1.2.3 and evidence from the literature.
+
+[Figure 1.4: SWOT matrix for a rule-based Azerbaijani TTS system]
++------------------------------+------------------------------+
+|       STRENGTHS (S)          |       WEAKNESSES (W)         |
++------------------------------+------------------------------+
+| S1: No speech data required  | W1: Limited MOS (3.0–3.8)   |
+| S2: Full interpretability    | W2: High development effort  |
+| S3: Deterministic output     | W3: Loanword handling        |
+| S4: Direct linguistic control| W4: Prosodic limitations     |
+| S5: Low computational cost   | W5: Coarticulation modeling  |
+| S6: Easy domain adaptation   |                              |
++------------------------------+------------------------------+
+|      OPPORTUNITIES (O)       |        THREATS (T)           |
++------------------------------+------------------------------+
+| O1: Azerbaijan digital agenda| T1: Rapid neural TTS advance |
+| O2: Low-resource NLP growth  | T2: Commercial TTS platforms |
+| O3: Foundation for hybrid    | T3: Limited speech data      |
+| O4: Growing NLP ecosystem    | T4: Sparse phonetic docs     |
+| O5: Transfer learning trends |                              |
++------------------------------+------------------------------+
+[Source: Compiled by the author based on Tan et al. (2021), LRSpeech (2020),
+Open Foundation Models for Azerbaijani Language (2024)]
+
+1.3.1. Strengths
+-----------------
+
+S1. NO SPEECH TRAINING DATA REQUIRED
+Neural TTS systems require 1–50+ hours of high-quality, professionally recorded,
+transcribed speech data in the target language. For low-resource languages like
+Azerbaijani, no such publicly available corpus exists. While transfer learning
+approaches such as LRSpeech (Xu, Tan et al., 2020) demonstrate that neural TTS
+is possible with minimal target language data through pre-training and knowledge
+transfer, this still demands at least some data collection effort from the target
+language community. In contrast, rule-based systems require only linguistic
+expertise and documented phonological knowledge — resources that already exist
+for Azerbaijani in the form of phonological dissertations (Salimi, n.d.),
+grammars, and descriptive linguistic literature. This strength is not merely a
+practical convenience: for many low-resource languages, speech data collection
+involves logistical, economic, and ethical challenges (speaker recruitment,
+studio recording, transcription labor) that make data acquisition effectively
+impossible within a dissertation research timeline.
+
+S2. FULL INTERPRETABILITY AND TRANSPARENCY
+Every output of a rule-based system is the direct consequence of an explicitly
+stated rule. When the system mispronounces a word or generates incorrect
+prosody, the source of the error can be identified by examining the intermediate
+phonological analysis and updating the relevant rule (Taylor et al., 1998).
+This property is recognised in the TTS literature as a defining advantage of
+the rule-based paradigm for research and low-resource settings (Tan et al.,
+2021; Survey of G2P Methods, 2024). In a research context, the rule base itself
+constitutes a documented, auditable model of Azerbaijani phonology that can be
+critiqued and extended by subsequent researchers independently of the synthesized
+audio output — a form of contribution that is not possible with opaque neural
+models.
+
+S3. DETERMINISTIC AND CONSISTENT BEHAVIOR
+Given the same input, a rule-based system always produces exactly the same
+output. The Festival TTS system (Taylor et al., 1998), which established the
+canonical rule-based architecture, explicitly identified determinism as a core
+design requirement for deployment in accessibility and educational contexts.
+This consistency also simplifies system evaluation: because the system's
+behavior is fully deterministic, evaluation results are perfectly reproducible
+across different evaluation runs and evaluator populations, satisfying the
+replicability standards required for academic dissertation research (Speech
+Quality Metrics, 2020–2024). In the context of the present evaluation (see
+Chapter III), determinism ensured that MOS and WER measurements were not
+confounded by synthesis-time variability.
+
+S4. DIRECT INCORPORATION OF LINGUISTIC KNOWLEDGE
+Linguists who study a language can directly encode their knowledge into a
+rule-based TTS system (Allen et al., 1987). The formulation of phonological
+rules, the identification of stress-shifting morphemes, and the specification of
+prosodic patterns are precisely the outputs of descriptive linguistic research —
+and rule-based TTS provides a direct conduit from that research into a functional
+system. This creates a productive bidirectional relationship between linguistics
+and engineering: the TTS system operationalizes linguistic descriptions, and
+evaluation of the system reveals gaps in those descriptions that feed back into
+further research. For Azerbaijani, key sources include Salimi's (n.d.) generative
+phonology and the Cambridge Core phonetic description (Cambridge Core, n.d.),
+both of which informed the rule bases implemented in the present system.
+
+S5. LOW COMPUTATIONAL REQUIREMENTS
+Rule-based synthesis can run in real time on commodity hardware without a GPU,
+using only a few megabytes of memory (Aida-Zade & Sharifova, 2010; Tan et al.,
+2021). The present Azerbaijani pipeline achieves an average analysis time of
+0.3 ms per sentence on a standard laptop CPU — a measurement documented in the
+evaluation results (see Chapter III, Table 3.X). This makes the system suitable
+for embedded systems, mobile devices, and offline applications: all important
+deployment targets for a language whose speakers are distributed across
+resource-constrained environments in the South Caucasus and northern Iran.
+The low resource footprint contrasts sharply with modern neural TTS deployments,
+which may require dedicated GPU infrastructure for real-time performance
+(Kim et al., 2021; Kong et al., 2020).
+
+S6. EASY DOMAIN ADAPTATION
+Adding new words, specialized terminology, or pronunciation variants to a
+rule-based system requires only editing the relevant rules or exception
+dictionary — a task that can be performed by a linguist without software
+engineering skills, given a well-structured rule representation (Taylor et al.,
+1998; NVIDIA, 2020–2024). The JSON-based rule files used in the present system
+(g2p_rules.json, stress_rules.json, text_norm_rules.json) were specifically
+designed with this extensibility requirement in mind: each rule is a human-
+readable key-value pair rather than a compiled parameter. For government and
+institutional deployment contexts — where new terminology, proper nouns, and
+domain-specific abbreviations must be continuously added — this property
+represents a significant long-term operational advantage (Various authors, 2024).
+
+1.3.2. Weaknesses
+------------------
+
+W1. LIMITED NATURALNESS
+The primary internal limitation of rule-based TTS is the quality ceiling imposed
+by its acoustic modeling approach. Formant synthesizers produce speech by
+computing mathematical approximations of the vocal tract's resonant behavior;
+the resulting waveforms capture the broad spectral shape of phonemes but fail to
+reproduce the subtle micro-variations in voice quality, breathiness, and
+coarticulation dynamics that characterize natural speech (Klatt, 1980). MBROLA-
+style concatenative systems improve phoneme quality by using recorded segments,
+but introduce audible discontinuities at concatenation boundaries. Empirically,
+rule-based systems achieve MOS 3.0–3.8 (Kim et al., 2021; Oyucu, 2023), a range
+that places them at the "fair" to "good" boundary on the ITU-T P.800 scale.
+The present system achieved MOS 3.2, consistent with this range and confirming
+the naturalness ceiling as a real constraint. For applications where naturalness
+is paramount — audiobooks, conversational agents, emotional speech — this
+ceiling is a significant limitation, though for accessibility and informational
+use cases it is generally accepted (Speech Quality Metrics, 2020–2024).
+
+W2. HIGH DEVELOPMENT EFFORT FOR COMPLEX LANGUAGES
+Rule-based TTS requires deep linguistic expertise to develop: every phonological
+regularity must be identified, documented, and implemented as an explicit rule
+(Allen et al., 1987). While Azerbaijani has a relatively regular orthography,
+its agglutinative morphology and context-sensitive phonological rules impose
+substantial engineering effort. Phenomena such as /ğ/ allophony, palatalization
+of /k/ and /g/ before front vowels, nasal assimilation, and vowel-harmony-
+governed ordinal suffix selection (see Chapter II) each demand dedicated rule
+design, test case construction, and iterative refinement. The present system
+required the design and testing of 156 unit tests covering 61 distinct linguistic
+phenomena — a scale of effort that reflects the genuine complexity of encoding
+Azerbaijani phonology exhaustively. This development cost is a one-time
+investment in the rule base, but it represents a significant barrier compared to
+approaches that learn from data automatically (Survey of G2P Methods, 2024).
+
+W3. LIMITED COVERAGE OF LOANWORDS AND IRREGULAR FORMS
+Natural language contains irregular forms, loanwords with non-native phonological
+patterns, and sociolinguistic variation that are difficult to capture within a
+finite rule set (Salimi, n.d.). Azerbaijani has substantial loanword strata from
+Russian, Arabic, and Persian — each with phonological patterns that violate
+native constraints: Russian loanwords may contain consonant clusters illegal in
+native Azerbaijani syllable structure; Persian and Arabic loanwords may carry
+vowels that disrupt the native harmony system. Rule-based systems address these
+only through manually maintained exception lists and special-case rules. The
+present system's evaluation confirms this as an active limitation: loanword
+pronunciations account for 27% of G2P errors (Phoneme Error Rate analysis,
+Chapter III), meaning that a measurable proportion of real-world Azerbaijani text
+is handled less accurately than native vocabulary. Expanding loanword coverage
+requires ongoing manual lexicographic effort proportional to the breadth of the
+target domain (MorAz, 2019).
+
+W4. PROSODIC EXPRESSIVENESS LIMITATIONS
+Prosody — the suprasegmental structure of speech encompassing pitch, duration,
+intensity, and rhythm — is the primary determinant of perceived naturalness at
+the sentence level (Sadekova et al., 2024). Natural prosody results from complex
+interactions among syntactic structure, semantic content, information structure,
+and the speaker's communicative intent, most of which cannot be reliably inferred
+from text alone. The rule-based prosody engine in the present system encodes five
+sentence type patterns using a simplified ToBI framework; this captures broad
+declarative/interrogative/exclamatory distinctions but does not model focus
+accent placement, given-new information structure, or speaker-level stylistic
+variation (Tan et al., 2021). The consequence is a prosodic flatness that
+listeners perceive as monotonous even when individual phonemes are pronounced
+correctly. This gap between segmental accuracy and suprasegmental naturalness is
+a well-documented limitation of rule-based systems (Voice synthesis improvement,
+2024) and is the primary factor underlying the MOS gap relative to neural systems.
+
+W5. COARTICULATION MODELING
+In natural speech, the acoustic properties of each phoneme are shaped by its
+phonetic context through coarticulation: articulatory gestures for adjacent
+sounds overlap in time, producing smooth formant transitions rather than abrupt
+target-to-target jumps (Klatt, 1980; Tan et al., 2021). Rule-based formant
+systems model coarticulation through fixed transition times and interpolated
+formant trajectories, which approximate the gross shape of phoneme-to-phoneme
+transitions but do not replicate their full temporal and spectral dynamics.
+Espeak-ng applies a fixed transition window between phoneme targets; in connected
+speech at natural speaking rates, this produces audibly abrupt formant movements
+that reduce both naturalness and the perception of speech flow. This coarticulation
+limitation interacts with the prosodic limitation (W4) to produce the
+characteristic "read-aloud" quality that distinguishes rule-based synthesis from
+natural human speech at the holistic perceptual level.
+
+1.3.3. Opportunities
+---------------------
+
+O1. AZERBAIJAN'S DIGITAL TRANSFORMATION AGENDA
+The Republic of Azerbaijan has implemented an active state strategy for digital
+transformation under the "Digital Azerbaijan" national program, encompassing
+e-government service development, digital infrastructure investment, and the
+expansion of ICT in public administration and education. The State Agency for
+Public Service and Social Innovations (DOST) and other government entities are
+actively developing digital service interfaces. This policy environment creates
+directly favorable conditions for the deployment of Azerbaijani speech
+technologies: TTS is needed for accessible e-government voice portals, automated
+telephone services, navigation systems, and public announcement systems. A
+documented, open-source Azerbaijani TTS system with a transparent linguistic
+foundation is well-positioned to serve this institutional demand, particularly
+given government interest in national technology sovereignty — the preference for
+locally developed systems over dependence on foreign commercial providers.
+
+O2. GROWING INTERNATIONAL INTEREST IN LOW-RESOURCE NLP
+The international NLP research community has substantially increased its focus
+on low-resource languages in the past five years, driven by equity concerns and
+recognition that the field's advances have been disproportionately concentrated
+in English and a small number of high-resource languages. Projects such as CML-TTS
+(2023) are developing corpus development methodologies specifically for low-
+resource TTS. Masakhane, AmericasNLP, and similar initiatives are building
+research infrastructure for underserved languages. Recent multilingual Turkic ASR
+corpus research (Applied Sciences, 2024; Nature Scientific Reports, 2024)
+includes Azerbaijani data, indicating growing engagement from the research
+community. This trend increases the likelihood of future Azerbaijani speech
+research collaborations, shared datasets, and international conference attention.
+
+O3. FOUNDATION FOR FUTURE HYBRID SYSTEMS
+An explicitly documented rule-based TTS system provides the most valuable
+possible starting point for future hybrid approaches. Concretely, the rule base
+developed in this dissertation can serve as: (a) a phoneme-level forced aligner
+for transcribing any future Azerbaijani speech recordings, accelerating corpus
+development; (b) a front-end for a future MBROLA-based concatenative system,
+if Azerbaijani phoneme recordings become available; (c) a source of rule
+hypotheses for data-driven rule learning under LLM supervision; and (d) a
+reference pronunciation standard against which neural system outputs can be
+evaluated. The linguistic rule base is a research contribution that retains value
+regardless of which acoustic modeling approach eventually becomes standard for
+Azerbaijani TTS.
+
+O4. GROWING AZERBAIJANI NLP ECOSYSTEM
+The 2024 publication "Open Foundation Models for Azerbaijani Language" introduced
+the 651.1-million-word DOLLMA corpus and associated language models
+(arXiv:2407.02337). The AzCorpus dataset (huggingface.co/datasets/azcorpus) and
+AzNLP project are publicly available. The Azerbaijani Wikipedia now contains over
+180,000 articles, providing a substantial text resource. This growing text data
+ecosystem, while not sufficient for speech synthesis, creates the conditions
+under which a speech corpus initiative could be mounted with pre-existing text
+normalization and linguistic processing infrastructure — infrastructure that the
+present system's text normalization and G2P modules can directly provide.
+
+O5. TRANSFER LEARNING WITH MINIMAL DATA
+Recent transfer learning research (Transfer Learning for Low-Resource TTS, 2024;
+LRSpeech, 2020) demonstrates that acceptable neural TTS quality may be achievable
+for Azerbaijani with as little as 30 minutes of target language audio, using
+model weights pre-trained on Turkish or another closely related Turkic language.
+The phonological proximity of Azerbaijani and Turkish — shared consonant inventory,
+similar vowel harmony system, cognate vocabulary — makes Turkish pre-trained
+models a particularly strong candidate for Azerbaijani transfer learning. The
+present rule-based system can contribute to this future direction in two ways:
+by generating phonetically balanced synthesis evaluation sets, and by providing a
+front-end phonological analyzer that could supervise neural G2P learning.
+
+1.3.4. Threats
+---------------
+
+T1. RAPID ADVANCEMENT OF NEURAL TTS
+The pace of neural TTS development for low-resource languages is accelerating.
+Architectures such as VITS (Kim et al., 2021), YourTTS, and OpenVoice operate
+with progressively less data. If a minimal Azerbaijani speech corpus becomes
+available, this trend could cross a threshold at which neural approaches
+outperform rule-based systems even on the criteria currently favoring the
+rule-based paradigm. However, the documented linguistic rule base developed here
+will remain a valuable reference regardless.
+
+T2. PROLIFERATION OF COMMERCIAL TTS PLATFORMS
+Major technology companies — Google, Amazon, Microsoft — are expanding their
+multilingual TTS platforms. Azerbaijani language support already exists in some
+commercial offerings. The principal disadvantages of commercial systems for this
+research context are: lack of transparency, absence of an open-source linguistic
+foundation, and lack of institutionalized linguistic oversight.
+
+T3. LIMITED SPEECH DATA AVAILABILITY
+The limited availability of open, high-quality Azerbaijani speech corpora
+constitutes both the core argument for choosing the rule-based approach
+(Strength S1) and a potential long-term threat: as data becomes available,
+the relative advantage of rule-based systems diminishes.
+
+T4. SPARSE PHONETIC DOCUMENTATION
+Existing linguistic literature on Azerbaijani phonetics is limited compared to
+well-resourced languages. The complete phonemic characterization and prosodic
+description required for rule-based TTS involves uncertainty in some areas —
+particularly loanword pronunciations and subtle dialect-level variation.
+
+------------------------------------------------------------------------
+Chapter 1 Summary
+------------------------------------------------------------------------
+
+Having reviewed the historical development of TTS technology, the principles of
+rule-based systems, their comparison with statistical and neural paradigms, and
+a SWOT analysis in the Azerbaijani language context, it is evident that the
+rule-based paradigm represents the most appropriate methodological choice for
+Azerbaijani TTS at the current stage of the language's technological development.
+
+While the naturalness advantage of neural TTS is undeniable, the following
+factors collectively justify the rule-based choice: absence of available speech
+training data; well-documented and regular Azerbaijani phonology; transparency
+requirement for academic contribution; low computational cost; and the value of
+the resulting linguistic rule base as a foundation for future hybrid approaches.
+
+Chapter 2 will examine the linguistic characteristics of the Azerbaijani language
+in depth — phoneme inventory, vowel harmony, agglutinative morphology, and
+prosodic patterns — and present the architecture and linguistic rule design of
+the proposed system.
+
+------------------------------------------------------------------------
+Chapter 1 References
+------------------------------------------------------------------------
+
+Allen, J., Hunnicutt, M. S., & Klatt, D. (1987). From text to speech: The
+MITalk system. Cambridge University Press.
+
+Aida-Zade, K., & Sharifova, A. (2010). Azerbaijan text-to-speech synthesis
+system. The Third International Conference "Problems of Cybernetics and
+Informatics", Section #2, 282–285. www.pci2010.science.az/2/19.pdf
+
+Aghalari, Y. (2023). Text to speech system for Azerbaijani language [Master's
+thesis, ADA University & George Washington University].
+
+Apple Machine Learning Research. (2024). PolyNorm: Few-shot LLM-based text
+normalization for text-to-speech. arXiv:2511.03080.
+https://arxiv.org/abs/2511.03080
+
+Chomsky, N., & Halle, M. (1968). The sound pattern of English. Harper & Row.
+
+Kim, J., Kong, J., & Son, J. (2021). Conditional variational autoencoder with
+adversarial learning for end-to-end text-to-speech. Proceedings of the 38th
+International Conference on Machine Learning (ICML 2021).
+https://arxiv.org/pdf/2106.06103
+
+Kong, J., Kim, J., & Bae, J. (2020). HiFi-GAN: Generative adversarial networks
+for efficient and high fidelity speech synthesis. Advances in Neural Information
+Processing Systems (NeurIPS 2020).
+
+MorAz: An open-source morphological analyzer for Azerbaijani Turkish. (2019).
+ResearchGate. https://www.researchgate.net/publication/331168185
+
+NVIDIA. (2020–2024). Text normalization and inverse text normalization with
+NVIDIA NeMo. NVIDIA Technical Blog. https://developer.nvidia.com/blog/
+text-normalization-and-inverse-text-normalization-with-nvidia-nemo/
+
+Oyucu, S. (2023). A novel end-to-end Turkish text-to-speech (TTS) system via
+deep learning. Electronics, 12(8), 1900.
+https://doi.org/10.3390/electronics12081900
+
+Sadekova, T., et al. (2024). PitchFlow: Adding pitch control to a flow-matching
+based TTS model. Interspeech 2024.
+https://www.isca-archive.org/interspeech_2024/sadekova24_interspeech.pdf
+
+Speech Quality Metrics and Evaluation: Measuring TTS Performance. (2020–2024).
+https://indextts2.online/blog/speech-quality-metrics-evaluation
+
+Statistical parametric speech synthesis. (2015). IEEE Signal Processing Magazine.
+https://ieeexplore.ieee.org/document/7282379
+
+Survey of grapheme-to-phoneme conversion methods. (2024). Applied Sciences,
+14(24), 11790. https://www.mdpi.com/2076-3417/14/24/11790
+
+Tan, X., Qin, T., Soong, F., & Liu, T.-Y. (2021). A survey on neural speech
+synthesis. arXiv:2106.15561. https://arxiv.org/abs/2106.15561
+
+Taylor, P., Black, A. W., & Caley, R. (1998). The architecture of the Festival
+speech synthesis system. Proceedings of the ESCA Workshop on Speech Synthesis,
+147–151. https://www.cs.cmu.edu/~awb/papers/ESCA98_arch.pdf
+
+Towards controllable speech synthesis in the era of large language models: A
+survey. (2024). arXiv:2412.06602. https://arxiv.org/html/2412.06602v1
+
+Transfer learning for low-resource, multi-lingual, and zero-shot multi-speaker
+TTS. (2024). IEEE/ACM Transactions on Audio, Speech and Language Processing.
+https://dl.acm.org/doi/10.1109/TASLP.2024.3364085
+
+Various authors. (2024). Open foundation models for Azerbaijani language.
+arXiv:2407.02337. https://arxiv.org/html/2407.02337v1
+
+Various authors. (2023). CML-TTS: A multilingual dataset for speech synthesis
+in low-resource languages. arXiv:2306.10097. https://arxiv.org/abs/2306.10097
+
+Various authors. (2024). Impact of duration prediction on speaker-specific TTS
+for Indian languages. arXiv:2507.16875. https://arxiv.org/html/2507.16875
+
+Vesik, K., et al. (2020). Grapheme-to-phoneme conversion with a multilingual
+transformer model. SIGMORPHON 2020.
+https://aclanthology.org/2020.sigmorphon-1.7/
+
+Voice synthesis improvement by machine learning of natural prosody. (2024).
+Sensors, 24(5), 1624. https://www.mdpi.com/1424-8220/24/5/1624
+
+Xu, Y., Tan, X., et al. (2020). LRSpeech: Extremely low-resource speech
+synthesis and recognition. Proceedings of the 26th ACM SIGKDD Conference
+(KDD 2020). https://www.semanticscholar.org/paper/LRSpeech:-Extremely-
+Low-Resource-Speech-Synthesis-Xu-Tan/fde4e53ba166567f3b9b977a866020f10a996c02
+
+Yeshpanov, R., Mussakhojayeva, S., & Khassanov, Y. (2023). Multilingual
+text-to-speech synthesis for Turkic languages using transliteration. Interspeech
+2023. https://github.com/IS2AI/TurkicTTS
+
+Zhang, Z. (2023). Text normalization for text-to-speech [Thesis, Uppsala
+University]. https://uu.diva-portal.org/smash/get/diva2:1764605/FULLTEXT01.pdf

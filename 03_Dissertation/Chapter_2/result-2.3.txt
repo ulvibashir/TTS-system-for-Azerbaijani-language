@@ -1,0 +1,236 @@
+------------------------------------------------------------------------
+2.3. Architecture of the Rule-Based Azerbaijani TTS System
+------------------------------------------------------------------------
+
+2.3.1. Overall System Architecture
+-------------------------------------
+
+The proposed system follows the modular pipeline architecture established by
+the Festival TTS system (Taylor et al., 1998), which decomposes the text-to-
+speech conversion task into a sequence of independent processing modules with
+well-defined input/output interfaces. This architecture confers four key
+advantages for a rule-based system:
+  - Each module can be developed, tested, and improved independently.
+  - Intermediate representations are human-readable and interpretable.
+  - New linguistic rules can be added to one module without affecting others.
+  - The pipeline can be run partially (e.g., to produce IPA without audio) for
+    linguistic analysis.
+
+The system comprises five processing modules, implemented in Python, plus a
+central orchestrator:
+
+  ┌─────────────────────────────────┐
+  │  AzTTSPipeline (pipeline.py)    │  ← orchestrator, configuration
+  └────────────┬────────────────────┘
+               │
+  ┌────────────▼────────────────────┐
+  │  1. Text Normalization          │  text_normalizer.py
+  │     NSWs → pronounceable words  │
+  └────────────┬────────────────────┘
+               │ Normalized text
+  ┌────────────▼────────────────────┐
+  │  2. G2P Converter               │  g2p_converter.py
+  │     Graphemes → IPA phonemes    │
+  └────────────┬────────────────────┘
+               │ List[Word] with Phoneme sequences
+  ┌────────────▼────────────────────┐
+  │  3. Stress Assigner             │  stress_assigner.py
+  │     Lexical + phrasal stress    │
+  └────────────┬────────────────────┘
+               │ Stress-annotated List[Word]
+  ┌────────────▼────────────────────┐
+  │  4. Prosody Engine              │  prosody_engine.py
+  │     Pitch accents, durations,   │
+  │     pauses (ToBI-lite)          │
+  └────────────┬────────────────────┘
+               │ SentenceAnnotation
+  ┌────────────▼────────────────────┐
+  │  5. Synthesizer                 │  synthesizer.py
+  │     espeak-ng subprocess        │
+  │     → WAV audio output          │
+  └────────────┬────────────────────┘
+               │
+           WAV output
+
+[Figure 2.3: Full AzTTSPipeline architecture from raw text input to WAV output]
+[Source: Present study — diagram of the five-stage AzTTSPipeline.]
+
+2.3.2. Module Decomposition
+------------------------------
+
+MODULE 1: TEXT NORMALIZATION (text_normalizer.py)
+
+The text normalization module converts NSWs to pronounceable Azerbaijani word
+sequences as described in Section 2.2.2. Technically, it is implemented as a
+cascade of regular expression-based substitution rules applied in fixed priority
+order. Each rule is a pattern–replacement pair stored in text_norm_rules.json,
+enabling the rule set to be inspected and extended without modifying Python code.
+
+Public interface: normalize(text: str) → str
+
+MODULE 2: G2P CONVERTER (g2p_converter.py)
+
+The G2P converter maps normalized text to IPA phoneme sequences. Processing is
+character-by-character with lookahead and lookbehind for context-sensitive rules.
+The module implements:
+  - Base phoneme mapping (9 vowels, 23 consonants) via g2p_rules.json.
+  - Context-sensitive rules: palatalization of /k/ and /g/; /ğ/ allophony;
+    nasal velarization before velars.
+  - Post-processing: geminate merging; final obstruent devoicing; nasal
+    assimilation before bilabials.
+  - Syllabification: onset-maximization algorithm producing a syllable list.
+
+Output: List[Word], where each Word contains:
+  - graphemes: original word string
+  - phonemes: List[Phoneme] with symbol, is_vowel, syllable_index
+  - syllables: List[List[Phoneme]]
+  - stressed_syllable: int (index of stressed syllable; -1 if unstressed)
+
+MODULE 3: STRESS ASSIGNER (stress_assigner.py)
+
+The stress assigner applies the priority-ordered rule hierarchy (Section 2.2.3)
+to the Word list from Module 2. It reads exception lists and rule parameters from
+stress_rules.json. Additionally, it applies phrasal stress demotions and assigns
+ToBI pitch accent labels to content words.
+
+MODULE 4: PROSODY ENGINE (prosody_engine.py)
+
+The prosody engine:
+  1. Detects the sentence type by pattern-matching against surface features
+     of the word sequence.
+  2. Selects the intonation pattern (ToBI pitch accents and boundary tones)
+     from prosody_rules.json.
+  3. Estimates phone durations and pause lengths.
+  4. Produces a SentenceAnnotation object encoding the full suprasegmental
+     structure of the utterance.
+
+MODULE 5: SYNTHESIZER (synthesizer.py)
+
+The synthesizer translates the SentenceAnnotation to audio using espeak-ng as
+a subprocess. Two invocation modes:
+  - Text mode: normalized text with embedded espeak markup (pauses, stress)
+    passed to espeak-ng with the Azerbaijani voice (-v az).
+  - IPA mode: IPA phoneme string with stress/length annotations passed in
+    espeak-ng's IPA input mode.
+
+espeak-ng produces WAV audio at 22,050 Hz. Speed, pitch, and amplitude
+parameters are adjusted based on sentence type and PipelineConfig settings
+(speaking style: neutral / formal / conversational; speaker gender: male / female).
+
+2.3.3. Data Flow and Rule Execution Logic
+------------------------------------------
+
+The complete data flow through the pipeline is illustrated with an example:
+
+  Input: "Azərbaycan 15.06.2024-cü ildə müstəqilliyini elan etdi."
+
+  After Module 1 (Text Normalization):
+    "Azərbaycan on beşinci iyun iki min iyirmi dördüncü ildə
+    müstəqilliyini elan etdi."
+
+  After Module 2 (G2P):
+    [Word("Azərbaycan", phonemes=[æ,z,æ,r,b,a,j,dʒ,a,n], syllables=4),
+     Word("on", phonemes=[o,n]),
+     ... ]
+
+  After Module 3 (Stress):
+    Each Word has stressed_syllable and pitch_accent fields set.
+    "etdi" (verb, sentence-final) receives H* nuclear accent.
+
+  After Module 4 (Prosody):
+    SentenceAnnotation(
+      sentence_type = "declarative",
+      phone_annotations = [...],   # duration_ms and pitch_accent per phoneme
+      pauses_ms = {11: 500}        # 500 ms pause at sentence end
+    )
+
+  After Module 5 (Synthesizer):
+    WAV bytes at 22,050 Hz written to output path.
+
+The pipeline exposes two high-level public methods on AzTTSPipeline:
+  - analyze(text: str) → dict   Modules 1–4; returns full linguistic analysis
+                                without audio. Avg runtime: 0.3 ms/sentence.
+  - synthesize(text: str, output: Path) → bytes
+                                All five modules; writes WAV file.
+
+[Figure 2.4: Data flow diagram showing intermediate representations between
+each pipeline module]
+[Source: Present study.]
+
+[Table 2.5: Intermediate data representations in the TTS pipeline]
++-------------------+----------------------+--------------------------------+
+| After Module      | Data Structure       | Key Fields                     |
++-------------------+----------------------+--------------------------------+
+| 1. Normalization  | str                  | Pronounceable Azerbaijani text |
+| 2. G2P            | List[Word]           | graphemes, phonemes,           |
+|                   |                      | syllables                      |
+| 3. Stress         | List[Word]           | stressed_syllable,             |
+|                   |                      | pitch_accent                   |
+| 4. Prosody        | SentenceAnnotation   | sentence_type,                 |
+|                   |                      | phone_annotations, pauses_ms   |
+| 5. Synthesizer    | bytes (WAV)          | 22,050 Hz PCM audio            |
++-------------------+----------------------+--------------------------------+
+[Source: Present study.]
+
+Rule execution within each module follows a priority-ordered waterfall: the most
+specific rules are checked first; the default rule applies only if no specific
+rule matches. This prevents rule conflicts and ensures predictable behavior on
+unseen inputs. The complete rule bases are stored in four JSON files:
+  - g2p_rules.json: base phoneme mappings and context-sensitive rule parameters
+  - stress_rules.json: function word lists, exception lexicon, suffix patterns
+  - prosody_rules.json: ToBI intonation tables, duration estimates, pause lengths
+  - text_norm_rules.json: symbol tables, date/time patterns, number words
+
+The JSON-based rule representation ensures that linguistic knowledge is fully
+transparent and human-readable — modifiable by a linguist without Python
+programming knowledge. This is a key architectural advantage over neural TTS
+systems, which encode linguistic knowledge implicitly in learned parameters.
+
+------------------------------------------------------------------------
+Chapter 2 References
+------------------------------------------------------------------------
+
+Cambridge Core. (n.d.). Azerbaijani (phonetic description). Journal of the
+International Phonetic Association.
+https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/azerbaijani/EC9EF0910D4B8B6C24937E5C49F59A82
+
+Comparative analysis of Azerbaijani and English phonetic systems. (2024).
+ResearchGate.
+https://www.researchgate.net/publication/384969855_Comparative_Analysis_of_Azerbaijani_and_English_Phonetic_Systems
+
+MorAz: An open-source morphological analyzer for Azerbaijani Turkish. (2019).
+ResearchGate.
+https://www.researchgate.net/publication/331168185_MorAz_an_Open-source_Morphological_Analyzer_for_Azerbaijani_Turkish
+
+NVIDIA. (2020–2024). Text normalization and inverse text normalization with
+NVIDIA NeMo.
+https://developer.nvidia.com/blog/text-normalization-and-inverse-text-normalization-with-nvidia-nemo/
+
+Sadekova, T., et al. (2024). PitchFlow: Adding pitch control to a flow-matching
+based TTS model. Interspeech 2024.
+https://www.isca-archive.org/interspeech_2024/sadekova24_interspeech.pdf
+
+Salimi, H. (n.d.). A generative phonology of Azerbaijani [Doctoral dissertation,
+University of Florida].
+https://ufdcimages.uflib.ufl.edu/AA/00/05/27/76/00001/generativephonol00sali.pdf
+
+Taylor, P., Black, A. W., & Caley, R. (1998). The architecture of the Festival
+speech synthesis system. Proceedings of the ESCA Workshop on Speech Synthesis,
+147–151. https://www.cs.cmu.edu/~awb/papers/ESCA98_arch.pdf
+
+Various authors. (2013). Vowel harmony: A comparative study of Turkish and
+Azerbaijani Turkish. Procedia — Social and Behavioral Sciences.
+https://www.sciencedirect.com/science/article/pii/S1877042813001419
+
+Various authors. (2023). Multilingual speech recognition for Turkic languages.
+Information, 14(2), 74. https://www.mdpi.com/2078-2489/14/2/74
+
+Various authors. (2024). Open foundation models for Azerbaijani language.
+arXiv:2407.02337. https://arxiv.org/html/2407.02337v1
+
+Voice synthesis improvement by machine learning of natural prosody. (2024).
+Sensors, 24(5), 1624. https://www.mdpi.com/1424-8220/24/5/1624
+
+Zhang, Z. (2023). Text normalization for text-to-speech [Thesis, Uppsala
+University].
+https://uu.diva-portal.org/smash/get/diva2:1764605/FULLTEXT01.pdf

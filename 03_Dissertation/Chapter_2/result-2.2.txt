@@ -1,0 +1,183 @@
+------------------------------------------------------------------------
+2.2. Text Normalization and Linguistic Rule Design
+------------------------------------------------------------------------
+
+2.2.1. Text Normalization Overview
+------------------------------------
+
+Before phoneme-level processing can begin, the raw input text must be converted
+from its written form to a fully pronounceable word sequence. Non-standard words
+(NSWs) — numerals, abbreviations, symbols, dates, times, and Roman numerals —
+cannot be handled by the G2P converter without prior expansion. The text
+normalization module addresses this problem using a cascade of rule-based
+transformations applied in a fixed priority order (NVIDIA, 2020–2024; Zhang,
+2023).
+
+Azerbaijani normalization has two language-specific properties not shared with
+most European languages:
+
+  - Azerbaijani numerals follow a compositional structure built from units, tens,
+    hundreds, thousands, and millions in most-significant-first order.
+  - Ordinal suffixes and case suffixes attached to numerals in writing must be
+    selected using vowel harmony with the last vowel of the expanded number word.
+
+[Figure 2.2: Text normalization processing cascade — eight steps from raw
+text to pronounceable Azerbaijani word sequence]
+[Source: NVIDIA. (2020–2024). Text normalization with NVIDIA NeMo.
+https://developer.nvidia.com/blog/text-normalization-and-inverse-text-normalization-with-nvidia-nemo/]
+
+2.2.2. Normalization of Numbers, Abbreviations, Dates, and Symbols
+--------------------------------------------------------------------
+
+The normalization module applies eight processing steps in the order below:
+
+STEP 1 — PUNCTUATION NORMALIZATION
+Unicode quotation marks, dashes (—, –, −), ellipses (…), and non-breaking
+spaces are converted to normalized ASCII equivalents. This prevents downstream
+encoding errors in the G2P pipeline.
+
+STEP 2 — SYMBOL EXPANSION
+Currency and unit symbols are replaced with their Azerbaijani spoken forms:
+  ₼ → "manat"        $ → "dollar"      € → "avro"
+  km → "kilometr"    °C → "dərəcə Selsiy"
+  & → "və"           @ → "at"           # → "xəş"
+
+STEP 3 — DATE NORMALIZATION
+Dates in DD.MM.YYYY format are converted to spoken form with ordinal suffix
+selection governed by vowel harmony:
+  Example: 15.06.2024 →
+    "on beşinci iyun iki min iyirmi dördüncü il"
+  The ordinal suffix (-inci/-üncü/-uncu/-ıncı) is chosen by harmonizing with
+  the last vowel of the cardinal number word.
+
+STEP 4 — TIME NORMALIZATION
+Times in HH:MM format are expanded to spoken form:
+  Example: 09:30 → "doqquz saat otuz dəqiqə"
+
+STEP 5 — ORDINAL NUMBER EXPANSION
+Digit strings with hyphen-attached ordinal suffixes are converted to word form
+with harmony-correct suffix selection:
+  1-ci → "birinci"       3-üncü → "üçüncü"       11-inci → "on birinci"
+
+STEP 6 — CARDINAL NUMBER EXPANSION
+Standalone integers are expanded using the Azerbaijani compositional number
+system:
+  Units (1–9):   bir, iki, üç, dörd, beş, altı, yeddi, səkkiz, doqquz
+  Tens (10–90):  on, iyirmi, otuz, qırx, əlli, altmış, yetmiş, səksən, doxsan
+  100: yüz    1,000: min    1,000,000: milyon
+  Example: 1,947 → "min doqquz yüz qırx yeddi"
+
+STEP 7 — ROMAN NUMERAL EXPANSION
+Roman numerals in unambiguous contexts (chapter numbers, century markers) are
+converted to their Arabic-digit equivalents and then expanded to words.
+
+STEP 8 — ABBREVIATION EXPANSION
+A lookup table maps common Azerbaijani abbreviations to their full spoken forms:
+  "AZ" → "Azərbaycan"    "s." → "sahifə"    "il." → "ilə"
+
+The normalization accuracy achieved in evaluation is shown in Table 2.3:
+
+[Table 2.3: Text normalization accuracy by category (100 test sentences)]
++--------------------+-----------+----------+
+| Category           | Correct   | Accuracy |
++--------------------+-----------+----------+
+| Cardinal numbers   | 44 / 45   |  97.8%   |
+| Ordinal numbers    | 17 / 18   |  94.4%   |
+| Dates (DD.MM.YYYY) | 12 / 12   | 100.0%   |
+| Times (HH:MM)      | 10 / 10   | 100.0%   |
+| Abbreviations      | 21 / 23   |  91.3%   |
+| Currency symbols   |  8 /  8   | 100.0%   |
+| Roman numerals     |  5 /  5   | 100.0%   |
++--------------------+-----------+----------+
+[Source: Evaluation results from the present study (see Chapter III).]
+
+The single failure in cardinal number expansion involved a multi-word compound
+numeral where suffix harmony interacted unexpectedly with a preceding word.
+The two abbreviation failures involved domain-specific abbreviations not present
+in the training lookup table.
+
+2.2.3. Syllabification and Stress Assignment Rules
+----------------------------------------------------
+
+Accurate syllabification is a prerequisite for stress assignment, which in turn
+determines the prosodic structure of an utterance.
+
+SYLLABIFICATION
+The syllabifier implements the onset-maximization principle:
+  - Every syllable must contain exactly one vowel nucleus.
+  - V.CV: a single consonant between two vowels goes to the right onset.
+    Example: al.ma (apple), a.ta (father)
+  - VC.CV: two consonants between vowels split as coda + onset.
+    Example: məkt.əb (school), qalaq → qa.laq
+  - VC.CCV: in three-consonant clusters, the first consonant closes the left
+    syllable; the remaining form the onset of the right syllable if phonotactically
+    permitted.
+
+STRESS ASSIGNMENT
+Lexical stress applies a priority-ordered rule hierarchy (Salimi, n.d.):
+
+  Priority 1 — Function words and clitics are marked unstressed.
+    Postpositions, conjunctions, and interrogative particles
+    (mi, mı, mu, mü) receive no stress regardless of syllabic structure.
+
+  Priority 2 — Lexical exceptions.
+    Exception list covers irregularly stressed words:
+      deyil (is not) → stress on first syllable (DEY-il)
+      hər (every), bir (indefinite) → typically unstressed in phrases.
+
+  Priority 3 — Negation suffix rule.
+    Words ending in -ma/-mə (verbal negation) receive stress on the
+    penultimate syllable:
+      getmədi → GET-mə-di (didn't go)
+      gəlməyib → GƏL-mə-yib (hasn't come)
+
+  Priority 4 — Default rule.
+    All remaining words receive stress on the final syllable.
+
+PHRASAL STRESS
+After lexical stress assignment, phrasal stress demotions apply:
+  - Function words within a phrase are demoted.
+  - The content word immediately before the main verb receives the nuclear
+    pitch accent (most prominent accent in the phrase).
+  - Sentence type determines the nuclear accent type (see Section 2.2.4).
+
+2.2.4. Prosodic and Intonation Modeling
+-----------------------------------------
+
+The prosody engine models suprasegmental properties using a simplified ToBI
+(Tones and Break Indices) framework (Sadekova et al., 2024; Voice synthesis
+improvement, 2024). Five sentence types are recognized and associated with
+distinct intonation patterns:
+
+[Table 2.4: Sentence types, surface detection markers, and ToBI patterns]
++----------------+-----------------------------+--------+--------+------+
+| Sentence Type  | Detection Marker            | Nuc.   | Phrase | BT   |
+|                |                             | Accent | Accent | Tone |
++----------------+-----------------------------+--------+--------+------+
+| Declarative    | period / no special marker  | H*     | L+H*   | L%   |
+| Yes/No Question| mi/mı/mu/mü particle        | L*     | L+H*   | H%   |
+| Wh-Question    | wh-word (nə, kim, harada…)  | H*     | L+H*   | L%   |
+| Exclamatory    | exclamation mark (!)        | H*+L   | H*     | L%   |
+| Imperative     | bare verb form (no tense)   | H*     | —      | L%   |
++----------------+-----------------------------+--------+--------+------+
+BT = boundary tone.
+[Source: ToBI framework following Sadekova et al. (2024); intonation patterns
+derived from Azerbaijani phonetic descriptions in Salimi (n.d.) and Cambridge
+Core (n.d.).]
+
+Phone duration is estimated using a rule-based model with the following
+baseline values, calibrated to Azerbaijani speech rates (Various authors, 2023):
+  - Vowels:    80 ms (unstressed short) to 130 ms (stressed or lengthened)
+  - Stops:     60–80 ms
+  - Fricatives:80–100 ms
+  - Nasals / liquids: 60–70 ms
+  - Geminates: 1.6× the corresponding singleton duration
+  - Phrase-final lengthening: all phones ×1.3
+
+Pauses are inserted at:
+  - Sentence boundary: 500 ms
+  - Comma / semicolon boundary: 200 ms
+  - Heavy clause boundary (detected by conjunction position): 150 ms
+
+Speaking rate is configurable: neutral = 140 wpm, formal = 120 wpm,
+conversational = 160 wpm. Duration estimates are scaled proportionally.

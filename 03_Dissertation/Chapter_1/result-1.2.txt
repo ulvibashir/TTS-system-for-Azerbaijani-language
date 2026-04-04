@@ -1,0 +1,281 @@
+------------------------------------------------------------------------
+1.2. Rule-Based Text-to-Speech Systems
+------------------------------------------------------------------------
+
+1.2.1. Concept and Principles of Rule-Based TTS
+------------------------------------------------
+
+A rule-based TTS system is one in which every decision in the conversion from
+text to speech is made by an explicitly programmed rule encoding human linguistic
+knowledge. This contrasts with data-driven approaches: statistical systems learn
+patterns from annotated corpora; neural systems learn from raw audio-text pairs
+without explicit encoding of phonological principles (Survey of G2P Methods,
+2024).
+
+The rule-based paradigm is historically the oldest approach to automated speech
+synthesis. It traces its origins to the formant synthesizers of the 1960s–1980s,
+in which acoustic engineers manually specified the vocal tract resonance
+parameters for every phoneme and phoneme transition in the target language
+(Klatt, 1980). The DECtalk system — built on the Klatt formant synthesizer and
+commercialized in the early 1980s — was among the first rule-based TTS products
+to achieve wide deployment, most famously as the voice of physicist Stephen
+Hawking. Although modern rule-based systems have grown considerably more
+sophisticated in their linguistic rule representations, the foundational design
+philosophy has remained constant: all knowledge resides in explicitly stated,
+human-authored rules (Tan et al., 2021).
+
+The intellectual foundation of rule-based TTS is the claim that natural language
+pronunciation is governed by a finite, discoverable set of regularities. This
+claim draws on the tradition of generative phonology (Chomsky & Halle, 1968),
+which holds that the phonological structure of any natural language can be
+expressed as a system of ordered rewrite rules operating on underlying
+representations. For TTS purposes, these rewrite rules govern three categories
+of linguistic mapping: (1) normalization rules, which convert written
+non-standard words to their spoken forms; (2) grapheme-to-phoneme rules, which
+map orthographic characters to IPA phonemes; and (3) prosodic rules, which
+assign stress, pitch accents, and durational patterns to the phoneme string.
+
+Rule-based TTS rests on the following foundational claim: the mapping from
+orthography to phonetics, and from phonetics to prosody, in a given language is
+sufficiently regular and well-understood that it can be captured in a finite,
+maintainable set of rules. For languages with a highly regular, phonemic
+orthography — such as Azerbaijani, Finnish, Spanish, and Turkish — this claim
+is substantially true. For languages with highly irregular orthographic
+traditions — such as English or French — it is significantly less tractable
+(Tan et al., 2021). This is an important reason why the first generation of
+neural TTS research gained its earliest traction in English: English's orthographic
+complexity makes rule-based G2P correspondingly difficult, while the abundance of
+English speech data makes data-driven approaches straightforward.
+
+In practice, rule-based systems are implemented using either hand-crafted
+conditional logic or formal rule engines such as weighted finite-state transducers
+(WFSTs). WFSTs, used in production systems such as NVIDIA NeMo (NVIDIA,
+2020–2024) and Google's Kestrel TTS normalizer, represent rules as transitions in
+a finite automaton, enabling efficient, deterministic processing of large rule sets
+and guaranteed coverage of all possible inputs. For research-scale systems
+operating on languages with regular phonology — such as the present Azerbaijani
+system — explicit priority-ordered rule hierarchies implemented in Python provide
+comparable correctness with far lower engineering overhead.
+
+The rule-based paradigm places a high burden on the system designer: every
+phonological regularity, every context-sensitive alternation, every prosodic
+pattern must be researched, documented, and implemented. This is known in the
+computational linguistics literature as the "knowledge acquisition bottleneck"
+(Allen et al., 1987). However, for low-resource languages where speech corpora
+are unavailable, this bottleneck is preferable to the alternative — a data
+acquisition bottleneck that may be impossible to resolve. For Azerbaijani, the
+well-documented Turkic phonological tradition (Salimi, n.d.; Cambridge Core,
+n.d.) and the language's regular Latin-based orthography make the knowledge
+acquisition burden substantially tractable.
+
+The four foundational principles of rule-based TTS systems are:
+
+  1. EXPLICIT KNOWLEDGE ENCODING: Every phonetic rule is written down and
+     documented based on linguistic knowledge. The complete rule set constitutes
+     an explicit, auditable model of the language's phonological system. This
+     property is especially valuable in an academic dissertation context: the
+     rule base is itself a research contribution — a documented reference that
+     can be extended, critiqued, and built upon by subsequent researchers. In
+     neural systems, by contrast, linguistic knowledge is encoded implicitly in
+     hundreds of millions of learned parameters, making it inaccessible to
+     linguistic analysis.
+
+  2. DETERMINISTIC OUTPUT: Given the same input, the system always produces
+     exactly the same output. This consistency is valuable in deployment contexts
+     requiring reproducibility — for instance, standardized language learning
+     tools, accessibility applications, or automated transcription testing
+     pipelines. Neural systems may exhibit output variability due to stochastic
+     sampling during inference, making systematic debugging and regression testing
+     considerably more difficult.
+
+  3. MODULAR ARCHITECTURE: Each component — text normalization, G2P conversion,
+     stress assignment, prosody prediction — can be developed, tested, and
+     improved independently. The Festival Speech Synthesis System (Taylor et al.,
+     1998) established the canonical modular reference architecture, which all
+     major rule-based systems since have followed. Modularity also enables partial
+     pipeline execution: for linguistic research purposes, the pipeline can be run
+     through modules 1–4 (producing a full phonological analysis) without
+     invoking the acoustic synthesizer, supporting rapid iterative rule testing.
+
+  4. TRANSPARENCY AND DEBUGGABILITY: When the system makes an error, the source
+     rule can be identified by inspecting the intermediate representations between
+     modules and corrected without retraining. This property creates research
+     value that neural systems fundamentally cannot offer: rule errors are explicit,
+     locatable, and correctable, whereas neural failures manifest as unexplained
+     degradations in output quality with no clear path to targeted correction.
+     For a dissertation system, this transparency is essential — it allows the
+     evaluation to be analytically meaningful rather than merely empirical.
+
+1.2.2. Linguistic Rule Formulation and Phonetic Modeling
+---------------------------------------------------------
+
+FORMANT SYNTHESIS AND espeak-ng
+
+Formant synthesis generates speech waveforms by mathematically modeling the
+resonant properties of the human vocal tract. The vocal tract is treated as
+a variable-length series of cylindrical sections whose cross-sectional areas
+determine the system's resonant frequencies (formants).
+
+The Klatt cascade-parallel formant synthesizer (Klatt, 1980) remains the
+definitive reference architecture. It is controlled by a time-varying parameter
+vector specifying, at each 5 ms frame:
+  - Voicing frequency (F0) and amplitude
+  - Aspiration amplitude
+  - Five formant frequencies (F1–F5) and their bandwidths
+  - Nasal pole and zero frequencies
+  - Voice quality and breathiness parameters
+
+The espeak-ng system (originally developed by Jonathan Duddington as eSpeak)
+uses a compact, hand-crafted formant synthesis model with phoneme definitions
+specified in text configuration files. espeak-ng supports over 100 languages
+including Azerbaijani (-v az), and serves as the acoustic backend in the
+present system (Aida-Zade & Sharifova, 2010).
+
+RULE-BASED CONCATENATIVE SYNTHESIS (MBROLA / Festival)
+
+An alternative rule-based approach uses a phoneme inventory — a set of
+pre-recorded, isolated phoneme-length speech segments — as acoustic building
+blocks, concatenated according to the phoneme string and durational rules
+produced by the front-end.
+
+The MBROLA project (Dutoit et al., 1993) provides such inventories for dozens
+of languages including Turkish. Given a sequence of (phoneme, duration, F0)
+triplets, MBROLA synthesizes speech by time-scaling and pitch-modifying the
+corresponding segments and concatenating them. The Festival Speech Synthesis
+System (Taylor et al., 1998) provides a complete rule-based TTS framework using
+the Lisp-derived Scheme language, integrating text normalization, morphological
+analysis, G2P conversion, prosodic analysis, and multiple acoustic backends.
+
+G2P RULE DESIGN
+
+G2P conversion is the most linguistically complex component of the front-end.
+A comprehensive 2024 survey (Survey of G2P Methods, 2024) categorizes existing
+approaches into three types:
+
+  Rule-based approach: An explicit set of linguistic rules determines the
+  pronunciation of each character. For languages with regular orthography like
+  Azerbaijani, Phoneme Error Rates (PER) of 2–6% are achievable.
+
+  Data-driven approach: Transformer models (Vesik et al., 2020; T5G2P, 2024)
+  learn G2P mappings from annotated training data. Multilingual transformer
+  ensembles (2020) address challenges specific to agglutinative languages.
+  PolyIPA (arXiv:2412.09102, 2024) is a recent model for multilingual
+  phoneme-grapheme conversion using IPA.
+
+  Morpheme-based approach (ResearchGate, n.d.): Designed specifically for
+  agglutinative languages, this approach uses phonetic patterns and
+  morphophonemic connectivity information — directly applicable to Azerbaijani.
+
+[Figure 1.3: G2P conversion process flow diagram — rule application sequence
+for context-insensitive and context-sensitive rules]
+[Source: Survey of G2P Conversion Methods (2024). Applied Sciences, 14(24),
+11790. https://www.mdpi.com/2076-3417/14/24/11790]
+
+PROSODY MODELING
+
+Prosodic modeling governs the systematic control of suprasegmental speech
+properties: pitch, duration, intensity, and rhythm. In rule-based systems these
+are encoded as hand-crafted rules; in neural systems they are learned
+statistically.
+
+Recent work on duration prediction for agglutinative languages (arXiv:2507.16875,
+2024) identifies specific challenges in duration strategies for morphologically
+complex languages similar to Azerbaijani. PitchFlow (Sadekova et al., 2024)
+proposes a flow-matching-based approach to pitch contour control. Research on
+stress perception in agglutinative languages (JSLHR, 2024) provides insights
+applicable to Azerbaijani stress rule design.
+
+The present system employs the ToBI (Tones and Break Indices) framework for
+prosodic annotation, specifying pitch accents (H*, L+H*, L*) and boundary tones
+(L%, H%) for each sentence type.
+
+1.2.3. Comparison with Statistical and Neural TTS Approaches
+-------------------------------------------------------------
+
+The three major TTS paradigms — rule-based, statistical parametric (HMM), and
+neural — each present distinct trade-offs across the dimensions of quality,
+data requirements, interpretability, and computational cost. A rigorous
+comparison is essential for justifying the methodological choice made in this
+dissertation.
+
+STATISTICAL PARAMETRIC SYNTHESIS (HMM)
+----------------------------------------
+HMM-based systems, most fully realized in the HTS synthesis framework (Zen et
+al., 2009), learn statistical models of acoustic features — mel-cepstral
+coefficients, fundamental frequency, and phone durations — from a labelled
+training corpus. At synthesis time, the trained models generate smooth acoustic
+feature trajectories by traversing a decision-tree-clustered HMM for each
+phoneme in the input sequence. Their primary advantage over rule-based systems
+is more consistent behavior for unseen phonetic contexts: because the model has
+learned statistical distributions over all training contexts, it can interpolate
+smoothly to novel inputs rather than falling back on a default rule. However,
+the over-smoothing inherent in maximum-likelihood estimation of acoustic
+parameters produces the characteristic "muffled" quality of HMM synthesis —
+generated trajectories represent statistical averages rather than the sharp,
+precise formant movements of natural speech (Statistical Parametric Speech
+Synthesis, 2015). HMM-based systems also require annotated training data
+(5–20 hours) and full forced-alignment labelling, making them infeasible for
+languages with no existing speech corpora.
+
+NEURAL TTS
+-----------
+Neural TTS systems have fundamentally transformed achievable quality by learning
+end-to-end mappings from text to audio without explicit phonological
+representation. Key architectures relevant to the Azerbaijani context include:
+
+  Tacotron 2 (Shen et al., 2018): An encoder-decoder sequence-to-sequence
+  model with location-sensitive attention, producing mel-spectrograms from
+  character or phoneme sequences. For Azerbaijani, Aghalari (2023) used this
+  architecture and achieved MOS 3.3 with approximately 19 hours of training
+  data. A comparative study in low-resource environments (IEEE, 2022) found
+  Tacotron 2 achieved MOS 4.25±0.17, outperforming Deep Voice 3 (MOS 4.0)
+  and FastSpeech 2 (MOS 3.8) in controlled conditions.
+
+  VITS (Kim et al., 2021): An end-to-end variational autoencoder combined
+  with a generative adversarial network, producing waveforms directly without
+  a separate vocoder. VITS achieves MOS comparable to natural speech for
+  well-resourced languages and requires significantly less training data than
+  Tacotron-class models to reach the same quality level.
+
+  HiFi-GAN vocoder (Kong et al., 2020): A GAN-based neural vocoder that
+  converts mel-spectrograms to high-fidelity audio with MOS = 4.36, operating
+  in real time on CPU. HiFi-GAN is widely used as the acoustic back-end in
+  current neural TTS pipelines.
+
+  For Turkish — the language most closely related to Azerbaijani with available
+  neural TTS research — Oyucu (2023) achieved MOS 4.49 using Tacotron 2 +
+  HiFi-GAN, demonstrating that Azerbaijani-adjacent Turkic phonology is
+  amenable to neural approaches when training data is available.
+
+  For Turkic languages as a group, Yeshpanov, Mussakhojayeva, and Khassanov
+  (2023) developed a multilingual TTS system covering Azerbaijani and nine
+  other Turkic languages using a Tacotron 2 + WaveGAN architecture, presented
+  at Interspeech 2023 (open source: github.com/IS2AI/TurkicTTS). Their system
+  demonstrates the feasibility of cross-lingual transfer for Azerbaijani, but
+  does not provide a linguistically grounded monolingual system.
+
+[Table 1.3: Detailed comparison of TTS paradigms]
++-------------------------------+----------------+----------------+----------------+
+| Criterion                     | Rule-Based     | HMM/Statistical| Neural TTS     |
++-------------------------------+----------------+----------------+----------------+
+| MOS (typical)                 | 3.0–3.8        | 3.5–4.0        | 4.2–4.5        |
+| Training data required        | None           | 5–20 hours     | 1–50+ hours    |
+| Interpretability              | Full           | Partial        | Minimal        |
+| Inference compute             | CPU, <1 ms     | CPU, ~10 ms    | GPU, ~50 ms    |
+| Error diagnosis               | Easy           | Complex        | Very difficult |
+| Output consistency            | Deterministic  | Partially det. | Stochastic     |
+| Low-resource language fit     | High           | Medium         | Low            |
+| Domain adaptation             | Easy           | Difficult      | Very difficult |
+| Loanword handling             | Via exceptions | Partial        | Via data       |
++-------------------------------+----------------+----------------+----------------+
+[Source: Compiled by the author based on Tan et al. (2021), Oyucu (2023),
+Kim et al. (2021), Yeshpanov et al. (2023)]
+
+Neural TTS for Azerbaijani requires a sufficiently large, high-quality,
+annotated speech corpus. While recent transfer learning work (Transfer Learning
+for Low-Resource TTS, 2024; LRSpeech, 2020) demonstrates that as little as 30
+minutes of target language data may suffice with pre-trained multilingual models,
+this still requires minimum data collection effort. At the current stage of
+Azerbaijani speech technology development, the rule-based paradigm remains the
+most viable approach for producing a transparent, documented, and immediately
+deployable system.

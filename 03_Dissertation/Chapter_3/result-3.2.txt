@@ -1,0 +1,11 @@
+------------------------------------------------------------------------
+3.2. Implementation of the Rule-Based Text-to-Speech Prototype
+------------------------------------------------------------------------
+
+[To be written — use 03_Dissertation/Chapter_3.md as source material]
+
+[Rule engine development]
+
+[Phoneme mapping and pronunciation generation]
+
+[Audio signal generation and output processing]
