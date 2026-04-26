@@ -13,7 +13,7 @@ import re
 import wave
 import struct
 from pathlib import Path
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Union
 
 
 # ---------------------------------------------------------------------------
