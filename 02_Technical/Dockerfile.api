@@ -1,0 +1,21 @@
+FROM python:3.11-slim
+
+# Install espeak-ng as root (available in base image)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends espeak-ng espeak-ng-data && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy the pipeline source code
+COPY code/ ./code/
+
+# Copy the Flask API
+COPY base-native-app/api/api_server.py .
+COPY base-native-app/api/requirements-api.txt .
+
+RUN pip install --no-cache-dir -r requirements-api.txt
+
+EXPOSE 10000
+
+CMD ["python", "api_server.py"]

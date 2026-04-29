@@ -13,9 +13,17 @@ import logging
 from pathlib import Path
 from flask import Flask, request, jsonify, send_file
 
-# Add the pipeline code directory to path
-CODE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../code")
-sys.path.insert(0, os.path.abspath(CODE_DIR))
+# Add the pipeline code directory to path.
+# In Docker: api_server.py and code/ are both copied to /app/
+# In local dev: api_server.py is at 02_Technical/base-native-app/api/
+_here = os.path.dirname(os.path.abspath(__file__))
+for _candidate in [
+    os.path.join(_here, "code"),        # Docker layout: /app/code/
+    os.path.join(_here, "../../code"),  # Local dev layout: 02_Technical/code/
+]:
+    if os.path.isdir(_candidate):
+        sys.path.insert(0, os.path.abspath(_candidate))
+        break
 
 try:
     from pipeline import AzTTSPipeline, PipelineConfig
