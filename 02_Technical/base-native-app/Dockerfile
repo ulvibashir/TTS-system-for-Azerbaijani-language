@@ -1,6 +1,21 @@
+# ── Stage 1: Build Next.js static frontend ───────────────────────────────────
+FROM node:20-slim AS frontend
+
+WORKDIR /build
+
+COPY package*.json ./
+RUN npm install
+
+COPY next.config.ts tsconfig.json postcss.config.mjs ./
+COPY src/ ./src/
+
+RUN npm run build
+# Output is in /build/out/
+
+
+# ── Stage 2: Python Flask server ─────────────────────────────────────────────
 FROM python:3.11-slim
 
-# Install espeak-ng
 RUN apt-get update && \
     apt-get install -y --no-install-recommends espeak-ng espeak-ng-data && \
     rm -rf /var/lib/apt/lists/*
@@ -8,18 +23,18 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Pipeline code — modules use Path(__file__).parent.parent / "Rules"
-# so code must be one level deep: /app/code/*.py → parent.parent = /app/
+# so /app/code/*.py → parent.parent = /app/ → looks for /app/Rules/
 COPY code/ ./code/
-
-# Rules directory — capital R matches what the Python modules expect on Linux
 COPY Rules/ ./Rules/
 
-# Flask API
-COPY api/api_server.py .
-COPY api/requirements-api.txt .
+# Flask server
+COPY server.py .
+COPY requirements-server.txt .
+RUN pip install --no-cache-dir -r requirements-server.txt
 
-RUN pip install --no-cache-dir -r requirements-api.txt
+# Copy built frontend from Stage 1
+COPY --from=frontend /build/out ./static/
 
 EXPOSE 10000
 
-CMD ["python", "api_server.py"]
+CMD ["python", "server.py"]

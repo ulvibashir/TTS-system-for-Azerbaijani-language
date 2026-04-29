@@ -76,7 +76,7 @@ export default function Home() {
     }
 
     try {
-      const res = await fetch("/api/synthesize", {
+      const res = await fetch("/synthesize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text, style, speed }),
