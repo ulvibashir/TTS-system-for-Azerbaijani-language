@@ -43,6 +43,17 @@ flowchart TD
 
 ---
 
+## Live Demos
+
+| Demo | Description | Link |
+|------|-------------|------|
+| **Rule-Based TTS** | Full pipeline — this dissertation's system (espeak-ng backend) | [tts-system-for-azerbaijani-language-1.onrender.com](https://tts-system-for-azerbaijani-language-1.onrender.com/) |
+| **Azure Neural TTS** | Reference comparison — Microsoft Azure Cognitive Services (BanuNeural / BabekNeural) | [tts-system-for-azerbaijani-language.onrender.com](https://tts-system-for-azerbaijani-language.onrender.com/) |
+
+> Both apps share the same UI. The rule-based demo runs the Python pipeline described in Chapter III. The Azure demo uses a cloud neural voice for perceptual comparison only.
+
+---
+
 ## Key Results
 
 | Metric | Proposed System | espeak-ng Baseline | Improvement |
