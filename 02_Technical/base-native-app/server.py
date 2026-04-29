@@ -7,11 +7,10 @@ Serves:
   POST /synthesize → TTS pipeline, returns WAV audio bytes
 """
 
+import io
 import os
 import sys
-import tempfile
 import logging
-from pathlib import Path
 from flask import Flask, send_from_directory, request, jsonify, send_file
 
 # Pipeline code is at /app/code/ (copied by Dockerfile)
@@ -94,22 +93,17 @@ def synthesize():
     if style not in STYLE_TO_RATE:
         style = "neutral"
 
-    tmp_path = None
     try:
         config = PipelineConfig(speaking_style=style)
         pipeline = AzTTSPipeline(config)
 
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-            tmp_path = tmp.name
+        audio_bytes = pipeline.synthesize(text)
 
-        output = pipeline.synthesize(text, output_path=tmp_path)
-        output_path = Path(output if output else tmp_path)
-
-        if not output_path.exists() or output_path.stat().st_size == 0:
+        if not audio_bytes:
             return jsonify({"error": "Synthesis produced no audio"}), 500
 
         return send_file(
-            str(output_path),
+            io.BytesIO(audio_bytes),
             mimetype="audio/wav",
             as_attachment=False,
             download_name="output.wav",
@@ -118,13 +112,6 @@ def synthesize():
     except Exception as e:
         logging.exception("Synthesis error")
         return jsonify({"error": str(e)}), 500
-
-    finally:
-        if tmp_path and os.path.exists(tmp_path):
-            try:
-                os.unlink(tmp_path)
-            except Exception:
-                pass
 
 
 if __name__ == "__main__":
