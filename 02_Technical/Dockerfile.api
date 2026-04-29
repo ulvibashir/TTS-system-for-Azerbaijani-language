@@ -1,22 +1,17 @@
 FROM python:3.11-slim
 
-# Install espeak-ng as root (available in base image)
+# Install espeak-ng as root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends espeak-ng espeak-ng-data && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copy the pipeline source code
-COPY code/ ./code/
-
-# Copy rules with capital R — all modules use Path(__file__).parent.parent / "Rules" / ...
-# On Linux (Docker) the filesystem is case-sensitive, so "Rules" != "rules"
-COPY rules/ ./Rules/
-
-# Copy the Flask API
-COPY base-native-app/api/api_server.py .
-COPY base-native-app/api/requirements-api.txt .
+# Paths are relative to the repo root (Render build context = repo root)
+COPY 02_Technical/code/ ./code/
+COPY 02_Technical/rules/ ./Rules/
+COPY 02_Technical/base-native-app/api/api_server.py .
+COPY 02_Technical/base-native-app/api/requirements-api.txt .
 
 RUN pip install --no-cache-dir -r requirements-api.txt
 
