@@ -2,13 +2,9 @@ services:
   # ─── 1. Python Flask API (rule-based TTS pipeline) ───────────────────────
   - type: web
     name: az-tts-api
-    runtime: python
-    rootDir: 02_Technical/base-native-app/api
-    buildCommand: >
-      sudo apt-get update -y &&
-      sudo apt-get install -y espeak-ng espeak-ng-data &&
-      pip install flask
-    startCommand: python api_server.py
+    runtime: docker
+    rootDir: 02_Technical/base-native-app
+    dockerfilePath: Dockerfile
     plan: free
     envVars:
       - key: PORT
@@ -24,6 +20,6 @@ services:
     plan: free
     envVars:
       - key: FLASK_API_URL
-        sync: false   # Set this manually in Render dashboard after API is deployed
+        sync: false
       - key: PORT
         value: 3000

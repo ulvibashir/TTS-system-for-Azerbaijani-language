@@ -14,12 +14,12 @@ from pathlib import Path
 from flask import Flask, request, jsonify, send_file
 
 # Add the pipeline code directory to path.
-# In Docker: api_server.py and code/ are both copied to /app/
-# In local dev: api_server.py is at 02_Technical/base-native-app/api/
+# Docker:    api_server.py at /app/,           code at /app/code/
+# Local dev: api_server.py at base-native-app/api/, code at base-native-app/code/
 _here = os.path.dirname(os.path.abspath(__file__))
 for _candidate in [
-    os.path.join(_here, "code"),        # Docker layout: /app/code/
-    os.path.join(_here, "../../code"),  # Local dev layout: 02_Technical/code/
+    os.path.join(_here, "code"),     # Docker: /app/code/
+    os.path.join(_here, "../code"),  # Local dev: base-native-app/code/
 ]:
     if os.path.isdir(_candidate):
         sys.path.insert(0, os.path.abspath(_candidate))
