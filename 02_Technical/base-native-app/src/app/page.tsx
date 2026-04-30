@@ -61,7 +61,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [lang, setLang] = useState<"az" | "en">("az");
+  const [lang, setLang] = useState<"az" | "en">("en");
   const audioRef = useRef<HTMLAudioElement>(null);
   const audioUrlRef = useRef<string | null>(null);
   const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -237,7 +237,7 @@ export default function Home() {
           </header>
 
           {/* Main Card */}
-          <div className={`${cardBg} rounded-3xl border shadow-2xl shadow-emerald-500/5 p-5 sm:p-8 space-y-6 animate-fade-in-up delay-300`}>
+          <div className={`${cardBg} rounded-3xl border shadow-2xl shadow-emerald-500/5 p-5 sm:p-8 space-y-6 animate-fade-in-up delay-300 transition-all duration-300`}>
             {/* Textarea */}
             <div className="relative group">
               <textarea
