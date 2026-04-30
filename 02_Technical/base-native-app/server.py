@@ -19,7 +19,8 @@ if os.path.isdir(_code_dir):
     sys.path.insert(0, _code_dir)
 
 try:
-    from pipeline import AzTTSPipeline, PipelineConfig
+    from text_normalizer import normalize
+    from synthesizer import Synthesizer, SynthConfig
     PIPELINE_AVAILABLE = True
 except Exception as e:
     logging.warning(f"Pipeline import failed: {e}")
@@ -30,13 +31,14 @@ logging.basicConfig(level=logging.INFO)
 STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 app = Flask(__name__, static_folder=STATIC_DIR)
 
-STYLE_TO_RATE = {
-    "neutral": 140,
-    "formal": 120,
-    "conversational": 160,
+# style → (words-per-minute, pitch)
+STYLE_PARAMS = {
+    "neutral":       (140, 50),
+    "formal":        (120, 45),
+    "conversational":(160, 55),
 }
 
-SPEED_TO_MULTIPLIER = {
+SPEED_MULTIPLIER = {
     "0.7x": 0.7,
     "0.85x": 0.85,
     "1x": 1.0,
@@ -90,14 +92,21 @@ def synthesize():
         return jsonify({"error": "text is required"}), 400
     if len(text) > 3000:
         return jsonify({"error": "text must be under 3000 characters"}), 400
-    if style not in STYLE_TO_RATE:
+    if style not in STYLE_PARAMS:
         style = "neutral"
 
     try:
-        config = PipelineConfig(speaking_style=style)
-        pipeline = AzTTSPipeline(config)
+        base_rate, pitch = STYLE_PARAMS[style]
+        multiplier = SPEED_MULTIPLIER.get(speed_label, 1.0)
+        rate = int(base_rate * multiplier)
 
-        audio_bytes = pipeline.synthesize(text)
+        # Normalize text (handles numbers, dates, abbreviations, etc.)
+        normalized = normalize(text)
+
+        # Synthesize via espeak-ng directly — bypasses prosody markup that
+        # inserts _600 pause tokens which espeak-ng reads aloud as numbers
+        synth = Synthesizer(SynthConfig(language="az", speed=rate, pitch=pitch))
+        audio_bytes = synth.synthesize_text(normalized)
 
         if not audio_bytes:
             return jsonify({"error": "Synthesis produced no audio"}), 500
