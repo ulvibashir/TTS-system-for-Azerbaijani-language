@@ -246,6 +246,9 @@ export default function Home() {
             <p className={`${textSub} text-sm sm:text-base max-w-md mx-auto animate-fade-in-up delay-200`}>
               {t.subtitle}
             </p>
+            <p className={`text-sm font-semibold animate-fade-in-up delay-300 ${isDark ? "text-blue-400/80" : "text-blue-600"}`}>
+              {t.madeBy}
+            </p>
           </header>
 
           {/* Main Card */}
@@ -392,7 +395,6 @@ export default function Home() {
           <footer className="text-center space-y-1 pt-4">
             <p className={`text-[11px] ${textMuted}`}>{t.footer1}</p>
             <p className={`text-[11px] ${isDark ? "text-gray-700" : "text-gray-400"}`}>{t.footer2}</p>
-            <p className={`text-[11px] font-medium ${isDark ? "text-blue-700/60" : "text-blue-600/70"}`}>{t.madeBy}</p>
           </footer>
         </div>
       </main>
