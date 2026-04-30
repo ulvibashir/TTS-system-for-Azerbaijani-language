@@ -190,7 +190,7 @@ export default function Home() {
             </div>
 
             {/* Controls Row */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Style Selector */}
               <div>
                 <label className="block text-[11px] text-gray-500 uppercase tracking-wider mb-2 font-medium">
