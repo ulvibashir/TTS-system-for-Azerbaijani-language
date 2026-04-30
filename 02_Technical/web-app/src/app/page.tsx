@@ -273,7 +273,7 @@ export default function Home() {
             </div>
 
             {/* Controls */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
                 <label className={`block text-[11px] ${textMuted} uppercase tracking-wider mb-2 font-medium`}>{t.voiceLabel}</label>
                 <div className="flex gap-2">
