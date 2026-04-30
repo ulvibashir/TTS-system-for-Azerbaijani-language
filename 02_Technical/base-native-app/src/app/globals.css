@@ -120,6 +120,12 @@ audio::-webkit-media-controls-panel {
   -webkit-backdrop-filter: blur(20px);
 }
 
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
